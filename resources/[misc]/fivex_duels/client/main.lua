@@ -109,14 +109,7 @@ local function countdown(weapon)
 
     if getCurrentWeapon.name == nil then
         local currentWeapon = exports.ox_inventory:GetSlotWithItem(weapon, nil, false)
-        local giveammo = lib.callback.await('duels:giveItem', false, 'ammo')
-        local currentAmmo = exports.ox_inventory:GetSlotWithItem("ammo", nil, false)
-        if currentWeapon == nil then currentWeapon = lib.callback.await('duels:giveItem', false, weapon) end
-        if currentAmmo == nil then currentAmmo = lib.callback.await('duels:giveItem', false, 'ammo') end
-        Wait(200)
         exports.ox_inventory:useSlot(currentWeapon.slot)
-        Wait(50)
-        exports.ox_inventory:useSlot(currentAmmo.slot)
     end
     
     
@@ -270,50 +263,50 @@ RegisterNetEvent('duels:matchInit', function()
 
     if (not currentMatch) then return end
 
-    lib.registerContext({
-        id = 'attachments2',
-        title = 'FiveX - Attachments',
-        options = {
-          {
-            title = 'Lyddæmper',
-            icon = 'bars',
-            onSelect = function()
-                local silencer = lib.callback.await('duels:giveItem', false, 'silencer')
-                local currentSilencer = exports.ox_inventory:GetSlotWithItem("silencer", nil, false)
-                Wait(200)
-                exports.ox_inventory:useSlot(currentSilencer.slot)
-                Wait(100)
-                lib.showContext('attachments2')
-            end,
-          },
-          {
-            title = 'Clip',
-            icon = 'bars',
-            onSelect = function()
-                local clip = lib.callback.await('duels:giveItem', false, 'clip')
-                local currentClip = exports.ox_inventory:GetSlotWithItem("clip", nil, false)
-                Wait(200)
-                exports.ox_inventory:useSlot(currentClip.slot)
-                Wait(100)
-                lib.showContext('attachments2')
-            end,
-          },
-          {
-            title = 'Scope',
-            icon = 'bars',
-            onSelect = function()
-                local scope = lib.callback.await('duels:giveItem', false, 'scope')
-                local currentScope = exports.ox_inventory:GetSlotWithItem("scope", nil, false)
-                Wait(200)
-                exports.ox_inventory:useSlot(currentScope.slot)
-                Wait(100)
-                lib.showContext('attachments2')
-            end,
-          }
-        }
-      })
+    -- lib.registerContext({
+    --     id = 'attachments2',
+    --     title = 'FiveX - Attachments',
+    --     options = {
+    --       {
+    --         title = 'Lyddæmper',
+    --         icon = 'bars',
+    --         onSelect = function()
+    --             local silencer = lib.callback.await('duels:giveItem', false, 'silencer')
+    --             local currentSilencer = exports.ox_inventory:GetSlotWithItem("silencer", nil, false)
+    --             Wait(200)
+    --             exports.ox_inventory:useSlot(currentSilencer.slot)
+    --             Wait(100)
+    --             lib.showContext('attachments2')
+    --         end,
+    --       },
+    --       {
+    --         title = 'Clip',
+    --         icon = 'bars',
+    --         onSelect = function()
+    --             local clip = lib.callback.await('duels:giveItem', false, 'clip')
+    --             local currentClip = exports.ox_inventory:GetSlotWithItem("clip", nil, false)
+    --             Wait(200)
+    --             exports.ox_inventory:useSlot(currentClip.slot)
+    --             Wait(100)
+    --             lib.showContext('attachments2')
+    --         end,
+    --       },
+    --       {
+    --         title = 'Scope',
+    --         icon = 'bars',
+    --         onSelect = function()
+    --             local scope = lib.callback.await('duels:giveItem', false, 'scope')
+    --             local currentScope = exports.ox_inventory:GetSlotWithItem("scope", nil, false)
+    --             Wait(200)
+    --             exports.ox_inventory:useSlot(currentScope.slot)
+    --             Wait(100)
+    --             lib.showContext('attachments2')
+    --         end,
+    --       }
+    --     }
+    --   })
 
-      lib.showContext('attachments2')
+    --   lib.showContext('attachments2')
 
     bridge.matchStarted(getPlayerTeam(), currentMatch.weapon)
 

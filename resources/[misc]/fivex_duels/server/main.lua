@@ -1,6 +1,12 @@
 local Games = GlobalState.DuelsGames or {}
 local StartedGames = {}
-
+local playerItems = {}
+local standardItems = {
+    {name = 'ammo', count = 2500, slot = 6},
+    {name = 'clip', count = 1, slot = 2},
+    {name = 'silencer', count = 1, slot = 3},
+    {name = 'scope', count = 1, slot = 4},
+}
 local function getIdentifier(source, type)
     local identifiers = GetPlayerIdentifiers(source)
 
@@ -193,6 +199,11 @@ local function finishMatch(match, winner, saveStats)
             local wins = winner == 1 and 1 or 0
             local loses = winner == 1 and 0 or 1
             addPlayerStatToLb(identifier, player.name, kills, deaths, wins, loses)
+            exports.ox_inventory:ClearInventory(player.id, false)
+            for index = 1, #playerItems[player.id] do
+                local item = playerItems[player.id][index]
+                exports.ox_inventory:AddItem(player.id, item.name, item.count, nil, item.slot)
+            end
         end
 
         for i = 1, #match.team2, 1 do
@@ -203,6 +214,11 @@ local function finishMatch(match, winner, saveStats)
             local wins = winner == 2 and 1 or 0
             local loses = winner == 2 and 0 or 1
             addPlayerStatToLb(identifier, player.name, kills, deaths, wins, loses)
+            exports.ox_inventory:ClearInventory(player.id, false)
+            for index = 1, #playerItems[player.id] do
+                local item = playerItems[player.id][index]
+                exports.ox_inventory:AddItem(player.id, item.name, item.count, nil, item.slot)
+            end
         end
     end
 
@@ -269,6 +285,7 @@ local function handleNextMatchRound(match, finished, winner, cause)
 
     triggerGameEvent(match, false, 'duels:nextMatchRound', match, finished, winner, cause)
     if finished then
+        
         finishMatch(match, winner, (cause == 'finished_match'))
     end
 end
@@ -446,8 +463,11 @@ lib.callback.register('duels:startMatch', function(playerId, lobbyId, mapData)
     Wait(500)
 
     SetRoutingBucketPopulationEnabled(match.id, false)
-
+    table.insert(standardItems, {name = 'vest', count = 1500, slot = 5})
+    table.insert(standardItems, {name = match.weapon, count = 1, slot = 1})
     for i = 1, #match.team1, 1 do
+        playerItems[match.team1[i].id] = exports.ox_inventory:GetInventoryItems(match.team1[i].id)
+        exports.ox_inventory:ClearInventory(match.team1[i].id, false)
         SetPlayerRoutingBucket(match.team1[i].id, match.id)
 
         Wait(50)
@@ -460,9 +480,15 @@ lib.callback.register('duels:startMatch', function(playerId, lobbyId, mapData)
             mapData.coords.player[i].z, false, false, false, false)
 
         SetEntityHeading(ped, mapData.coords.player[i].w)
+        for index = 1, #standardItems do
+            local item = standardItems[index]
+            exports.ox_inventory:AddItem(match.team1[i].id, item.name, item.count, nil, item.slot)
+        end
     end
 
     for i = 1, #match.team2, 1 do
+        playerItems[match.team2[i].id] = exports.ox_inventory:GetInventoryItems(match.team2[i].id)
+        exports.ox_inventory:ClearInventory(match.team2[i].id, false)
         SetPlayerRoutingBucket(match.team2[i].id, match.id)
 
         Wait(50)
@@ -475,12 +501,14 @@ lib.callback.register('duels:startMatch', function(playerId, lobbyId, mapData)
             mapData.coords.opponent[i].z, false, false, false, false)
 
         SetEntityHeading(ped, mapData.coords.opponent[i].w)
+        for index = 1, #standardItems do
+            local item = standardItems[index]
+            exports.ox_inventory:AddItem(match.team2[i].id, item.name, item.count, nil, item.slot)
+        end
     end
-
     Wait(500)
 
     triggerGameEvent(match, false, 'duels:matchInit')
-
     return true
 end)
 
@@ -520,12 +548,6 @@ RegisterNetEvent('duels:matchTimerOut', function()
     if not match then return end
 
     handleNextMatchRound(match, true, 0, 'timeout')
-end)
-
-lib.callback.register('duels:giveItem', function(source, item)
-    local src = source  
-    local _, respons = exports.ox_inventory:AddItem(src, item, 1)
-    return respons[1]
 end)
 
 RegisterNetEvent('duels:exitRequest', function()
