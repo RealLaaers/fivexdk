@@ -1,0 +1,1 @@
+/* empty css                  */import n from"./Tattoos.f9516605.js";import{u as s,j as o,F as e}from"./index.ad699a6e.js";import"./slidedown.6d4617bc.js";const u=()=>{const i=s(t=>t.config.config);return o(e,{children:o("section",{className:`mainHousing ${i.nui.position==="left"?"mainHousing-left":"mainHousing-right"}`,children:o(n,{})})})};export{u as default};

@@ -1,0 +1,1 @@
+/* empty css                  */import o from"./Outfits.f06a6611.js";import{u as s,j as i,F as e}from"./index.60c3ab73.js";const c=()=>{const n=s(t=>t.config.config);return i(e,{children:i("section",{className:`mainHousing ${n.nui.position==="left"?"mainHousing-left":"mainHousing-right"}`,children:i(o,{})})})};export{c as default};
