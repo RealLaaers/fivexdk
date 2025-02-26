@@ -1,0 +1,56 @@
+.hud-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 5vh;
+    z-index: 1000;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+
+.hud-wrapper > #hud-bar {
+    width: 10vw;
+    height: 1.5vh;
+    margin-left: .5vw;
+    border-radius: 1px;
+    background-color: rgba(0, 0, 0, 0.664);
+    border: 1px solid black;
+    box-shadow: 0 0 .15vw black;
+}
+
+.hud-wrapper > #hud-bar > #hud-bar-inside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .5vw;
+    color: white;
+    border-radius: 1px;
+    width: 40%;
+    height: 1.5vh;
+    animation: progress 1s 1 forwards;
+}
+
+.hud-wrapper > #hud-bar > #hud-bar-inside > i {
+    margin-right: .3vw;
+}
+
+.hud-wrapper > #hud-bar > .hud-armor-inside {
+    background-color: rgb(0, 44, 109) !important;
+    animation: progress 1s 1 forwards;
+}
+
+.hud-wrapper > #hud-bar > .hud-health-inside {
+    background-color: rgb(0, 44, 109) !important;
+    animation: progress 1s 1 forwards;
+}
+
+@keyframes progress {
+    from {
+        width: 0;
+    }
+}

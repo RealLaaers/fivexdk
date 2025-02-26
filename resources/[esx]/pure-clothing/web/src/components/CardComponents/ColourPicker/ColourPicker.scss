@@ -1,0 +1,82 @@
+.colourPicker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em 0 1em;
+    width: 86%;
+    height: 3em;
+    margin: 0.5em auto;
+    // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    cursor: pointer;
+    border-radius: 5px;
+
+    h5 {
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+    }
+
+    svg {
+        width: 1.5em;
+        height: 1.5em;
+    }
+}
+
+.colourShowing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em 0 1em;
+    width: 86%;
+    height: 3em;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    cursor: pointer;
+
+    h5 {
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+    }
+
+    svg {
+        width: 1.5em;
+        height: 1.5em;
+    }
+}
+
+.colourShowing2 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 0.3em;
+
+
+
+    padding: 0 1em 0.5em 1em;
+    width: 86%;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    .colourBox { 
+        background-color: aqua;
+        width: 3.1em;
+        height: 2.8em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.4s;
+
+        &:hover {
+            border: 2px solid #fff;
+        }
+
+        svg {
+            width: 2.2em;
+            height: 2.2em;
+        }
+    }
+}

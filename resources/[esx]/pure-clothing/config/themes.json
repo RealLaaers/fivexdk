@@ -1,0 +1,45 @@
+{
+    "background": {
+        "container": "#121212",
+        "clothing-main": "#212121",
+        "sidebar": "#212121",
+        "clothing-top-block": "#323232",
+        "box-shadow": "#121212 0px 7px 29px 0px"
+    },
+    "text": {
+        "white": "#ffffff",
+        "grey-faded" : "#a5a5a5",
+        "text-like-borders": "#686868"
+    },
+    "borders": {
+        "border-colour": "#323232",
+        "border-thin": "0.15em solid",
+        "border-main-complete": "0.25em solid #323232",
+        "border-radius": "5px"
+    },
+    "mainColourway": {
+        "main-colour": "#4c57ac",
+        "main-colour-faded": "#4c57ac1f"
+    },
+    "sidebar": {
+        "info": "#4c57ac",
+        "save": "#52bd57",
+        "delete": "#b95050",
+        "tattooClear": "#F28F19",
+        "randomiser": "#F28F19",
+        "onSelectBorder": " 0.2em solid",
+        "nameHover": "#2D2D2D"
+    },
+    "hair": {
+        "dropDownBorder": "1px solid",
+        "dropDownBorderColour": "#323232",
+        "hairTileBorder": "2px solid",
+        "hairTileBorderColour": "#323232"
+    },
+    "dropdownDivider": {
+        "border-colour": "#323232"
+    },
+    "checkbox":{
+        "checkbox-hover": "0 0 0 20px #4c57ac3d"
+    }
+}

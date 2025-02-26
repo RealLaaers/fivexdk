@@ -1,0 +1,10 @@
+.myIdBox {
+    display: inline-block;
+    background-color: #003366; /* vælg en farve */
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin-right: 5px;
+    font-size: 13px; /* evt. justér efter behov */
+  }
+  

@@ -1,0 +1,256 @@
+.mainHousing {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    width: 33.125em;
+    padding: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .mainComponent {
+        width: 28em;
+        margin: 1em;
+        // border: 0.2em solid #d10d0df1;
+
+        .topBlock {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0.3em 0.4em;
+            align-items: center;
+            width: 27.5em;
+
+            h1 {
+                font-size: 24px;
+                font-weight: 700;
+    
+            }
+
+            p {
+                svg {
+                    width: 1.8em;
+                    height: 1.8em;
+                    margin-right: 0.2em;
+                    margin-left: 0.2em;
+                    cursor: pointer;
+                    transition: 0.4s;
+                }
+            }
+        }
+
+        .divider {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: auto;
+            height: 5.4em;
+            padding: 0 2em 0 2em;
+    
+            h2 {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 0.2em;
+            }
+    
+            .chevrons {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+    
+                h3 {
+                    // background-color: $icon-color-hover;
+                    // color: $icon-color;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 1.5em;
+                    width: 2.2em;
+                }
+                
+                input {
+                    width: 5em;
+                    height: 1.8em;
+                    font-size: 16px;
+                    font-weight: 600;
+                    text-align: center;
+                    transition: 0.4s;
+                    border: 0;
+                    background-color: transparent;
+                    margin: 0 0.4em;
+                }
+            }
+        }
+
+        .dropdownDivider {
+            display: flex;
+            flex-direction: column;
+            width: auto;
+            padding: 0 2em 0 2em;
+    
+            h2 {
+                // color: $icon-color;
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 0.2em;
+                margin-top: 1em;
+            }
+    
+            .slide-down {
+                margin-top: 0.4em;
+                height: 20em;
+                overflow: hidden;
+                overflow-y: scroll;
+                border-top: 0;
+                position: relative;
+                z-index: 1;
+    
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }           
+    
+            .dropDownBar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                // padding: 0 1em 0 1em;
+                width: 100%;
+                height: 2em;
+                margin: 0.5em 0 0 0;
+                transition: 0.4s;
+                cursor: pointer;
+                h5 {
+                    font-weight: 600;
+                }
+            }
+
+            .inputText{
+                width: 24em;
+                height: 1.7em;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                background-color: transparent;
+            }
+        }
+
+        .fixed-dropdown-height{
+            height: 5.6em;
+        }
+
+        .auto-dropdown-height {
+            height: auto;
+        }
+
+        .sliderComp{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 1em;
+            margin-left: 1.2em;
+        }
+
+        .sliderRow {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: auto;
+            height: auto;
+            padding: 0.25em 2em 0.25em 2em;
+
+            h2 {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 0.2em;
+            }
+        }
+    }
+
+    .auto-height {
+        height: auto;
+    }
+
+    .fixed-height {
+        height: 8.6em;
+    }
+}
+
+.mainHousing-left {
+    margin-left: 4.375em;
+}
+
+.mainHousing-right {
+    right: 0;
+}
+
+.margin-top {
+    margin-top: 1em;
+}
+
+// All stuff todo with checkboxes lolerz
+.checkBoxHousing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em 0.8em 0.8em 0.8em;
+}
+
+.labelling {
+    width: 100%;
+    cursor: pointer;
+
+    span {
+        font-weight: 600;
+        margin-left: 1em;
+    }
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+  
+    font: inherit;
+    color: inherit;
+    width: 1.15em;
+    height: 1.15em;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+  
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    &:hover {
+        clip-path: circle(90%);
+    }
+  }
+  
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #fff;
+    /* Windows High Contrast Mode */
+    // background-color: $icon-color-hover;
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+  
+  input[type="checkbox"]:focus {
+    // outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+  }

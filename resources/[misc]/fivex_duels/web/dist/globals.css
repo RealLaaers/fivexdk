@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #0f1013f6;
+    --alt-color: #003bb9;
+    --alt-opacity-color: rgba(1, 90, 223, 0.212);
+    --alt-highlight-color: #003bb9;
+
+    --ingame-counter: rgba(15, 16, 19, 0.8);
+    --team1-ingame-color: #003bb9;
+    --team2-ingame-color: #003bb9;
+}

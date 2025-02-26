@@ -1,0 +1,47 @@
+-- RegisterCommand("newpvpmenu", function()
+--         lib.registerContext({
+--             id = 'pvpmenu',
+--             title = 'FiveX - PvP Menu',
+--             options = {
+--                 {
+--                     title = 'Spiller',
+--                     icon = 'user',
+--                     description = '',
+--                     event = 'PlayerMenu',
+--                 },
+--                 {
+--                     title = 'Køretøj',
+--                     icon = 'car',
+--                     description = '',
+--                     event = 'koretojmenu',
+--                 },
+--                 {
+--                     title = 'Items',
+--                     icon = 'gun',
+--                     description = '',
+--                     arrow = false,
+--                     menu = 'vobenmenu',
+--                 },
+--                 {
+--                     title = 'Tøj',
+--                     icon = 'shirt',
+--                     description = '',
+--                     event = 'ClothingMenu',
+--                 },
+--                 {
+--                     title = 'Teleport',
+--                     icon = 'bars',
+--                     description = '',
+--                     event = 'teleportmenu',
+--                 },
+--                 {
+--                     title = 'Indstillinger',
+--                     icon = 'gear',
+--                     description = '',
+--                     event = 'justeringer',
+--                 },
+--             },
+--         })
+
+--     lib.showContext('pvpmenu')
+-- end)

@@ -1,0 +1,14 @@
+Recoil ressource = skærmryst
+
+AccuracySpread value= Spread på skud når du sprayer
+AccurateModeAccuracyModifier value= mindre præcis når du løber rundt
+ForceHitVehicle value= skader på bilers hp
+ForceHitFlyingHeli value= skader på heli hp
+Penetration value= Skade på armor/vest
+Speed value= skud hastighed
+RecoilRecoveryRate value= rate hvorpå recoil rammer maks
+MaxHeadShotDistancePlayer value= max headshot range
+MinHeadShotDistancePlayer value= min headshot range (minimum 5)
+BoneTag = hitbox
+WeaponRange value= Range
+ProjectileForce value= Penetration

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSA Leaderboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' crossorigin='anonymous' />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@18657a9/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- JQuery -->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+</head>
+<body oncontextmenu="return false;">
+    <button class="back-button" role="button"><i class="fas fa-angle-left" style="font-size: 20px; text-align: center;"></i></button>
+    <div class="my-profile">
+        <div class="myp-profiles">
+            <img id="myp-banner" src="https://cdn.discordapp.com/attachments/671389525309784105/1074208947663282176/Banner_4.png">
+            <div class="mypp-information">
+                <div class="myp-pp">
+                    <img src="https://avatars.akamai.steamstatic.com/25afa1a9731981cee0856e705493527687ea8fe9_full.jpg">
+                </div>
+                <div class="myp-names">
+                    <div class="myp-name">
+                        <span>grisen</span>
+                    </div>
+                    <div class="myp-hex">
+                        <span>steam:110000111af43bb</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat-div">
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-skull"></i>
+                    </div>
+                    <div class="stat-text">
+                        <span>Kill</span>
+                    </div>
+                    <div class="stat-count">
+                        <span>35</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-tombstone"></i>
+                    </div>
+                    <div class="stat-text">
+                        <span>Death</span>
+                    </div>
+                    <div class="stat-count">
+                        <span>55</span>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-div">
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-gun"></i>
+                    </div>
+                    <div class="stat-text">
+                        <span>KDA</span>
+                    </div>
+                    <div class="stat-count">
+                        <span>1.05</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div class="stat-text">
+                        <span>Rank</span>
+                    </div>
+                    <div class="stat-count">
+                        <span id="rank-text">Silver</span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="stat-div">
+                <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="stat-text">
+                        <span>Points</span>
+                    </div>
+                    <div class="stat-count">
+                        <span id="rank-text"></span>
+                    </div>
+                </div> -->
+                <!-- <div class="stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stat-text">
+                        <span>SC</span>
+                    </div>
+                    <div class="stat-count">
+                        <span id="rank-text"></span>
+                    </div>
+                </div>
+            </div> -->
+            <div class="stat-div">
+                <div class="stat-country">
+                    <div class="stat-country-icon">
+                        <i class="fa-solid fa-flag"></i>
+                    </div>
+                    <div class="stat-country-text">
+                        <span>Country</span>
+                    </div>
+                    <div class="stat-country-count">
+                        <img class="country" src="/img/flags-svg/de.svg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="leaderboard">
+        <div class="header">
+            <div class="header-rank">
+                <span>rank</span>
+            </div>
+            <div class="line"></div>
+            <div class="header-name">
+                <span>player name</span>
+            </div>
+            <div class="line"></div>
+            <div class="header-kill">
+                <span>kill</span>
+            </div>
+            <div class="line"></div>
+            <div class="header-death">
+                <span>death</span>
+            </div>
+        </div>
+        <div class="player-leaderboard">
+            <div class="player-lines" data-identifier="${v.identifier}">
+                <div class="player-rank">
+                    <span>#1</span>
+                </div>
+                <div class="player-name">
+                    <span>Ayazwai</span>
+                </div>
+                <div class="player-kill">
+                    <span>200</span>
+                </div>
+                <div class="player-death">
+                    <span>100</span>
+                </div>
+            </div>
+            <div class="player-lines" data-identifier="${v.identifier}">
+                <div class="player-rank">
+                    <span>#2</span>
+                </div>
+                <div class="player-name">
+                    <span>Egemen</span>
+                </div>
+                <div class="player-kill">
+                    <span>152</span>
+                </div>
+                <div class="player-death">
+                    <span>82</span>
+                </div>
+            </div>
+            <div class="player-lines" data-identifier="${v.identifier}">
+                <div class="player-rank">
+                    <span>#3</span>
+                </div>
+                <div class="player-name">
+                    <span>Class</span>
+                </div>
+                <div class="player-kill">
+                    <span>112</span>
+                </div>
+                <div class="player-death">
+                    <span>22</span>
+                </div>
+            </div>
+            <div class="player-lines" data-identifier="${v.identifier}">
+                <div class="player-rank">
+                    <span>#4</span>
+                </div>
+                <div class="player-name">
+                    <span>Sam</span>
+                </div>
+                <div class="player-kill">
+                    <span>77</span>
+                </div>
+                <div class="player-death">
+                    <span>60</span>
+                </div>
+            </div>
+            <div class="player-lines" data-identifier="${v.identifier}">
+                <div class="player-rank">
+                    <span>#5</span>
+                </div>
+                <div class="player-name">
+                    <span>James</span>
+                </div>
+                <div class="player-kill">
+                    <span>53</span>
+                </div>
+                <div class="player-death">
+                    <span>20</span>
+                </div>
+            </div>
+            <div class="player-lines" data-identifier="${v.identifier}">
+                <div class="player-rank">
+                    <span>#6</span>
+                </div>
+                <div class="player-name">
+                    <span>Jhon</span>
+                </div>
+                <div class="player-kill">
+                    <span>33</span>
+                </div>
+                <div class="player-death">
+                    <span>50</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pop-up" >
+        <div class="load-bar"></div>
+        <div class="player-profile">
+            <i id="close-profile" class="fa-solid fa-xmark"></i>
+            <div class="myp-profiles">
+                <img id="myp-others-banner" src="https://cdn.discordapp.com/attachments/671389525309784105/1074208947663282176/Banner_4.png">
+                <div class="mypp-information">
+                    <div class="myp-pp">
+                        <img src="https://avatars.akamai.steamstatic.com/25afa1a9731981cee0856e705493527687ea8fe9_full.jpg">
+                    </div>
+                    <div class="myp-names">
+                        <div class="myp-name">
+                            <span></span>
+                        </div>
+                        <div class="myp-hex">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-skull"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Kill</span>
+                        </div>
+                        <div class="stat-count">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-tombstone"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Death</span>
+                        </div>
+                        <div class="stat-count">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-gun"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>KDA</span>
+                        </div>
+                        <div class="stat-count">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Rank</span>
+                        </div>
+                        <div class="stat-count">
+                            <span id="rank-text"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Points</span>
+                        </div>
+                        <div class="stat-count">
+                            <span id="rank-text"></span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>SC</span>
+                        </div>
+                        <div class="stat-count">
+                            <span id="rank-text"></span>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-flag"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Country</span>
+                        </div>
+                        <div class="stat-count">
+                            <img class="country" src="/img/flags-svg/de.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="other-profile">
+            <i id="close-profile" class="fa-solid fa-xmark"></i>
+            <div class="myp-profiles">
+                <img id="myp-others-banner" src="https://cdn.discordapp.com/attachments/671389525309784105/1074208947663282176/Banner_4.png">
+                <div class="mypp-information">
+                    <div class="myp-pp">
+                        <img src="https://avatars.akamai.steamstatic.com/25afa1a9731981cee0856e705493527687ea8fe9_full.jpg">
+                    </div>
+                    <div class="myp-names">
+                        <div class="myp-name">
+                            <span></span>
+                        </div>
+                        <div class="myp-hex">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-skull"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Kill</span>
+                        </div>
+                        <div class="stat-count">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-tombstone"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Death</span>
+                        </div>
+                        <div class="stat-count">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-gun"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>KDA</span>
+                        </div>
+                        <div class="stat-count">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Rank</span>
+                        </div>
+                        <div class="stat-count">
+                            <span id="rank-text"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Points</span>
+                        </div>
+                        <div class="stat-count">
+                            <span id="rank-text"></span>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>SC</span>
+                        </div>
+                        <div class="stat-count">
+                            <span id="rank-text"></span>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="stat-div">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-flag"></i>
+                        </div>
+                        <div class="stat-text">
+                            <span>Country</span>
+                        </div>
+                        <div class="stat-count">
+                            <img class="country" src="/img/flags-svg/de.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner-input">
+            <i id="close-input" class="fa-solid fa-xmark"></i>
+            <span>Change Banner</span>
+            <input type="text" id="banner-link" placeholder="URL Link">
+            <button id="banner-accept">Apply</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

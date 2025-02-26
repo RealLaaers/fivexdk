@@ -1,0 +1,42 @@
+{
+  "name": "web",
+  "homepage": "web/build",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "vite",
+    "start:game": "vite build --watch",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.0.3"
+  },
+  "devDependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "@syncfusion/ej2-react-dropdowns": "^22.1.37",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@types/react-transition-group": "^4.4.6",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "@vitejs/plugin-react": "^2.2.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "multiselect-react-dropdown": "^2.0.25",
+    "prettier": "^2.8.8",
+    "react-draggable": "^4.4.5",
+    "react-redux": "^8.1.1",
+    "react-slidedown": "^2.4.7",
+    "sass": "^1.63.6",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4"
+  }
+}

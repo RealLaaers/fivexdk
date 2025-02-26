@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- jQuery for dynamic content manipulation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="./js/app.js"></script>
+
+        <!-- Font Awesome for icons -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        
+        <!-- HUD CSS -->
+        <link rel="stylesheet" href="./assets/css/hud.css">
+        
+        <!-- General styling (merged from index.html) -->
+        <link rel="stylesheet" href="./assets/css/style.css">
+        
+        <!-- Meta viewport for responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    </head>
+    <body>
+        <div class="container">
+            <div class="killfeed-wrapper"></div>
+
+            <div class="logo-wrapper">
+            </div>
+
+            <div class="hud-wrapper">
+                <div class="hud-health" id="hud-bar">
+                    <div class="hud-health-inside" id="hud-bar-inside"> 40%</div>
+                </div>
+
+                <div class="hud-armor" id="hud-bar">
+                    <div class="hud-armor-inside" id="hud-bar-inside"> 40%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-container">
+            <span class="bottom_vanity">DISCORD.GG/FIVEXDK</span>
+            <span class="separator"> - </span>
+            <span class="bottom_playerid">ID: 12345</span>
+          </div>
+
+        <script>
+            window.addEventListener('message', function(event) {
+                if (event.data.type === "updateid") {
+                    document.querySelector('.bottom_playerid').textContent = `ID: ${event.data.playerid}`;
+                }
+            });
+
+            window.addEventListener('message', (event) => {
+                switch (event.data.task) {
+                    case 'updateHud':
+                        $('.hud-health-inside').width(`${event.data.info.health}%`);
+                        $('.hud-armor-inside').width(`${event.data.info.armor}%`);
+
+                        if (event.data.info.health <= 0) {
+                            $('.hud-health-inside').html(``);
+                        } else {
+                            $('.hud-health-inside').html(`${event.data.info.health}%`);
+                        }
+
+                        if (event.data.info.armor <= 0) {
+                            $('.hud-armor-inside').html(``);
+                        } else {
+                            $('.hud-armor-inside').html(`${event.data.info.armor}%`);
+                        }
+                    break;
+
+                    case 'addKillfeed':
+                        var killData = event.data.info;
+                        var killId = $('.killfeed-wrapper .killfeed-newKill').length;
+
+                        if (killId >= 5) return;
+                        $('.killfeed-wrapper').append(`
+                            <div class="killfeed-newKill" id="killfeed-newKill-${killId}">
+                                <span class="killfeed-killer" style="${killData.name == killData.killer ? 'color: red;' : 'color: white;'}">${killData.killer}</span>
+                                <img src="https://vespura.com/fivem/weapons/images/${killData.weapon.toUpperCase()}.png" class="killfeed-weapon">${killData.headshot ? '<i class="fa-solid fa-crosshairs"></i>' : ''}
+                                <span class="killfeed-victim" style="${killData.name == killData.victim ? 'color: red;' : 'color: white;'}">${killData.victim}</span>
+                            </div>
+                        `);
+
+                        setTimeout(() => {
+                            $(`#killfeed-newKill-${killId}`).css({
+                                'animation': 'hide 1s ease 0s 1 normal forwards'
+                            });
+
+                            setTimeout(() => {
+                                $(`#killfeed-newKill-${killId}`).remove();
+                            }, 500);
+                        }, 5000);
+                    break;
+                }
+            });
+        </script>
+    </body>
+</html>
