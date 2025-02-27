@@ -7,7 +7,7 @@ Config.Debug = false -- Debug true or false
 Config.JumpKey = 51 -- control id of the button to jump from the plane. Default: (E) [key codes can be found here: https://docs.fivem.net/docs/game-references/controls/]
 Config.PickupKey = 51 -- control id of the button to pickup items. Default: (E) [key codes can be found here: https://docs.fivem.net/docs/game-references/controls/]
 Config.PickupLable = 'E ' -- if you change Config.PickupKey then change this to match it
-Config.MinPlayers = 1 -- minimum players required for players to be able to start a match (Set To one so the devs can test)
+Config.MinPlayers = 0 -- minimum players required for players to be able to start a match (Set To one so the devs can test)
 Config.MaxPlayers = 110 -- Max players that can be in a mtch at once
 Config.MinWager = 0 -- minimum bet players can make
 Config.MaxWager = 25000 -- maximum bet players can make
@@ -41,7 +41,7 @@ Config.MarkerStartRoyaleLocation = { -- The draw marker where you pickup boxes a
 ----------
 ----------
 Config.RoyalePed = `s_m_m_trucker_01` -- Battle Royale sign up ped (THIS DOESNT MATTER IF Config.UseVrHeadSet IS TRUE)
-Config.RoyalePedLoc = vector4(361.3610, -1423.3739, 76.1741, 68.2472) -- Battle Royale sign up ped location (THIS DOESNT MATTER IF Config.UseVrHeadSet IS TRUE)
+Config.RoyalePedLoc = vector4(361.3610, -1423.3739, 75.1741, 68.2472) -- Battle Royale sign up ped location (THIS DOESNT MATTER IF Config.UseVrHeadSet IS TRUE)
 Config.BattlePlane = 'AVENGER' -- Plane or helicopter that flys the players in -- IF YOU GANGE THIS AND RUN INTO AN ISSUE MAKE A TICKET
 Config.GulagCheckTime = 30 -- (in seconds) Time the loop runs for checking to put players into a 1v1 gulag match
 ----------
