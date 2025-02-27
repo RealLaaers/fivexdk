@@ -548,6 +548,7 @@ function CheckingIfDeadFunction() -- NEVER CHANGE THIS UNLESS I HAVE DIRECTED YO
 end
 
 RegisterNetEvent("Pug:client:BattleRoyaleReviveEvent", function()
+    TriggerEvent('healffs2')
     TriggerEvent('ak47_qb_ambulancejob:revive')
     TriggerEvent('ak47_qb_ambulancejob:skellyfix')
     TriggerEvent('hospital:client:Revive')
