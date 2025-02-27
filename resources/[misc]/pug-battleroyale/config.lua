@@ -7,7 +7,7 @@ Config.Debug = false -- Debug true or false
 Config.JumpKey = 51 -- control id of the button to jump from the plane. Default: (E) [key codes can be found here: https://docs.fivem.net/docs/game-references/controls/]
 Config.PickupKey = 51 -- control id of the button to pickup items. Default: (E) [key codes can be found here: https://docs.fivem.net/docs/game-references/controls/]
 Config.PickupLable = 'E ' -- if you change Config.PickupKey then change this to match it
-Config.MinPlayers = 1 -- minimum players required for players to be able to start a match (Set To one so the devs can test)
+Config.MinPlayers = 0 -- minimum players required for players to be able to start a match (Set To one so the devs can test)
 Config.MaxPlayers = 110 -- Max players that can be in a mtch at once
 Config.MinWager = 0 -- minimum bet players can make
 Config.MaxWager = 25000 -- maximum bet players can make
@@ -22,7 +22,7 @@ Config.Menu = 'ox_lib' -- (qb-menu, ox_lib, ps-ui) if you have change the resour
 ----------
 Config.ReloadIcon = 'R ' -- Shouldnt really change this
 ----------
-Config.MakeCloneOfPlayer = false -- Makes a clone of the player where they were standing if this is true
+Config.MakeCloneOfPlayer = true -- Makes a clone of the player where they were standing if this is true
 Config.UseVrHeadSet = false -- Toggle this true if you are using the vr headset instead of peds
 Config.HasPaintball = false -- Toggle this true if you are using my paintball script as well and want it in the vr menu | if you dont have it you can get it here (https://pug-scripts.tebex.io/package/5166372)
 Config.SpectateEnabled = true -- if you dont want players to have the option to spectate make this false
