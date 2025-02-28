@@ -92,7 +92,7 @@ ESX.RegisterServerCallback('Pug:ServerCB:ViewBattleRoyale', function(source, cb)
 		for k,v in pairs(allplayers) do
 			playerr = ESX.GetPlayerFromId(v)
 			if playerr ~= nil then
-				playersdisplay[#playersdisplay+1] = GetPlayerName(v)
+				playersdisplay[#playersdisplay+1] = 'nigger'
 			end
 		end
 		lobby = {
