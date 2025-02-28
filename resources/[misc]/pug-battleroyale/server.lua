@@ -368,10 +368,10 @@ AddEventHandler('playerDropped', function()
 					local Ply = ESX.GetPlayerFromId(j)
 					if Ply then
 						TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(j) ..' vandt Battle Royale!')
-						TriggerClientEvent('chat:addMessage', -1, {
-							         template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Battle Royale: <br> {0} har vundet Battle Royale!</div>',
-							         args = { GetPlayerName(j) }
-							     })
+						-- TriggerClientEvent('chat:addMessage', -1, {
+						-- 	         template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Battle Royale: <br> {0} har vundet Battle Royale!</div>',
+						-- 	         args = { GetPlayerName(j) }
+						-- 	     })
 					end
 					TriggerClientEvent('Pug:client:removeFromRoyale',v)
 					TriggerClientEvent('Pug:client:removeFromRoyale2',src)
