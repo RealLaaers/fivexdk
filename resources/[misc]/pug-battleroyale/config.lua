@@ -1,7 +1,7 @@
 Config = {}
 Config.CoreName = 'es_extended' -- your core name
 ESX = exports["es_extended"]:getSharedObject()
-Config.Debug = false -- Debug true or false
+Config.Debug = true -- Debug true or false
 ----------
 ----------
 Config.JumpKey = 51 -- control id of the button to jump from the plane. Default: (E) [key codes can be found here: https://docs.fivem.net/docs/game-references/controls/]
