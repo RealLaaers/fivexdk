@@ -31,6 +31,10 @@ end
 end)
 end
 
+RegisterCommand('leaveroyale', function()
+    TriggerServerEvent('Pug:server:RoyaleLeave')
+end)
+
 -- Show DrawText function
 function DrawTextOptiopnForSpectate(text)
     if GetResourceState('cd_drawtextui') == 'started' then
