@@ -290,35 +290,35 @@ Config.polyZones = {
     },
     removeVehicles = true
 },
--- ['cayo'] = {
---     type = "poly",
---     coords = {
---         vector2(4827.1625976562, -6057.689453125),
---         vector2(5494.669921875, -6008.8979492188),
---         vector2(5813.2138671875, -5489.7817382812),
---         vector2(5759.6826171875, -5106.4125976562),
---         vector2(5592.5073242188, -4753.7602539062),
---         vector2(4924.7387695312, -4133.9174804688),
---         vector2(4575.2275390625, -4094.7727050781),
---         vector2(4146.365234375, -4208.5712890625),
---         vector2(3686.9741210938, -4728.1870117188)
---     },
---     polyStuff = {},
---     minZ = 2.774960517883,
---     maxZ = 300.32647705078,
---     invincible = false,
---     canNoclip = false,
---     canShoot = true,
---     canSpawnVehicle = false,
---     canRevive = false,
---     runFast = false,
---     allowedWeapons = {
---         "weapon_pistol50",
---         "weapon_navyrevolver",
---         "weapon_revolver",
---     },
---     removeVehicles = true
--- },
+['cayo'] = {
+    type = "poly",
+    coords = {
+        vector2(4827.1625976562, -6057.689453125),
+        vector2(5494.669921875, -6008.8979492188),
+        vector2(5813.2138671875, -5489.7817382812),
+        vector2(5759.6826171875, -5106.4125976562),
+        vector2(5592.5073242188, -4753.7602539062),
+        vector2(4924.7387695312, -4133.9174804688),
+        vector2(4575.2275390625, -4094.7727050781),
+        vector2(4146.365234375, -4208.5712890625),
+        vector2(3686.9741210938, -4728.1870117188)
+    },
+    polyStuff = {},
+    minZ = 2.774960517883,
+    maxZ = 300.32647705078,
+    invincible = false,
+    canNoclip = false,
+    canShoot = true,
+    canSpawnVehicle = false,
+    canRevive = false,
+    runFast = false,
+    allowedWeapons = {
+        "weapon_pistol50",
+        "weapon_navyrevolver",
+        "weapon_revolver",
+    },
+    removeVehicles = true
+},
 }
 
 Config.currentZone = nil
