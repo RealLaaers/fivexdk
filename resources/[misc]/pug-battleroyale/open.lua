@@ -11,7 +11,7 @@ local that = 0
 function BattleRoyaleNotify(msg, type, length)
     ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
     --ESX.ShowNotification(msg)
-    if GetPlayerRoutingBucket ~= 0 and not GetPlayerRoutingBucket ~= 19567 then
+    if GetPlayerRoutingBucket ~= 0 and not GetPlayerRoutingBucket ~= 19567 and not GetPlayerRoutingBucket ~= 9102 then
     lib.notify({
         title = msg,
         type = type
