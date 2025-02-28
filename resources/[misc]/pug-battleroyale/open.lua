@@ -7,11 +7,22 @@ local vr = false
 local hat = 0
 local that = 0
 
+local point = lib.points.new(vec3(354.7302, -1412.3105, 76.1741), 40)
+
+local spawn = false
+function point:onEnter()
+    spawn = true
+end
+
+function point:onExit()
+    spawn = false
+end
+
 -- Notification function
 function BattleRoyaleNotify(msg, type, length)
     ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
     --ESX.ShowNotification(msg)
-    if GetPlayerRoutingBucket ~= 0 and not GetPlayerRoutingBucket ~= 19567 and not GetPlayerRoutingBucket ~= 9102 then
+    if GetPlayerRoutingBucket ~= 0 and not GetPlayerRoutingBucket ~= 19567 and not GetPlayerRoutingBucket ~= 9102 or spawn then
     lib.notify({
         title = msg,
         type = type
