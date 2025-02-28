@@ -20,7 +20,8 @@ server_script {
 
 shared_script {
     'config.lua',
-    'locales/en.lua'
+    'locales/en.lua',
+    '@ox_lib/init.lua'
 }
 
 escrow_ignore {
