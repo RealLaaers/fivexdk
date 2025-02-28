@@ -594,10 +594,10 @@ RegisterServerEvent('Pug:client:RemoveRoyalePlayer',function()
 		end
 		for k,v in pairs(allplayers) do
 			TriggerClientEvent('Pug:showNotificationBR', v, winner ..' vandt Battle Royale!', 'success', 10000)
-			TriggerClientEvent('chat:addMessage', -1, {
-				template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Battle Royale: <br> {0} har vundet Battle Royale!</div>',
-				args = { winner }
-			})
+			-- TriggerClientEvent('chat:addMessage', -1, {
+			-- 	template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Battle Royale: <br> {0} har vundet Battle Royale!</div>',
+			-- 	args = { winner }
+			-- })
 			if v == src then
 			else
 				TriggerClientEvent('Pug:client:removeFromRoyale',v)
@@ -605,6 +605,10 @@ RegisterServerEvent('Pug:client:RemoveRoyalePlayer',function()
 				SetPlayerRoutingBucket(v, 0)
 			end
 		end
+		TriggerClientEvent('chat:addMessage', -1, {
+			template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Battle Royale: <br> {0} har vundet Battle Royale!</div>',
+			args = { winner }
+		})
 		Wait(500)
 		if gameHASStarted then
 			TriggerClientEvent("Pug:client:UpdateAllGameCoolDownActive", -1)
