@@ -1362,9 +1362,7 @@ RegisterNetEvent('ox_inventory:setPlayerInventory', function(currentDrops, inven
 			local weaponType = GetWeapontypeGroup(weaponHash)
 
 			if weaponType ~= 0 and weaponType ~= `GROUP_UNARMED` then
-				if not exports["pug-battleroyale"]:IsInBattleRoyale() then
-					Weapon.Disarm(currentWeapon, true)
-				end
+				Weapon.Disarm(currentWeapon, true)
 			end
 		end
 	end, 200)
