@@ -521,15 +521,15 @@ RegisterServerEvent('Pug:server:startroyale',function(ID)
 			for k, v in pairs(allplayers) do
 				TriggerClientEvent('Pug:client:BeginRoyaleMatch',v,lives,plnspawn,everyone,os.time(),Config.BeginningTimeInSeconds,CoolDownTime,GulagMap)
 				local Players = ESX.GetPlayerFromId(v)
-				-- print(cashprize, "cashprize")
-				-- if Players ~= nil then
-				-- 	Players.removeMoney(cashprize)
-				-- end
+				print(cashprize, "cashprize")
+				if Players ~= nil then
+					Players.removeMoney(cashprize)
+				end
 				SetPlayerRoutingBucket(v, tonumber(dimention))
 			end
 			cashprize = cashprize * (#allplayers)
 			Wait(500)
-			-- print(everyone)
+			print(everyone)
 			TriggerClientEvent("Pug:client:UpdateAllGameHasStarted", -1)
 		end
 		if richplayers >= (#allplayers) then
