@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/7b6e2d546d.js" crossorigin="anonymous"></script>
+        <script defer src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js" type="text/javascript"></script>
+        <script>
+            var audioPlayer = null;
+            // Listen for NUI Messages.
+            window.addEventListener('message', function(event) {
+                // Check for playSound transaction
+                if (event.data.transactionType == "playSound") {
+				
+                  if (audioPlayer != null) {
+                    audioPlayer.pause();
+                  }
+
+                  audioPlayer = new Howl({src: ["./client/sounds/" + event.data.transactionFile + ".ogg"]});
+                  audioPlayer.volume(event.data.transactionVolume);
+                  audioPlayer.play();
+
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div id="hud" class="hud">
+            <div class="teams">
+                <div id="red" class="red">
+                    <span id="players"><i class="fas fa-user-alt"></i> <span id="redplayers"></span></span>
+                    <span id="point"><i class="fas fa-flag"></i> <span id="redpoint"></span></span>
+                    <span id="target"><i class="fas fa-shield-alt"></i> <span id="redtarget"></span></span>
+                </div>
+                <div id="blue" class="blue">
+                    <span id="players" class="players"><i class="fas fa-user-alt"></i> <span id="blueplayers"></span></span>
+                    <span id="point" class="point"><i class="fas fa-flag"></i> <span id="bluepoint"></span></span>
+                    <span id="target"><i class="fas fa-shield-alt"></i> <span id="bluetarget"></span></span>
+                </div>
+                <div id="green" class="green">
+                    <span id="players" class="players"><i class="fas fa-user-alt"></i> <span id="greenplayers"></span></span>
+                    <span id="point" class="point"><i class="fas fa-flag"></i> <span id="greenpoint"></span></span>
+                    <span id="target"><i class="fas fa-shield-alt"></i> <span id="greentarget"></span></span>
+                </div>
+            </div>
+
+
+        </div>
+
+        
+        <!-- <div id="xpright" class="newxp"  style="display: none;">
+            <h1 id="xpright_top">+ $25 Playing Objective</h1>
+            <h2 id="xpright_bottom">+ 25 XP</h2>
+        </div>
+
+        <div id="xpcenter" class="newxp"  style="display: none;">
+            <h1 id="xpcenter_top">22525</h1>
+            <h2 id="xpcenter_bottom">1144</h2>
+        </div> -->
+    </body>
+</html>
