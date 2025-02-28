@@ -22,7 +22,7 @@ Config.Menu = 'ox_lib' -- (qb-menu, ox_lib, ps-ui) if you have change the resour
 ----------
 Config.ReloadIcon = 'R ' -- Shouldnt really change this
 ----------
-Config.MakeCloneOfPlayer = true -- Makes a clone of the player where they were standing if this is true
+Config.MakeCloneOfPlayer = false -- Makes a clone of the player where they were standing if this is true
 Config.UseVrHeadSet = false -- Toggle this true if you are using the vr headset instead of peds
 Config.HasPaintball = false -- Toggle this true if you are using my paintball script as well and want it in the vr menu | if you dont have it you can get it here (https://pug-scripts.tebex.io/package/5166372)
 Config.SpectateEnabled = true -- if you dont want players to have the option to spectate make this false
@@ -170,33 +170,33 @@ Config.GulagMap = {
 Config.MapLocation = {
     ['Set_Dystopian_02'] = { 
         ['FlagSpawn'] = vector3(2793.11, -3796.54, 140.15),
-        [1] = vector3(2937.17, -3802.91, 444.25), -- Player 1 Spawn
-        [2] = vector3(2664.6, -3793.08, 443.71), -- Player 2 Spawn
+        [1] = vector3(2937.17, -3802.91, 144.25), -- Player 1 Spawn
+        [2] = vector3(2664.6, -3793.08, 143.71), -- Player 2 Spawn
     },
     ['Set_Dystopian_03'] = { 
         ['FlagSpawn'] = vector3(2800.2, -3796.79, 137.98),
-        [1] = vector3(2945.65, -3796.44, 443.26), -- Player 1 Spawn
-        [2] = vector3(2658.59, -3797.45, 443.58), -- Player 2 Spawn
+        [1] = vector3(2945.65, -3796.44, 143.26), -- Player 1 Spawn
+        [2] = vector3(2658.59, -3797.45, 143.58), -- Player 2 Spawn
     },
     ['Set_Dystopian_04'] = { 
         ['FlagSpawn'] = vector3(2780.02, -3788.88, 140.03),
-        [1] = vector3(2945.2, -3791.37, 440.03), -- Player 1 Spawn
-        [2] = vector3(2655.69, -3804.56, 440.03), -- Player 2 Spawn
+        [1] = vector3(2945.2, -3791.37, 140.03), -- Player 1 Spawn
+        [2] = vector3(2655.69, -3804.56, 140.03), -- Player 2 Spawn
     },
     ['Set_Dystopian_07'] = { 
         ['FlagSpawn'] = vector3(2802.17, -3806.3, 135.94),
-        [1] = vector3(2946.17, -3797.53, 440.1), -- Player 1 Spawn
-        [2] = vector3(2650.22, -3778.95, 440.14), -- Player 2 Spawn
+        [1] = vector3(2946.17, -3797.53, 140.1), -- Player 1 Spawn
+        [2] = vector3(2650.22, -3778.95, 140.14), -- Player 2 Spawn
     },
     ['Set_Dystopian_09'] = { 
         ['FlagSpawn'] = vector3(2828.07, -3799.42, 128.97),
-        [1] = vector3(2947.03, -3800.03, 439.63), -- Player 1 Spawn
-        [2] = vector3(2650.93, -3799.97, 439.68), -- Player 2 Spawn
+        [1] = vector3(2947.03, -3800.03, 139.63), -- Player 1 Spawn
+        [2] = vector3(2650.93, -3799.97, 139.68), -- Player 2 Spawn
     },
     ['Set_Dystopian_10'] = { 
         ['FlagSpawn'] = vector3(2812.87, -3791.98, 147.39),
-        [1] = vector3(2948.42, -3790.24, 439.96), -- Player 1 Spawn
-        [2] = vector3(2642.46, -3798.63, 439.97), -- Player 2 Spawn
+        [1] = vector3(2948.42, -3790.24, 139.96), -- Player 1 Spawn
+        [2] = vector3(2642.46, -3798.63, 139.97), -- Player 2 Spawn
     },
     -- ['Set_Wasteland_01'] = { 
     --     ['FlagSpawn'] = vector3(2946.13, -3795.33, 138.0),
