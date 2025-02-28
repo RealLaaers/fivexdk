@@ -23,6 +23,7 @@
       onSelect = function()
         ExecuteCommand('leavekoth')
         ExecuteCommand('leave')
+        ExecuteCommand('leaveroyale')
         ExecuteCommand('leaveduel')
         SetEntityCoords(PlayerPedId(), 343.5642, -1421.0951, 76.1741)
         SetEntityHeading(PlayerPedId(), 136.0984)

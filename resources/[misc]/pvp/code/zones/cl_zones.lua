@@ -58,6 +58,7 @@ RegisterCommand('+spawnFunction', function()
     if LocalPlayer.state.inDuel ~= nil then return notify('Du er i en duel skriv /leaveduel hvis du ønsker at gå til spawn.', 'error') end
     local ped = PlayerPedId()
     ExecuteCommand('leavekoth')
+    ExecuteCommand('leaveroyale')
     SetEntityCoordsNoOffset(ped, Config.spawnCoords.x, Config.spawnCoords.y, Config.spawnCoords.z, false, false, true)
     SetEntityHeading(ped, Config.spawnCoords.w)
     ExecuteCommand('leave')
