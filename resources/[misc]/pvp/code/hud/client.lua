@@ -1,42 +1,42 @@
 local gtahud = false
 local minimap
 
-local pointt = lib.points.new(vec3(5130.3467, -4985.6982, 12.6833), 2000)
+-- local pointt = lib.points.new(vec3(5130.3467, -4985.6982, 12.6833), 2000)
 
-local cayo = false
-function pointt:onEnter()
-    cayo = true
-    gtahud = true
-    pvpIconColor = 'red'
-    gtaIconColor = 'green'
-    SendNUIMessage({
-        task = 'showGTAHud'
-    })
-    SendNUIMessage({
-        task = 'hidePVPHud'
-    })
-    DisplayRadar(true)
-    if not minimap then
-        minimap = RequestScaleformMovie("minimap")
-        while not HasScaleformMovieLoaded(minimap) do
-            Citizen.Wait(0)
-        end
-    end
-end
+-- local cayo = false
+-- function pointt:onEnter()
+--     cayo = true
+--     gtahud = true
+--     pvpIconColor = 'red'
+--     gtaIconColor = 'green'
+--     SendNUIMessage({
+--         task = 'showGTAHud'
+--     })
+--     SendNUIMessage({
+--         task = 'hidePVPHud'
+--     })
+--     DisplayRadar(true)
+--     if not minimap then
+--         minimap = RequestScaleformMovie("minimap")
+--         while not HasScaleformMovieLoaded(minimap) do
+--             Citizen.Wait(0)
+--         end
+--     end
+-- end
 
-function pointt:onExit()
-    cayo = false
-    gtahud = false
-    pvpIconColor = 'green'
-    gtaIconColor = 'red'
-    SendNUIMessage({
-        task = 'showPVPHud'
-    })
-    SendNUIMessage({
-        task = 'hideGTAHud'
-    })
-    DisplayRadar(false)
-end
+-- function pointt:onExit()
+--     cayo = false
+--     gtahud = false
+--     pvpIconColor = 'green'
+--     gtaIconColor = 'red'
+--     SendNUIMessage({
+--         task = 'showPVPHud'
+--     })
+--     SendNUIMessage({
+--         task = 'hideGTAHud'
+--     })
+--     DisplayRadar(false)
+-- end
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)

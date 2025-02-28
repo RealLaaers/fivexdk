@@ -20,9 +20,7 @@ local function moneycheck(players)
 	end
 	richplayers = richplayers - 1
 	for k, v in pairs(allplayers) do
-		local firstName = Player.get('firstName') or "Unknown"
-		local lastName = Player.get('lastName') or "Player"
-		TriggerClientEvent('Pug:showNotificationBR', v, firstName .. ' '.. lastName ..' is missing '.. cashprize - Player.getAccount('money').money)
+		TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) .. ' is missing '.. cashprize - Player.getAccount('money').money)
 	end
 	return false
 end
@@ -102,7 +100,7 @@ ESX.RegisterServerCallback('Pug:ServerCB:ViewBattleRoyale', function(source, cb)
 		for k,v in pairs(allplayers) do
 			playerr = ESX.GetPlayerFromId(v)
 			if playerr ~= nil then
-				playersdisplay[#playersdisplay+1] = 'neger'
+				playersdisplay[#playersdisplay+1] = GetPlayerName(Player)
 			end
 		end
 		lobby = {
@@ -145,7 +143,7 @@ ESX.RegisterServerCallback('Pug:SVCB:SpecatateplayersRoyale', function(source, c
 				local ped = ESX.GetPlayerFromId(v)
 				table.insert(info, {
 					coords = GetEntityCoords(targetped),
-					name = 'neger',
+					name = GetPlayerName(Player),
 					id = v,
 					map = GulagMap,
                 })
@@ -246,16 +244,16 @@ RegisterServerEvent("Pug:server:KillFeed", function(kill, causes)
 	for k, v in pairs(allplayers) do
 		if Killer ~= nil and Player ~= nil then
 			if not causes == 0 then
-				TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName' ..' '..causes..' '..'firstName' .. " " .. 'lastName', 'error')
+				TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) ..' '..causes..' '..GetPlayerName(Player), 'error')
 			else
-				TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName' ..' killed '..'firstName' .. " " .. 'lastName', 'error')
+				TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) ..' killed '..GetPlayerName(Player), 'error')
 			end
 		else
 			if Player ~= nil then
 				if not causes == 0 then
-					TriggerClientEvent('Pug:showNotificationBR', v, causes..' '..'firstName' .. " " .. 'lastName', 'error')
+					TriggerClientEvent('Pug:showNotificationBR', v, causes..' '..GetPlayerName(Player), 'error')
 				else
-					TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName'..' died', 'error')
+					TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player)..' died', 'error')
 				end
 			end
 		end
@@ -376,7 +374,7 @@ AddEventHandler('playerDropped', function()
 				for i, j in pairs(spectateplayers) do
 					local Ply = ESX.GetPlayerFromId(j)
 					if Ply then
-						TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName' ..' has Won!')
+						TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) ..' has Won!')
 					end
 					TriggerClientEvent('Pug:client:removeFromRoyale',v)
 					TriggerClientEvent('Pug:client:removeFromRoyale2',src)
@@ -433,7 +431,7 @@ RegisterServerEvent('Pug:server:JoinRoyale',function()
 		TriggerClientEvent('Pug:client:joinedRoyale',src)
 		TriggerClientEvent('Pug:client:joinedRoyale2',src)
 		for k, v in pairs(allplayers) do
-			TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName' ..' joined the Royale!', 'success')
+			TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) ..' joined the Royale!', 'success')
 		end
 		if Config.DrawmarkerStartQueueLocation then
 			if (#allplayers) <= 1 then
@@ -475,7 +473,7 @@ RegisterServerEvent('Pug:server:RoyaleLeave',function()
 			-- table.remove(allplayers,k)
 			allplayers[k] = nil
 		end
-		TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName' ..' left the royale!', 'error')
+		TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) ..' left the royale!', 'error')
 		TriggerClientEvent("Pug:client:PlayerKilledNotificationRoyale", v)
 	end
 	for k,v in pairs(spectateplayers) do
@@ -548,7 +546,7 @@ RegisterServerEvent('Pug:SV:NotifyLivesLeftRoyale',function(lifeLeft)
 	local src = source
 	local Player = ESX.GetPlayerFromId(src)
 	for k, v in pairs(allplayers) do
-		TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName' ..' has '..lifeLeft..' lives left')
+		TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) ..' has '..lifeLeft..' lives left')
 		TriggerClientEvent("Pug:client:PlayerKilledNotificationRoyale", v)
 	end
 end)
@@ -567,7 +565,7 @@ RegisterServerEvent('Pug:client:RemoveRoyalePlayer',function()
 	Wait(100)
 	for k,v in pairs(allplayers) do
 		TriggerClientEvent('InteractSound_CL:PlayOnOne', v, "terminate", 0.2)
-		TriggerClientEvent('Pug:showNotificationBR', v, 'firstName' .. " " .. 'lastName' ..' has been eliminated!')
+		TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) ..' has been eliminated!')
 		TriggerClientEvent('Pug:UpdatePlayersLeft', v, everyone)
 		if everyone == 1 or everyone == 0 then
 			TriggerClientEvent("Pug:client:RemoveAllRoyaleVehicles",src)
@@ -593,7 +591,7 @@ RegisterServerEvent('Pug:client:RemoveRoyalePlayer',function()
 			if Ply then
 				Ply.addMoney(prize)
 				ClearInventoryESX(j)
-				winner = Ply.get('firstName') .. " " .. Ply.get('lastName')
+				winner = GetPlayerName(Ply)
 				print(winner ..' 1st place won $', prize)
 			end
 		end
