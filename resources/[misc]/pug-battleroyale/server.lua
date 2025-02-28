@@ -20,7 +20,7 @@ local function moneycheck(players)
 	end
 	richplayers = richplayers - 1
 	for k, v in pairs(allplayers) do
-		TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) .. ' is missing '.. cashprize - Player.getAccount('money').money)
+		--TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) .. ' is missing '.. cashprize - Player.getAccount('money').money)
 	end
 	return false
 end
