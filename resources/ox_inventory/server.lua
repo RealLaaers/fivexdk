@@ -274,7 +274,7 @@ RegisterNetEvent('ox_inventory:usedItemInternal', function(slot)
 
     if not item or item.slot ~= slot then
         ---@todo
-        DropPlayer(inventory.id, 'sussy')
+        --DropPlayer(inventory.id, 'sussy')
 
         return
     end
