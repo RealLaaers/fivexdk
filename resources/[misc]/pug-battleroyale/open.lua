@@ -17,7 +17,8 @@ function DrawTextOptiopnForSpectate(text)
     if GetResourceState('cd_drawtextui') == 'started' then
         TriggerEvent('cd_drawtextui:ShowUI', 'show', text)
     else
-        ESX.TextUI('[E] Jump', "error")
+        --ESX.TextUI('[E] Jump', "error")
+        lib.showTextUI('[E] - Hop')
     end
 end
 
@@ -26,7 +27,8 @@ function HideTextOptiopnForSpectate()
     if GetResourceState('cd_drawtextui') == 'started' then
         TriggerEvent('cd_drawtextui:HideUI')
     else
-        ESX.HideUI()
+        --ESX.HideUI()
+        lib.hideTextUI()
     end
 end
 

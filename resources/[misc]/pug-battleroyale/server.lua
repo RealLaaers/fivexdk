@@ -14,15 +14,7 @@ local GulagMap = "Set_Dystopian_02"
 --Functions
 local function moneycheck(players)
 	local Player = players
-	if Player.getAccount('money').money >= cashprize then
-		richplayers = richplayers + 1
-		return true
-	end
-	richplayers = richplayers - 1
-	for k, v in pairs(allplayers) do
-		--TriggerClientEvent('Pug:showNotificationBR', v, GetPlayerName(Player) .. ' is missing '.. cashprize - Player.getAccount('money').money)
-	end
-	return false
+	return true
 end
 local function round(x)
     return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
@@ -100,7 +92,7 @@ ESX.RegisterServerCallback('Pug:ServerCB:ViewBattleRoyale', function(source, cb)
 		for k,v in pairs(allplayers) do
 			playerr = ESX.GetPlayerFromId(v)
 			if playerr ~= nil then
-				playersdisplay[#playersdisplay+1] = GetPlayerName(playerr)
+				playersdisplay[#playersdisplay+1] = GetPlayerName(v)
 			end
 		end
 		lobby = {
@@ -143,7 +135,7 @@ ESX.RegisterServerCallback('Pug:SVCB:SpecatateplayersRoyale', function(source, c
 				local ped = ESX.GetPlayerFromId(v)
 				table.insert(info, {
 					coords = GetEntityCoords(targetped),
-					name = GetPlayerName(ped),
+					name = GetPlayerName(v),
 					id = v,
 					map = GulagMap,
                 })
