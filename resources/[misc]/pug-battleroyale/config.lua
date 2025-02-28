@@ -10,7 +10,7 @@ Config.PickupLable = 'E ' -- if you change Config.PickupKey then change this to 
 Config.MinPlayers = 1 -- minimum players required for players to be able to start a match (Set To one so the devs can test)
 Config.MaxPlayers = 110 -- Max players that can be in a mtch at once
 Config.MinWager = 0 -- minimum bet players can make
-Config.MaxWager = 25000 -- maximum bet players can make
+Config.MaxWager = 0 -- maximum bet players can make
 ----------
 Config.VrHeadSetPropMale = 176 -- whatever number the vr headset is for you in your clothing menu hat section (MALE) [clothing hat prop can be found here: https://www.gta5-mods.com/player/oculus-rift-cv1-eup]
 Config.VrHeadSetPropFemale = 122 -- whatever number the vr headset is for you in your clothing menu hat section (FEMALE) [clothing hat prop can be found here: https://www.gta5-mods.com/player/oculus-rift-cv1-eup]
