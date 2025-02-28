@@ -9,7 +9,6 @@ version '2.2.3'
 client_script {
     'client.lua',
     'open.lua',
-    '@ox_lib/init.lua', -- This can be hashed out if you are not using ox_lib
 }
 
 server_script {
