@@ -475,25 +475,25 @@ local function hasActiveInventory(playerId, owner)
 		if inventory then
 			local endpoint = GetPlayerEndpoint(activePlayer)
 
-			-- if endpoint then
-			-- 	DropPlayer(playerId, ("Character identifier '%s' is already active."):format(owner))
+			if endpoint then
+				DropPlayer(playerId, ("Character identifier '%s' is already active."):format(owner))
 
-            --     -- Supposedly still getting stuck? Print info and hope somebody reports back (lol)
-			-- 	print(('kicked player.%s (charid is already in use)'):format(playerId), json.encode({
-			-- 		oldId = activePlayer,
-			-- 		newId = playerId,
-			-- 		charid = owner,
-			-- 		endpoint = endpoint,
-			-- 		playerName = GetPlayerName(activePlayer),
-			-- 		fivem = GetPlayerIdentifierByType(activePlayer, 'fivem'),
-			-- 		license = GetPlayerIdentifierByType(activePlayer, 'license2') or GetPlayerIdentifierByType(activePlayer, 'license'),
-			-- 	}, {
-			-- 		indent = true,
-            --         sort_keys = true
-			-- 	}))
+                -- Supposedly still getting stuck? Print info and hope somebody reports back (lol)
+				print(('kicked player.%s (charid is already in use)'):format(playerId), json.encode({
+					oldId = activePlayer,
+					newId = playerId,
+					charid = owner,
+					endpoint = endpoint,
+					playerName = GetPlayerName(activePlayer),
+					fivem = GetPlayerIdentifierByType(activePlayer, 'fivem'),
+					license = GetPlayerIdentifierByType(activePlayer, 'license2') or GetPlayerIdentifierByType(activePlayer, 'license'),
+				}, {
+					indent = true,
+                    sort_keys = true
+				}))
 
-			-- 	return true
-			-- end
+				return true
+			end
 
 			Inventory.CloseAll(inventory)
 			db.savePlayer(owner, json.encode(inventory:minimal()))
