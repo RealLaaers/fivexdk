@@ -9,7 +9,12 @@ local that = 0
 
 -- Notification function
 function BattleRoyaleNotify(msg, type, length)
-    ESX.ShowNotification(msg)
+    --ESX.ShowNotification(msg)
+    lib.notify({
+        title = '',
+        description = msg,
+        type = type
+    })
 end
 
 -- Show DrawText function
