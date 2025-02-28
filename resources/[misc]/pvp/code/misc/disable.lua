@@ -92,7 +92,7 @@ end)
 AddEventHandler('pvpmenu:selectcar', function(args)
     if not Config.canSpawnVehicle then return notify('Køretøjer er deaktiveret her.', 'error') end
     if LocalPlayer.state.inDuel ~= nil then return notify('Køretøjer er deaktiveret her.', 'error') end
-    if not gungame then
+    if not cayo and not gungame then
     local KanJegSeSpiller = IsEntityVisible(PlayerPedId())
 
     if KanJegSeSpiller == false then return end
@@ -148,7 +148,7 @@ end)
 RegisterCommand('revive', function()
     if not Config.canRevive then return notify('Revive er deaktiveret her.', 'error') end
     if LocalPlayer.state.inDuel ~= nil then return notify('Revive er deaktiveret her.', 'error') end
-    if and not gungame then
+    if not cayo and not gungame then
         TriggerEvent('esx_ambulancejob:revive')
     else
         lib.notify({
@@ -171,7 +171,7 @@ RegisterCommand('revive', function()
   RegisterCommand('r', function()
     if not Config.canRevive then return notify('Revive er deaktiveret her.', 'error') end
     if LocalPlayer.state.inDuel ~= nil then return notify('Revive er deaktiveret her.', 'error') end
-    if and not gungame then
+    if not cayo and not gungame then
         TriggerEvent('esx_ambulancejob:revive')
     else
         lib.notify({
@@ -194,7 +194,7 @@ RegisterCommand('revive', function()
 RegisterCommand('noclip', function()
     if not Config.canNoclip then return notify('Noclip er deaktiveret her.', 'error') end
     if LocalPlayer.state.inDuel ~= nil then return notify('Noclip er deaktiveret her.', 'error') end
-    if and not gungame then
+    if not cayo and not gungame then
         TriggerEvent('fivex:noclip')
     else
         lib.notify({
