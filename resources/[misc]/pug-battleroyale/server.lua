@@ -14,7 +14,8 @@ local GulagMap = "Set_Dystopian_02"
 --Functions
 local function moneycheck(players)
 	local Player = players
-	return true
+		richplayers = richplayers + 1
+		return true
 end
 local function round(x)
     return x>=0 and math.floor(x+0.5) or math.ceil(x-0.5)
