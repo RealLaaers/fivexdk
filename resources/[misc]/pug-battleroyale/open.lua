@@ -9,12 +9,15 @@ local that = 0
 
 -- Notification function
 function BattleRoyaleNotify(msg, type, length)
+    ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
     --ESX.ShowNotification(msg)
+    if GetPlayerRoutingBucket ~= 0 and not GetPlayerRoutingBucket ~= 19567 then
     lib.notify({
-        title = '',
-        description = msg,
+        title = msg,
         type = type
     })
+end
+end)
 end
 
 -- Show DrawText function
@@ -75,15 +78,15 @@ CreateThread(function()
         SetBlockingOfNonTemporaryEvents(RoyalePedMan, true)
         SetEntityInvincible(RoyalePedMan, true)
         FreezeEntityPosition(RoyalePedMan, true)
-        blip = AddBlipForCoord(Config.RoyalePedLoc.x, Config.RoyalePedLoc.y, Config.RoyalePedLoc.z)
-        SetBlipSprite(blip, 197)
-        SetBlipDisplay(blip, 4)
-        SetBlipScale(blip, 0.75)
-        SetBlipColour(blip, 3)
-        SetBlipAsShortRange(blip, true)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentString("Battle Royale")
-        EndTextCommandSetBlipName(blip)
+        -- blip = AddBlipForCoord(Config.RoyalePedLoc.x, Config.RoyalePedLoc.y, Config.RoyalePedLoc.z)
+        -- SetBlipSprite(blip, 197)
+        -- SetBlipDisplay(blip, 4)
+        -- SetBlipScale(blip, 0.75)
+        -- SetBlipColour(blip, 3)
+        -- SetBlipAsShortRange(blip, true)
+        -- BeginTextCommandSetBlipName("STRING")
+        -- AddTextComponentString("Battle Royale")
+        -- EndTextCommandSetBlipName(blip)
         if not Config.DrawmarkerStartQueueLocation then
             if Config.Target == "ox_target" then
                 exports.ox_target:addLocalEntity(RoyalePedMan, {
