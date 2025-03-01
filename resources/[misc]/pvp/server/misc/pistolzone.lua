@@ -37,3 +37,13 @@ RegisterNetEvent("pistolzone:join", function()
     SetPlayerRoutingBucket(src, 917665)
     TriggerClientEvent("pistolzone:updateZone", src, activePistolZone)
 end)
+
+lib.callback.register('pistolzone:getPlayerCount', function(source)
+    local count = 0
+    for _, playerId in ipairs(GetPlayers()) do
+        if GetPlayerRoutingBucket(tonumber(playerId)) == 917665 then
+            count = count + 1
+        end
+    end
+    return count
+end)
