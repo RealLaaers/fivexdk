@@ -130,5 +130,10 @@ AddEventHandler('esx:onPlayerDeath', function(data)
       SetPedArmour(ped, 100)
       Wait(700)
       --exports.ox_inventory:useSlot(currentWeapon.slot)
+  elseif Config.currentZone == 'pistol1' or Config.currentZone == 'pistol2' or Config.currentZone == 'pistol3' then
+    local ped = PlayerPedId()
+    TriggerEvent('respawnpistolzone')
+    TriggerEvent('healffs2')
+    SetPedArmour(ped, 100)
   end
 end)

@@ -138,11 +138,20 @@ AddEventHandler("pistolzone:updateZone", function(newZone)
     spawnPlayerInPistolZone()
 end)
 
-AddEventHandler('baseevents:onPlayerDied', function()
+-- AddEventHandler('baseevents:onPlayerDied', function()
+--     ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
+--         if GetPlayerRoutingBucket == 917665 then
+--             TriggerEvent('healffs2')
+--     spawnPlayerInPistolZone()
+--     end
+--     end)
+-- end)
+
+RegisterNetEvent('respawnpistolzone')
+AddEventHandler('respawnpistolzone', function()
     ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
         if GetPlayerRoutingBucket == 917665 then
-            TriggerEvent('healffs2')
-    spawnPlayerInPistolZone()
-    end
+            spawnPlayerInPistolZone()
+        end
     end)
 end)
