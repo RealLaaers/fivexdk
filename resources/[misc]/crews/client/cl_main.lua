@@ -5,7 +5,7 @@ crewBlipsNear, crewBlipsFar, currentTags = {}, {}, {}
 myIdentifier = nil
 
 settings = {
-    showTags = true
+    showTags = false
 }
 
 ----------------------------------------------------------------

@@ -1,5 +1,5 @@
-  local jaIconColor = 'green'
-  local nejIconColor = 'red'
+  local jaIconColor = 'red'
+  local nejIconColor = 'green'
 RegisterNetEvent('crewtagsmanagement')
 AddEventHandler('crewtagsmanagement', function()
 lib.registerContext({
