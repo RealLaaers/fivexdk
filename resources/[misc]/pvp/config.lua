@@ -396,6 +396,74 @@ Config.polyZones = {
     },
     removeVehicles = true
 },
+
+['pistol1'] = {
+    type = "poly",
+    coords = {
+        vector2(2439.8840332031, 3025.8742675781),
+  vector2(2437.9782714844, 3163.0349121094),
+  vector2(2371.8188476562, 3173.8544921875),
+  vector2(2353.568359375, 3171.5283203125),
+  vector2(2329.8666992188, 3162.6936035156),
+  vector2(2325.119140625, 3023.2946777344),
+  vector2(2440.0959472656, 3023.935546875)
+    },
+    polyStuff = {},
+    minZ = 10.774960517883,
+    maxZ = 300.32647705078,
+    invincible = false,
+    canNoclip = false,
+    canShoot = true,
+    canSpawnVehicle = false,
+    canRevive = false,
+    runFast = false,
+    allowedWeapons = {
+        "weapon_pistol",
+        "weapon_pistol50",
+        "weapon_combatpistol",
+        "weapon_heavypistol",
+        "weapon_ceramicpistol",
+        "weapon_vintagepistol",
+    },
+    removeVehicles = true
+},
+
+['pistol2'] = {
+    type = "poly",
+    coords = {
+        vector2(145.00863647461, 3569.0327148438),
+  vector2(150.4095916748, 3623.8764648438),
+  vector2(148.25564575195, 3685.2043457031),
+  vector2(131.92974853516, 3746.2612304688),
+  vector2(129.53465270996, 3756.7026367188),
+  vector2(126.40103912354, 3762.0573730469),
+  vector2(110.2359085083, 3767.9375),
+  vector2(82.346908569336, 3772.0559082031),
+  vector2(55.642795562744, 3772.2045898438),
+  vector2(25.676069259644, 3759.5043945312),
+  vector2(-8.3931837081909, 3741.7365722656),
+  vector2(-34.932823181152, 3728.8530273438),
+  vector2(-5.5879549980164, 3610.0827636719)
+    },
+    polyStuff = {},
+    minZ = 10.774960517883,
+    maxZ = 300.32647705078,
+    invincible = false,
+    canNoclip = false,
+    canShoot = true,
+    canSpawnVehicle = false,
+    canRevive = false,
+    runFast = false,
+    allowedWeapons = {
+        "weapon_pistol",
+        "weapon_pistol50",
+        "weapon_combatpistol",
+        "weapon_heavypistol",
+        "weapon_ceramicpistol",
+        "weapon_vintagepistol",
+    },
+    removeVehicles = true
+},
 }
 
 Config.currentZone = nil
