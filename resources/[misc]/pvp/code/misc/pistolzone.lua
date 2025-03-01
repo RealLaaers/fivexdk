@@ -15,9 +15,17 @@ RegisterCommand('pistolzone', function()
                 title = 'Tilladte våben',
                 description = 'Deagle, Pistol, Combat, Heavy, Ceramic, Vintage.',
                 icon = 'gun',
+                metadata = {
+                    {label = 'Desert Eagle'},
+                    {label = 'Pistol 9mm'},
+                    {label = 'Combat Pistol'},
+                    {label = 'Heavy Pistol'},
+                    {label = 'Ceramic Pistol'},
+                    {label = 'Vintage Pistol'}
+                  },
             },
               {
-                  title = 'Tilgå Zone',
+                  title = 'Tilgå',
                   description = 'Tilgå Pistol Zone',
                   icon = 'bars',
                   onSelect = function(args)
