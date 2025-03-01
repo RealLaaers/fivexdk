@@ -315,6 +315,87 @@ Config.polyZones = {
     allowedWeapons = {},
     removeVehicles = false
 },
+['zone1'] = {
+    type = "poly",
+    coords = {
+        vector2(1618.7106933594, 1435.6474609375),
+        vector2(1669.7576904297, 1567.0347900391),
+        vector2(1681.1175537109, 1665.3868408203),
+        vector2(1675.3878173828, 1762.0032958984),
+        vector2(1687.8905029297, 1795.6049804688),
+        vector2(1696.5708007812, 1855.5892333984),
+        vector2(1614.6010742188, 1891.5454101562),
+        vector2(1429.9910888672, 1928.2634277344),
+        vector2(1398.7270507812, 1651.2144775391),
+        vector2(1439.3010253906, 1495.3431396484)
+    },
+    polyStuff = {},
+    minZ = 10.774960517883,
+    maxZ = 300.32647705078,
+    invincible = false,
+    canNoclip = false,
+    canShoot = true,
+    canSpawnVehicle = false,
+    canRevive = false,
+    runFast = false,
+    allowedWeapons = {
+        "weapon_pistol50",
+        "weapon_navyrevolver",
+        "weapon_minismg",
+    },
+    removeVehicles = true
+},
+['zone2'] = {
+    type = "poly",
+    coords = {
+        vector2(-1469.0053710938, 252.16708374023),
+  vector2(-1615.8956298828, 348.54559326172),
+  vector2(-1783.9240722656, 311.62115478516),
+  vector2(-1823.2180175781, 215.64733886719),
+  vector2(-1746.1674804688, 71.226448059082),
+  vector2(-1609.9237060547, 104.24897003174),
+  vector2(-1490.6080322266, 166.61151123047)
+    },
+    polyStuff = {},
+    minZ = 10.774960517883,
+    maxZ = 300.32647705078,
+    invincible = false,
+    canNoclip = false,
+    canShoot = true,
+    canSpawnVehicle = false,
+    canRevive = false,
+    runFast = false,
+    allowedWeapons = {
+        "weapon_pistol50",
+        "weapon_navyrevolver",
+        "weapon_minismg",
+    },
+    removeVehicles = true
+},
+['zone3'] = {
+    type = "poly",
+    coords = {
+        vector2(1196.1508789062, 2026.6130371094),
+  vector2(1272.5867919922, 2557.2321777344),
+  vector2(787.37475585938, 2573.5891113281),
+  vector2(732.75335693359, 2248.3747558594)
+    },
+    polyStuff = {},
+    minZ = 10.774960517883,
+    maxZ = 300.32647705078,
+    invincible = false,
+    canNoclip = false,
+    canShoot = true,
+    canSpawnVehicle = false,
+    canRevive = false,
+    runFast = false,
+    allowedWeapons = {
+        "weapon_pistol50",
+        "weapon_navyrevolver",
+        "weapon_minismg",
+    },
+    removeVehicles = true
+},
 }
 
 Config.currentZone = nil

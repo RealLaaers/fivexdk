@@ -115,7 +115,7 @@ RegisterCommand('koth', function()
           },
           {
             title = 'Tilladte våben:',
-            description = 'Deagle, Revolver & Navy Revolver'
+            description = 'Deagle, Navy Revolver & Scorpion'
           },
           {
             title = 'Rød - ' .. redCount .. ' spillere (' .. redPoints .. ' pts)',
