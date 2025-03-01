@@ -125,8 +125,8 @@ RegisterCommand('koth', function()
                 if not NotSpam then
                     NotSpam = true
                     TriggerServerEvent("Koth-SelectTeam", 1)
-                    lib.hideContext() -- Luk menuen, så spilleren ikke kan klikke igen
-                    -- Nulstil NotSpam efter 2 sekunder (hvis du vil lade dem genåbne menuen)
+                    exports['pma-voice']:setRadioChannel(1)
+                    lib.hideContext()
                     SetTimeout(2000, function()
                         NotSpam = false
                     end)
@@ -141,6 +141,7 @@ RegisterCommand('koth', function()
                 if not NotSpam then
                     NotSpam = true
                     TriggerServerEvent("Koth-SelectTeam", 2)
+                    exports['pma-voice']:setRadioChannel(2)
                     lib.hideContext()
                     SetTimeout(2000, function()
                         NotSpam = false
@@ -156,6 +157,7 @@ RegisterCommand('koth', function()
                 if not NotSpam then
                     NotSpam = true
                     TriggerServerEvent("Koth-SelectTeam", 3)
+                    exports['pma-voice']:setRadioChannel(3)
                     lib.hideContext()
                     SetTimeout(2000, function()
                         NotSpam = false
