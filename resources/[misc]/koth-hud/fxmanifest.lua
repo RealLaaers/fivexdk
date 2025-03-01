@@ -12,6 +12,8 @@ client_scripts {
     "client/cl_sounds.lua"
 }
 
+shared_script '@es_extended/imports.lua'
+
 server_scripts {
     "server.lua"
 }
