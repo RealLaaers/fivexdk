@@ -5,7 +5,7 @@ local zones = {"pistol1", "pistol2"}
 -- Timer der opdaterer zonen hver 10. minut for spillere i bucket 917665
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(10 * 60 * 1000) -- 10 minutter
+        Citizen.Wait(10 * 5 * 1000) -- 10 minutter
         activePistolZone = zones[math.random(#zones)]
         print("Ny aktive pistolzone: " .. activePistolZone)
         
