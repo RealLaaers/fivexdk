@@ -5,16 +5,12 @@ RegisterCommand('pistolzone', function()
           options = {
             {
                 title = 'Antal Spillere: 11111',
-                icon = 'users',
             },
             {
                 title = 'Nuværende Map: NIGGER TIHI',
-                icon = 'city',
             },
             {
                 title = 'Tilladte våben',
-                description = 'Deagle, Pistol, Combat, Heavy, Ceramic, Vintage.',
-                icon = 'gun',
                 metadata = {
                     {label = 'Desert Eagle'},
                     {label = 'Pistol 9mm'},
@@ -25,9 +21,8 @@ RegisterCommand('pistolzone', function()
                   },
             },
               {
-                  title = 'Tilgå',
+                  title = 'Tilgå Pistol Zone',
                   description = 'Tilgå Pistol Zone',
-                  icon = 'bars',
                   onSelect = function(args)
                       print('neger')
                   end,
