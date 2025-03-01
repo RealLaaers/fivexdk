@@ -1,4 +1,5 @@
 RegisterCommand('pistolzone', function()
+    print('nigger')
       lib.registerContext({
           id = 'pistolzone',
           title = 'FiveX - Pistol Zone',
