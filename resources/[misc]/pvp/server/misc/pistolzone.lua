@@ -11,7 +11,6 @@ Citizen.CreateThread(function()
         end
 
         activePistolZone = newZone
-        print("Ny aktive pistolzone: " .. activePistolZone)
         
         local players = GetPlayers()
         for _, playerId in ipairs(players) do
@@ -19,6 +18,10 @@ Citizen.CreateThread(function()
                 TriggerClientEvent("pistolzone:updateZone", playerId, activePistolZone)
             end
         end
+        TriggerClientEvent('chat:addMessage', -1, {
+			template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Pistol Zone: <br> Pistol Zone rykkes og vil nu være et andet sted!</div>',
+			args = { source }
+		})
     end
 end)
 

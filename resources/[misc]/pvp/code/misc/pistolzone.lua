@@ -141,8 +141,8 @@ end)
 AddEventHandler('baseevents:onPlayerDied', function()
     ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
         if GetPlayerRoutingBucket == 917665 then
+            TriggerEvent('healffs2')
     spawnPlayerInPistolZone()
-    TriggerEvent('healffs2')
     end
     end)
 end)
