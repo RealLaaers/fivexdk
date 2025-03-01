@@ -101,24 +101,39 @@ end
 function spawnPlayerInPistolZone()
     local zone = Config.polyZones[activePistolZone]
     if zone then
-        local spawnPoint = getRandomPointInZone(zone)
-        RequestCollisionAtCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z)
+        local validSpawn = false
+        local spawnPoint = nil
+        local spawnAttempts = 0
+        local maxSpawnAttempts = 10  -- maks antal forsøg på at finde et spawn-point
 
-        local groundFound, groundZ = GetGroundZFor_3dCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z, 0)
-        local attempts = 0
-        while not groundFound and attempts < 50 do
-            Citizen.Wait(100)
-            groundFound, groundZ = GetGroundZFor_3dCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z, 0)
-            attempts = attempts + 1
+        while not validSpawn and spawnAttempts < maxSpawnAttempts do
+            spawnPoint = getRandomPointInZone(zone)
+            RequestCollisionAtCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z)
+
+            local groundFound, groundZ = GetGroundZFor_3dCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z, 0)
+            local groundAttempts = 0
+            while not groundFound and groundAttempts < 50 do
+                Citizen.Wait(100)
+                groundFound, groundZ = GetGroundZFor_3dCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z, 0)
+                groundAttempts = groundAttempts + 1
+            end
+
+            if groundFound then
+                spawnPoint = vector3(spawnPoint.x, spawnPoint.y, groundZ)
+                validSpawn = true
+            else
+                spawnAttempts = spawnAttempts + 1
+                print("Forsøg " .. spawnAttempts .. ": Kunne ikke finde et gyldigt ground point, prøver et nyt spawn-point...")
+            end
         end
 
-        if groundFound then
-            spawnPoint = vector3(spawnPoint.x, spawnPoint.y, groundZ)
+        if validSpawn then
+            SetEntityCoords(PlayerPedId(), spawnPoint.x, spawnPoint.y, spawnPoint.z, false, false, false, true)
         else
-            print("Groundpoint ikke fundet, benytter standard Z fra zone config")
+            print("Kunne ikke finde et gyldigt spawn point efter " .. maxSpawnAttempts .. " forsøg. Benytter fallback Z.")
+            -- Fallback: Brug spawnPoint med en sikker Z-værdi (zone.minZ + offset)
+            SetEntityCoords(PlayerPedId(), spawnPoint.x, spawnPoint.y, zone.minZ + 1.0, false, false, false, true)
         end
-
-        SetEntityCoords(PlayerPedId(), spawnPoint.x, spawnPoint.y, spawnPoint.z, false, false, false, true)
     else
         print("Pistolzone ikke fundet i config!")
     end
