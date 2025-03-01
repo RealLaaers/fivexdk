@@ -464,6 +464,39 @@ Config.polyZones = {
     },
     removeVehicles = true
 },
+
+['pistol3'] = {
+    type = "poly",
+    coords = {
+        vector2(88.764213562012, -1450.2739257812),
+  vector2(45.558010101318, -1415.4969482422),
+  vector2(-6.3569288253784, -1414.4251708984),
+  vector2(-90.673347473145, -1423.4313964844),
+  vector2(-68.923133850098, -1474.1577148438),
+  vector2(-43.207664489746, -1496.8784179688),
+  vector2(-24.866502761841, -1512.1143798828),
+  vector2(6.4426116943359, -1537.8374023438),
+  vector2(20.416883468628, -1540.5107421875)
+    },
+    polyStuff = {},
+    minZ = 10.774960517883,
+    maxZ = 300.32647705078,
+    invincible = false,
+    canNoclip = false,
+    canShoot = true,
+    canSpawnVehicle = false,
+    canRevive = false,
+    runFast = false,
+    allowedWeapons = {
+        "weapon_pistol",
+        "weapon_pistol50",
+        "weapon_combatpistol",
+        "weapon_heavypistol",
+        "weapon_ceramicpistol",
+        "weapon_vintagepistol",
+    },
+    removeVehicles = true
+},
 }
 
 Config.currentZone = nil

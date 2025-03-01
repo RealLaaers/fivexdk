@@ -1,50 +1,43 @@
+local activePistolZone = 'pistol1'
+
+function getMapName(zone)
+    if zone == "pistol1" then
+        return "Scrapyard"
+    elseif zone == "pistol2" then
+        return "Stab City"
+    elseif zone == "pistol3" then
+        return "Forum Dr."
+    else
+        return "Ukendt"
+    end
+end
+
 RegisterCommand('pistolzone', function()
-    print('nigger')
-      lib.registerContext({
-          id = 'pistolzone',
-          title = 'FiveX - Pistol Zone',
-          options = {
+    lib.registerContext({
+        id = 'pistolzone',
+        title = 'FiveX - Pistol Zone',
+        options = {
             {
                 title = 'Antal Spillere: 11111',
             },
             {
-                title = 'Nuværende Map: NIGGER TIHI',
+                title = 'Nuværende Map: ' .. getMapName(activePistolZone),
             },
             {
                 title = 'Tilladte Våben:',
                 description = 'Deagle, Pistol, Combat, Heavy, Ceramic, Vintage.',
             },
-              {
-                  title = 'Tilgå Pistol Zone',
-                  description = 'Klik for at tilgå Pistol Zone.',
-                  onSelect = function(args)
+            {
+                title = 'Tilgå Pistol Zone',
+                description = 'Klik for at tilgå Pistol Zone.',
+                onSelect = function(args)
                     TriggerServerEvent("pistolzone:join")
                     spawnPlayerInPistolZone()
-                  end,
-              },
-          },
-      })
-      lib.showContext('pistolzone')
-  end)
-
-local activePistolZone = 'pistol1'
-
-RegisterNetEvent("pistolzone:updateZone")
-AddEventHandler("pistolzone:updateZone", function(newZone)
-    local inPistolZone = false
-    for _, zoneName in ipairs({"pistol1", "pistol2"}) do
-        if IsPlayerInZone(zoneName) then
-            inPistolZone = true
-            break
-        end
-    end
-
-    activePistolZone = newZone
-    print("Pistolzone opdateret til: " .. activePistolZone)
-
-    if inPistolZone then
-        spawnPlayerInPistolZone()
-    end
+                end,
+            },
+        },
+    })
+    lib.showContext('pistolzone')
 end)
 
 function isPointInPolygon(point, poly)
@@ -60,17 +53,17 @@ function isPointInPolygon(point, poly)
     return inside
 end
 
+-- Funktion: Tjekker, om spilleren er inden for en specifik zone
 function IsPlayerInZone(zoneName)
     local zone = Config.polyZones[zoneName]
-    if not zone then
-        return false
-    end
+    if not zone then return false end
     local playerPed = PlayerPedId()
     local playerCoords = GetEntityCoords(playerPed)
     local point = { x = playerCoords.x, y = playerCoords.y }
     return isPointInPolygon(point, zone.coords)
 end
 
+-- Funktion: Returnerer et tilfældigt punkt inde i en given zone
 function getRandomPointInZone(zone)
     local coords = zone.coords
     local minX, minY = coords[1].x, coords[1].y
@@ -98,13 +91,14 @@ function getRandomPointInZone(zone)
     return vector3(point.x, point.y, z)
 end
 
+-- Funktion: Teleporterer spilleren til et spawn-point i den aktive pistolzone med ground-check
 function spawnPlayerInPistolZone()
     local zone = Config.polyZones[activePistolZone]
     if zone then
         local validSpawn = false
         local spawnPoint = nil
         local spawnAttempts = 0
-        local maxSpawnAttempts = 10  -- maks antal forsøg på at finde et spawn-point
+        local maxSpawnAttempts = 10  -- Maksimalt antal forsøg på at finde et gyldigt spawn-point
 
         while not validSpawn and spawnAttempts < maxSpawnAttempts do
             spawnPoint = getRandomPointInZone(zone)
@@ -131,7 +125,6 @@ function spawnPlayerInPistolZone()
             SetEntityCoords(PlayerPedId(), spawnPoint.x, spawnPoint.y, spawnPoint.z, false, false, false, true)
         else
             print("Kunne ikke finde et gyldigt spawn point efter " .. maxSpawnAttempts .. " forsøg. Benytter fallback Z.")
-            -- Fallback: Brug spawnPoint med en sikker Z-værdi (zone.minZ + offset)
             SetEntityCoords(PlayerPedId(), spawnPoint.x, spawnPoint.y, zone.minZ + 1.0, false, false, false, true)
         end
     else
@@ -139,10 +132,16 @@ function spawnPlayerInPistolZone()
     end
 end
 
+RegisterNetEvent("pistolzone:updateZone")
+AddEventHandler("pistolzone:updateZone", function(newZone)
+    activePistolZone = newZone
+    spawnPlayerInPistolZone()
+end)
+
 AddEventHandler('baseevents:onPlayerDied', function()
     ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
         if GetPlayerRoutingBucket == 917665 then
     spawnPlayerInPistolZone()
-        end
+    end
     end)
 end)

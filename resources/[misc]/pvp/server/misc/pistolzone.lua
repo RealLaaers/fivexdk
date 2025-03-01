@@ -1,16 +1,17 @@
 local activePistolZone = 'pistol1'
-local zones = {"pistol1", "pistol2"}
+local zones = {"pistol1", "pistol2", "pistol3"}
 
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(10 * 5 * 1000)
-        local zones = {"pistol1", "pistol2"}
+
         local newZone = zones[math.random(#zones)]
-        if newZone == activePistolZone then
-            newZone = (activePistolZone == "pistol1") and "pistol2" or "pistol1"
+        while newZone == activePistolZone do
+            newZone = zones[math.random(#zones)]
         end
 
         activePistolZone = newZone
+        print("Ny aktive pistolzone: " .. activePistolZone)
         
         local players = GetPlayers()
         for _, playerId in ipairs(players) do
@@ -18,10 +19,6 @@ Citizen.CreateThread(function()
                 TriggerClientEvent("pistolzone:updateZone", playerId, activePistolZone)
             end
         end
-        TriggerClientEvent('chat:addMessage', -1, {
-            template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Pistol Zone: <br> Pistol Zonen er skiftet, og er nu placeret et andet sted!</div>',
-            args = { source }
-        })
     end
 end)
 
