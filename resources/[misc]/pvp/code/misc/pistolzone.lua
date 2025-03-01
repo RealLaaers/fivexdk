@@ -25,17 +25,14 @@ RegisterCommand('pistolzone', function()
       lib.showContext('pistolzone')
   end)
 
-  -- Standard aktiv zone (opdateres af serveren)
 local activePistolZone = 'pistol1'
 
--- Modtag event fra serveren om opdatering af zone
 RegisterNetEvent("pistolzone:updateZone")
 AddEventHandler("pistolzone:updateZone", function(newZone)
     activePistolZone = newZone
     print("Pistolzone opdateret til: " .. activePistolZone)
 end)
 
--- Funktion til at tjekke om et punkt er indenfor en polygon (ray-casting)
 function isPointInPolygon(point, poly)
     local inside = false
     local j = #poly
@@ -49,7 +46,6 @@ function isPointInPolygon(point, poly)
     return inside
 end
 
--- Funktion til at generere et tilfældigt punkt indenfor en given zone
 function getRandomPointInZone(zone)
     local coords = zone.coords
     local minX, minY = coords[1].x, coords[1].y
@@ -77,23 +73,32 @@ function getRandomPointInZone(zone)
     return vector3(point.x, point.y, z)
 end
 
--- Spawn-funktion, der bruger den aktive pistolzone (som serveren opdaterer)
 function spawnPlayerInPistolZone()
     local zone = Config.polyZones[activePistolZone]
     if zone then
         local spawnPoint = getRandomPointInZone(zone)
+        RequestCollisionAtCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z)
+        
+        local groundFound, groundZ = GetGroundZFor_3dCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z, 0)
+        local attempts = 0
+        while not groundFound and attempts < 50 do
+            Citizen.Wait(100)
+            groundFound, groundZ = GetGroundZFor_3dCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z, 0)
+            attempts = attempts + 1
+        end
+
+        if groundFound then
+            spawnPoint = vector3(spawnPoint.x, spawnPoint.y, groundZ)
+        else
+            print("Groundpoint ikke fundet, benytter standard Z fra zone config")
+        end
+
         SetEntityCoords(PlayerPedId(), spawnPoint.x, spawnPoint.y, spawnPoint.z, false, false, false, true)
     else
         print("Pistolzone ikke fundet i config!")
     end
 end
 
--- Eksempel: Når spilleren vælger 'Tilgå Pistol Zone' i menuen
-RegisterCommand('enterpistolzone', function()
-    spawnPlayerInPistolZone()
-end, false)
-
--- Eksempel: Gen-spawn når spilleren dør
 AddEventHandler('baseevents:onPlayerDied', function()
     spawnPlayerInPistolZone()
 end)
