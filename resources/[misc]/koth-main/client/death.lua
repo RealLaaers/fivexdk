@@ -48,19 +48,37 @@ function secondsToClock(seconds)
 end
 local sec = 60000*5
 
-local pointt = lib.points.new(vec3(5130.3467, -4985.6982, 12.6833), 2000)
-
-local cayo = false
-function pointt:onEnter()
-  cayo = true
+local point = lib.points.new(vec3(1530.6582, 1709.7032, 109.9309), 125)
+local zone1 = false
+function point:onEnter()
+    zone1 = true
 end
 
-function pointt:onExit()
-  cayo = false
+function point:onExit()
+    zone1 = false
+end
+
+local point2 = lib.points.new(vec3(-1629.3918, 209.7738, 60.6413), 125)
+local zone2 = false
+function point2:onEnter()
+    zone2 = true
+end
+
+function point2:onExit()
+    zone2 = false
+end
+
+local point3 = lib.points.new(vec3(1078.0343, 2299.7446, 45.5086), 125)
+local zone3 = false
+function point3:onEnter()
+    zone3 = true
+end
+
+function point3:onExit()
+    zone3 = false
 end
 
 Citizen.CreateThread(function()
-    ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
     local hasBeenDead = false
     local diedAt
     local interval = 1
@@ -102,7 +120,7 @@ Citizen.CreateThread(function()
 
 
                 Citizen.CreateThread(function()
-                    while sec > 0 and isDead and GetPlayerRoutingBucket == 19567 do
+                    while sec > 0 and isDead and zone1 or zone2 or zone3 do
                         Citizen.Wait(0)
             
                         SetTextFont(4)
@@ -236,8 +254,6 @@ Citizen.CreateThread(function()
         end
     end
 end)
-end)
-
 
 function Round(value, numDecimalPlaces)
     return tonumber(string.format("%." .. (numDecimalPlaces or 0) .. "f", value))
@@ -252,8 +268,7 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
-        if IsEntityDead(PlayerPedId()) and GetPlayerRoutingBucket == 19567 then
+        if IsEntityDead(PlayerPedId()) and zone1 or zone2 or zone3 then
             if buttonHeld(38, 150) then
                 TriggerEvent('core:ResetDeathStatus', false)
 
@@ -264,7 +279,6 @@ Citizen.CreateThread(function()
             --    TriggerServerEvent('koth:medicneeded', GetEntityCoords(PlayerPedId()))
             end
         end
-    end)
     end
 end)
 
