@@ -164,6 +164,8 @@ RegisterCommand('koth', function()
         return
     end
 
+    lib.callback('koth:getPlayerCount', false, function(count)
+        local playerCount = count or 0
     local teamCounts = lib.callback.await("KOTH:GetTeamCounts", 1000)
     local teamPoints = lib.callback.await("KOTH:GetTeamPoints", 1000)
 
@@ -189,7 +191,7 @@ RegisterCommand('koth', function()
         title = 'KOTH - Vælg Hold',
         options = {
           {
-            title = 'Antal Spillere: ' .. totalCount
+            title = 'Antal Spillere: ' .. playerCount
           },
           {
             title = 'Førende: ' .. leadingTeam .. ' (' .. leadingPoints .. ' pts - mangler: '..(100-leadingPoints)..' pts)'
@@ -250,6 +252,7 @@ RegisterCommand('koth', function()
     })
 
     lib.showContext('choose_team')
+end)
 end)
 
 function hideMainMenu()

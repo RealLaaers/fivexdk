@@ -139,6 +139,16 @@ end)
 --Score
 --Assist
 
+lib.callback.register('koth:getPlayerCount', function(source)
+    local count = 0
+    for _, playerId in ipairs(GetPlayers()) do
+        if GetPlayerRoutingBucket(tonumber(playerId)) == 19567 then
+            count = count + 1
+        end
+    end
+    return count
+end)
+
 lib.callback.register("KOTH:GetTeamCounts", function(source)
     return {
         red = Teams[1].count or 0,
