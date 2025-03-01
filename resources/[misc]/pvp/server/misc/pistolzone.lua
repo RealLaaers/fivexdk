@@ -1,20 +1,29 @@
--- Variabel til at holde den aktive pistolzone
 local activePistolZone = 'pistol1'
 local zones = {"pistol1", "pistol2"}
 
--- Timer der opdaterer zonen hver 10. minut (10*60*1000 ms)
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(10 * 10 * 1000)
+        Citizen.Wait(10 * 5 * 1000)
         activePistolZone = zones[math.random(#zones)]
-        print("Ny aktive pistolzone: " .. activePistolZone)
-        -- Send til alle klienter
-        TriggerClientEvent("pistolzone:updateZone", -1, activePistolZone)
+        print("Ny aktiv pistolzone: " .. activePistolZone)
+        
+        local players = GetPlayers()
+        for _, playerId in ipairs(players) do
+            if GetPlayerRoutingBucket(playerId) == 917665 then
+                TriggerClientEvent("pistolzone:updateZone", playerId, activePistolZone)
+            end
+        end
     end
 end)
 
--- Når en klient forbinder, sendes den nuværende zone til den klient
 AddEventHandler("playerConnecting", function(name, setKickReason, deferrals)
     local src = source
-    TriggerClientEvent("pistolzone:updateZone", src, activePistolZone)
+    if GetPlayerRoutingBucket(src) == 917665 then
+        TriggerClientEvent("pistolzone:updateZone", src, activePistolZone)
+    end
+end)
+
+RegisterNetEvent('putinpistolbucket')
+AddEventHandler('putinpistolbucket', function()
+    SetPlayerRoutingBucket(source, 917665)
 end)

@@ -17,6 +17,7 @@ RegisterCommand('pistolzone', function()
                   title = 'Tilgå Pistol Zone',
                   description = 'Klik for at tilgå Pistol Zone.',
                   onSelect = function(args)
+                    TriggerServerEvent('putinpistolbucket')
                     spawnPlayerInPistolZone()
                   end,
               },
@@ -29,8 +30,20 @@ local activePistolZone = 'pistol1'
 
 RegisterNetEvent("pistolzone:updateZone")
 AddEventHandler("pistolzone:updateZone", function(newZone)
+    local inPistolZone = false
+    for _, zoneName in ipairs({"pistol1", "pistol2"}) do
+        if IsPlayerInZone(zoneName) then
+            inPistolZone = true
+            break
+        end
+    end
+
     activePistolZone = newZone
     print("Pistolzone opdateret til: " .. activePistolZone)
+
+    if inPistolZone then
+        spawnPlayerInPistolZone()
+    end
 end)
 
 function isPointInPolygon(point, poly)
@@ -44,6 +57,17 @@ function isPointInPolygon(point, poly)
         j = i
     end
     return inside
+end
+
+function IsPlayerInZone(zoneName)
+    local zone = Config.polyZones[zoneName]
+    if not zone then
+        return false
+    end
+    local playerPed = PlayerPedId()
+    local playerCoords = GetEntityCoords(playerPed)
+    local point = { x = playerCoords.x, y = playerCoords.y }
+    return isPointInPolygon(point, zone.coords)
 end
 
 function getRandomPointInZone(zone)
@@ -78,7 +102,7 @@ function spawnPlayerInPistolZone()
     if zone then
         local spawnPoint = getRandomPointInZone(zone)
         RequestCollisionAtCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z)
-        
+
         local groundFound, groundZ = GetGroundZFor_3dCoord(spawnPoint.x, spawnPoint.y, spawnPoint.z, 0)
         local attempts = 0
         while not groundFound and attempts < 50 do
@@ -100,5 +124,8 @@ function spawnPlayerInPistolZone()
 end
 
 AddEventHandler('baseevents:onPlayerDied', function()
+    ESX.TriggerServerCallback('GetPlayerRoutingBucket', function(GetPlayerRoutingBucket)
+        if GetPlayerRoutingBucket == 917665 then
     spawnPlayerInPistolZone()
+    end)
 end)
