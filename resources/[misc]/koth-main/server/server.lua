@@ -228,12 +228,10 @@ RegisterCommand("leavekoth", function(source, args, rawCommand)
     local s = tostring(src)
     local xPlayer = ESX.GetPlayerFromId(src)
     
-    -- Teleporter spilleren til spawn og sæt routing bucket til 0
     xPlayer.setCoords(vector4(343.5642, -1421.0951, 76.1654, 136.0984))
     SetPlayerRoutingBucket(src, 0)
     TriggerClientEvent('KOTH:Leave', src)
     
-    -- Fjern spilleren fra PlayerDataInfo
     for i = #PlayerDataInfo, 1, -1 do
         if PlayerDataInfo[i].id == src then
             table.remove(PlayerDataInfo, i)
@@ -241,10 +239,8 @@ RegisterCommand("leavekoth", function(source, args, rawCommand)
         end
     end
 
-    -- Fjern fra TeamIDPlayer dictionary
     TeamIDPlayer[s] = nil
 
-    -- Fjern spilleren fra alle hold og genberegn count
     for teamId = 1, #Teams do
         for i = #Teams[teamId].members, 1, -1 do
             if Teams[teamId].members[i].id == src then
@@ -290,7 +286,7 @@ end)
 
 RegisterNetEvent("PlayerLeftKothServer")
 AddEventHandler("PlayerLeftKothServer", function(team, playerId)
-    playerId = playerId or source  -- Hvis ikke sendt, brug source
+    playerId = playerId or source
     print("PlayerLeftKothServer: team = " .. team .. ", player = " .. playerId)
 
     if team == 1 then
