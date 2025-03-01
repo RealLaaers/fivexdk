@@ -7,8 +7,8 @@ Config.Debug = false -- Debug true or false
 Config.JumpKey = 51 -- control id of the button to jump from the plane. Default: (E) [key codes can be found here: https://docs.fivem.net/docs/game-references/controls/]
 Config.PickupKey = 51 -- control id of the button to pickup items. Default: (E) [key codes can be found here: https://docs.fivem.net/docs/game-references/controls/]
 Config.PickupLable = 'E ' -- if you change Config.PickupKey then change this to match it
-Config.MinPlayers = 1 -- minimum players required for players to be able to start a match (Set To one so the devs can test)
-Config.MaxPlayers = 110 -- Max players that can be in a mtch at once
+Config.MinPlayers = 15 -- minimum players required for players to be able to start a match (Set To one so the devs can test)
+Config.MaxPlayers = 55 -- Max players that can be in a mtch at once
 Config.MinWager = 0 -- minimum bet players can make
 Config.MaxWager = 0 -- maximum bet players can make
 ----------
