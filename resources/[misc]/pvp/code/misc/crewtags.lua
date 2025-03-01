@@ -4,7 +4,7 @@ RegisterNetEvent('crewtagsmanagement')
 AddEventHandler('crewtagsmanagement', function()
 lib.registerContext({
           id = 'crewtags',
-          title = 'FiveX - Crew Tags',
+          title = 'FiveX - Crew Tags Management',
           options = {
               {
                   title = 'Aktiver Crew Tags',
