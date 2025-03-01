@@ -12,9 +12,9 @@ Config = {
     {
         name = "Zone 1",
         poscombat = vector3(1530.6582, 1709.7032, 109.9309), --g
-        posBaseBleu = vector3(1524.5436, 1559.3209, 108.3797),
+        posBaseBleu = vector3(1593.4329, 1802.4440, 104.3500),
         posBaseVert = vector3(1406.5352, 1713.9425, 96.4453), 
-        posBaseRouge = vector3(1530.8472, 1715.2036, 109.9718),
+        posBaseRouge = vector3(1549.6248, 1571.5033, 108.4114),
         posweaponshopR = vector3(1287.239, -2551.135, 43.70188),
         posweaponshopB = vector3(328.0806, -377.8234, 45.06388),
         posweaponshopG = vector3(-894.1668, -880.7885, 15.54835),
