@@ -64,14 +64,11 @@ AddEventHandler("KOTH-TeamFull", function(team)
     --SendNUIMessage(send)
 end)
 
--- Global variabel til at gemme spillerens originale outfit
 local savedOutfit = nil
 
--- Funktion til at gemme nuværende outfit (alle komponenter og props)
 function SaveOutfit()
     local ped = PlayerPedId()
     savedOutfit = { components = {}, props = {} }
-    -- Gem alle clothing components (0-11 dækker ofte de relevante)
     for i = 0, 11 do
         savedOutfit.components[i] = {
             drawable = GetPedDrawableVariation(ped, i),
@@ -79,7 +76,6 @@ function SaveOutfit()
             palette = GetPedPaletteVariation(ped, i)
         }
     end
-    -- Gem props (fx hatte, briller)
     for i = 0, 2 do
         savedOutfit.props[i] = {
             propIndex = GetPedPropIndex(ped, i),
@@ -88,7 +84,6 @@ function SaveOutfit()
     end
 end
 
--- Funktion til at genindlæse den gemte outfit
 function LoadOutfit()
     if savedOutfit then
         local ped = PlayerPedId()
@@ -102,39 +97,37 @@ function LoadOutfit()
                 ClearPedProp(ped, i)
             end
         end
-        savedOutfit = nil -- nulstil efter genindlæsning
+        savedOutfit = nil
     end
 end
 
--- Definer team-uniformer (du kan tilpasse disse værdier)
 local teamUniforms = {
     [1] = { -- Rød hold
         components = {
-            { componentId = 11, drawable = 50, texture = 0, palette = 0 }, -- Shirt
-            { componentId = 4,  drawable = 31, texture = 0, palette = 0 }, -- Bukser
-            { componentId = 6,  drawable = 25, texture = 0, palette = 0 }, -- Sko
-            { componentId = 9,  drawable = 23, texture = 4, palette = 0 }  -- Vest (rød: texture 4)
+            { componentId = 11, drawable = 208, texture = 1, palette = 0 }, -- Shirt
+            { componentId = 4,  drawable = 33, texture = 0, palette = 0 }, -- Bukser
+            { componentId = 6,  drawable = 25, texture = 0, palette = 0 } -- Sko
+            -- { componentId = 9,  drawable = 23, texture = 4, palette = 0 }  -- Vest (rød: texture 4)
         }
     },
     [2] = { -- Blå hold
         components = {
-            { componentId = 11, drawable = 50, texture = 0, palette = 0 }, -- Shirt
-            { componentId = 4,  drawable = 31, texture = 0, palette = 0 }, -- Bukser
-            { componentId = 6,  drawable = 25, texture = 0, palette = 0 }, -- Sko
-            { componentId = 9,  drawable = 23, texture = 5, palette = 0 }  -- Vest (blå: texture 5)
+            { componentId = 11, drawable = 208, texture = 0, palette = 0 }, -- Shirt
+            { componentId = 4,  drawable = 33, texture = 0, palette = 0 }, -- Bukser
+            { componentId = 6,  drawable = 25, texture = 0, palette = 0 } -- Sko
+            -- { componentId = 9,  drawable = 23, texture = 5, palette = 0 }  -- Vest (blå: texture 5)
         }
     },
     [3] = { -- Grøn hold
         components = {
-            { componentId = 11, drawable = 50, texture = 0, palette = 0 }, -- Shirt
-            { componentId = 4,  drawable = 31, texture = 0, palette = 0 }, -- Bukser
-            { componentId = 6,  drawable = 25, texture = 0, palette = 0 }, -- Sko
-            { componentId = 9,  drawable = 23, texture = 0, palette = 0 }  -- Vest (grøn: texture 0)
+            { componentId = 11, drawable = 208, texture = 2, palette = 0 }, -- Shirt
+            { componentId = 4,  drawable = 33, texture = 0, palette = 0 }, -- Bukser
+            { componentId = 6,  drawable = 25, texture = 0, palette = 0 } -- Sko
+            -- { componentId = 9,  drawable = 23, texture = 0, palette = 0 }  -- Vest (grøn: texture 0)
         }
     }
 }
 
--- Funktion til at sætte team-uniformen
 function SetTeamUniform(team)
     local ped = PlayerPedId()
     local uniform = teamUniforms[team]
@@ -145,29 +138,23 @@ function SetTeamUniform(team)
     end
 end
 
--- Event der bliver kaldt, når spilleren vælger et team (udløst fx fra serveren)
 RegisterNetEvent("KOTH:ApplyTeamUniform")
 AddEventHandler("KOTH:ApplyTeamUniform", function(team)
-    -- Gemmer spillerens outfit, hvis det ikke allerede er gemt
     if not savedOutfit then
         SaveOutfit()
     end
-    -- Sætter uniformen for det valgte team
     SetTeamUniform(team)
 end)
 
--- Event der bliver kaldt, når spilleren forlader KOTH (fx ved kommando eller teleport)
 RegisterNetEvent("KOTH:Leave")
 AddEventHandler("KOTH:Leave", function()
-    -- Genindlæs spillerens oprindelige outfit
     LoadOutfit()
+    exports['pma-voice']:setRadioChannel(0)
 end)
 
--- Uden for /koth-kommanden definerer vi en variabel til at forhindre spam
 local NotSpam = false
 
 RegisterCommand('koth', function()
-    -- Tjek om du er i bucket
     local bucket = lib.callback.await("KOTH:CheckBucket", 100)
     if bucket then
         lib.notify({
@@ -177,11 +164,9 @@ RegisterCommand('koth', function()
         return
     end
 
-    -- Hent hold-antal og point fra serveren
     local teamCounts = lib.callback.await("KOTH:GetTeamCounts", 1000)
     local teamPoints = lib.callback.await("KOTH:GetTeamPoints", 1000)
 
-    -- Hvis vi ikke fik data, sæt dem til 0
     local redCount   = (teamCounts and teamCounts.red)   or 0
     local blueCount  = (teamCounts and teamCounts.blue)  or 0
     local greenCount = (teamCounts and teamCounts.green) or 0
@@ -190,10 +175,8 @@ RegisterCommand('koth', function()
     local bluePoints  = (teamPoints and teamPoints.blue)  or 0
     local greenPoints = (teamPoints and teamPoints.green) or 0
 
-    -- Udregn total spillerantal
     local totalCount = redCount + blueCount + greenCount
 
-    -- Find førende hold
     local leadingTeam, leadingPoints = "Rød", redPoints
     if bluePoints >= redPoints and bluePoints >= greenPoints then
         leadingTeam, leadingPoints = "Blå", bluePoints
@@ -201,7 +184,6 @@ RegisterCommand('koth', function()
         leadingTeam, leadingPoints = "Grøn", greenPoints
     end
 
-    -- Opret selve menuen
     lib.registerContext({
         id = 'choose_team',
         title = 'KOTH - Vælg Hold',
@@ -267,7 +249,6 @@ RegisterCommand('koth', function()
         }
     })
 
-    -- Vis menuen
     lib.showContext('choose_team')
 end)
 
