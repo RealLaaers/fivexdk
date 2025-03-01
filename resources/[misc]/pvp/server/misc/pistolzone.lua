@@ -18,6 +18,10 @@ Citizen.CreateThread(function()
                 TriggerClientEvent("pistolzone:updateZone", playerId, activePistolZone)
             end
         end
+        TriggerClientEvent('chat:addMessage', -1, {
+            template = '<div style="padding: 0.5vw; margin: 0.5vw; background-color: rgb(0, 31, 66, 0.7); border-radius: 3px;"></i> Pistol Zone: <br> Pistol Zonen er skiftet, og er nu placeret et andet sted!</div>',
+            args = { source }
+        })
     end
 end)
 
