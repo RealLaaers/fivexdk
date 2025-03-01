@@ -64,6 +64,99 @@ AddEventHandler("KOTH-TeamFull", function(team)
     --SendNUIMessage(send)
 end)
 
+-- Global variabel til at gemme spillerens originale outfit
+local savedOutfit = nil
+
+-- Funktion til at gemme nuværende outfit (alle komponenter og props)
+function SaveOutfit()
+    local ped = PlayerPedId()
+    savedOutfit = { components = {}, props = {} }
+    -- Gemmer alle clothing components (0-11 er typisk alle relevante)
+    for i = 0, 11 do
+        savedOutfit.components[i] = {
+            drawable = GetPedDrawableVariation(ped, i),
+            texture = GetPedTextureVariation(ped, i),
+            palette = GetPedPaletteVariation(ped, i)
+        }
+    end
+    -- Gemmer props (f.eks. hatte, briller, osv.)
+    for i = 0, 2 do
+        savedOutfit.props[i] = {
+            propIndex = GetPedPropIndex(ped, i),
+            propTexture = GetPedPropTextureIndex(ped, i)
+        }
+    end
+end
+
+-- Funktion til at genindlæse den gemte outfit
+function LoadOutfit()
+    if savedOutfit then
+        local ped = PlayerPedId()
+        for i, comp in pairs(savedOutfit.components) do
+            SetPedComponentVariation(ped, i, comp.drawable, comp.texture, comp.palette)
+        end
+        for i, prop in pairs(savedOutfit.props) do
+            if prop.propIndex > -1 then
+                SetPedPropIndex(ped, i, prop.propIndex, prop.propTexture, true)
+            else
+                ClearPedProp(ped, i)
+            end
+        end
+        savedOutfit = nil -- nulstil efter genindlæsning
+    end
+end
+
+-- Definer team-uniformer (du kan tilpasse disse værdier)
+local teamUniforms = {
+    [1] = { -- Rød hold
+        components = {
+            { componentId = 3, drawable = 11, texture = 0, palette = 0 },
+            -- Tilføj flere komponenter efter behov, fx top, bukser osv.
+        }
+    },
+    [2] = { -- Blå hold
+        components = {
+            { componentId = 3, drawable = 12, texture = 0, palette = 0 },
+            -- Tilføj flere komponenter efter behov
+        }
+    },
+    [3] = { -- Grøn hold
+        components = {
+            { componentId = 3, drawable = 13, texture = 0, palette = 0 },
+            -- Tilføj flere komponenter efter behov
+        }
+    }
+}
+
+-- Funktion til at sætte team-uniformen
+function SetTeamUniform(team)
+    local ped = PlayerPedId()
+    local uniform = teamUniforms[team]
+    if uniform and uniform.components then
+        for _, comp in ipairs(uniform.components) do
+            SetPedComponentVariation(ped, comp.componentId, comp.drawable, comp.texture, comp.palette)
+        end
+    end
+end
+
+-- Event der bliver kaldt, når spilleren vælger et team (udløst fx fra serveren)
+RegisterNetEvent("KOTH:ApplyTeamUniform")
+AddEventHandler("KOTH:ApplyTeamUniform", function(team)
+    -- Gemmer spillerens outfit, hvis det ikke allerede er gemt
+    if not savedOutfit then
+        SaveOutfit()
+    end
+    -- Sætter uniformen for det valgte team
+    SetTeamUniform(team)
+end)
+
+-- Event der bliver kaldt, når spilleren forlader KOTH (fx ved kommando eller teleport)
+RegisterNetEvent("KOTH:Leave")
+AddEventHandler("KOTH:Leave", function()
+    -- Genindlæs spillerens oprindelige outfit
+    LoadOutfit()
+end)
+
 -- Uden for /koth-kommanden definerer vi en variabel til at forhindre spam
 local NotSpam = false
 

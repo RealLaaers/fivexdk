@@ -94,6 +94,7 @@ end)
 RegisterNetEvent("KothEndMatch")
 AddEventHandler("KothEndMatch", function(Victoire,temawin)
     TriggerClientEvent("KothEndMatch", -1, Victoire,temawin)
+    TriggerClientEvent('KOTH:Leave', -1)
 end)
 
 
@@ -185,6 +186,7 @@ AddEventHandler("Koth-SelectTeam", function(team)
             Teams[1].count = #Teams[1].members
             TeamIDPlayer[s] = 1
             TriggerClientEvent("Koth-Team", src, "Rouge")
+            TriggerClientEvent('KOTH:ApplyTeamUniform', src, 1)
         end
 
     elseif team == 2 then -- Blåt hold
@@ -198,6 +200,7 @@ AddEventHandler("Koth-SelectTeam", function(team)
             Teams[2].count = #Teams[2].members
             TeamIDPlayer[s] = 2
             TriggerClientEvent("Koth-Team", src, "Bleu")
+            TriggerClientEvent('KOTH:ApplyTeamUniform', src, 2)
         end
 
     elseif team == 3 then -- Grønt hold
@@ -211,6 +214,7 @@ AddEventHandler("Koth-SelectTeam", function(team)
             Teams[3].count = #Teams[3].members
             TeamIDPlayer[s] = 3
             TriggerClientEvent("Koth-Team", src, "Vert")
+            TriggerClientEvent('KOTH:ApplyTeamUniform', src, 3)
         end
     end
 
@@ -227,6 +231,7 @@ RegisterCommand("leavekoth", function(source, args, rawCommand)
     -- Teleporter spilleren til spawn og sæt routing bucket til 0
     xPlayer.setCoords(vector4(343.5642, -1421.0951, 76.1654, 136.0984))
     SetPlayerRoutingBucket(src, 0)
+    TriggerClientEvent('KOTH:Leave', src)
     
     -- Fjern spilleren fra PlayerDataInfo
     for i = #PlayerDataInfo, 1, -1 do
