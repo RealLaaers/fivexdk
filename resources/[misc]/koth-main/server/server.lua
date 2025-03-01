@@ -375,7 +375,7 @@ Citizen.CreateThread(function()
 				end
 		end
 		
-		if Teams[highestIndex].points >= 110.0 then -- did the game end?
+		if Teams[highestIndex].points >= 90.0 then -- did the game end?
 			-- TriggerClientEvent("SetGameFinished", -1, Teams[highestIndex])
 			 for i,player in pairs(PlayersInZone) do
 			 	if player.team == highestIndex then
