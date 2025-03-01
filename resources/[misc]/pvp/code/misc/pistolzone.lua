@@ -17,7 +17,7 @@ RegisterCommand('pistolzone', function()
                   title = 'Tilgå Pistol Zone',
                   description = 'Klik for at tilgå Pistol Zone.',
                   onSelect = function(args)
-                    TriggerServerEvent('putinpistolbucket')
+                    TriggerServerEvent("pistolzone:join")
                     spawnPlayerInPistolZone()
                   end,
               },
