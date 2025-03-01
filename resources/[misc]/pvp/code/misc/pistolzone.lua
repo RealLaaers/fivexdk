@@ -8,12 +8,12 @@ RegisterCommand('pistolzone', function()
                 icon = 'users',
             },
             {
-                title = 'Tilladte våben',
-                description = 'Deagle, Pistol, Combat, Heavy, Ceramic, Vintage.',
-                icon = 'gun',
+                title = 'Nuværende Map: NIGGER TIHI',
+                icon = 'city',
             },
             {
-                title = 'Nuværende Map: NIGGER TIHI',
+                title = 'Tilladte våben',
+                description = 'Deagle, Pistol, Combat, Heavy, Ceramic, Vintage.',
                 icon = 'gun',
             },
               {
