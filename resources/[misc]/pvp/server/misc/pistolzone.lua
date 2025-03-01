@@ -3,7 +3,7 @@ local zones = {"pistol1", "pistol2", "pistol3"}
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(10 * 5 * 1000)
+        Citizen.Wait(10 * 60 * 1000)
 
         local newZone = zones[math.random(#zones)]
         while newZone == activePistolZone do
