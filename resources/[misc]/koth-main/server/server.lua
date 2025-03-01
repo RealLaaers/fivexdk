@@ -375,7 +375,7 @@ Citizen.CreateThread(function()
 				end
 		end
 		
-		if Teams[highestIndex].points >= 100.0 then -- did the game end?
+		if Teams[highestIndex].points >= 110.0 then -- did the game end?
 			-- TriggerClientEvent("SetGameFinished", -1, Teams[highestIndex])
 			 for i,player in pairs(PlayersInZone) do
 			 	if player.team == highestIndex then
@@ -389,7 +389,6 @@ Citizen.CreateThread(function()
 			 end
 			for _, player in pairs(TeamIDPlayer) do
 				Wait(150)
-				-- Vi antager, at player.id indeholder server-id for spilleren
 				TriggerClientEvent("KOTH:TeleportPlayer", player.id, 343.5642, -1421.0951, 76.1654, 136.0984)
 			end
 			Wait(500)
