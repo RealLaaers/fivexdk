@@ -71,7 +71,7 @@ local savedOutfit = nil
 function SaveOutfit()
     local ped = PlayerPedId()
     savedOutfit = { components = {}, props = {} }
-    -- Gemmer alle clothing components (0-11 er typisk alle relevante)
+    -- Gem alle clothing components (0-11 dækker ofte de relevante)
     for i = 0, 11 do
         savedOutfit.components[i] = {
             drawable = GetPedDrawableVariation(ped, i),
@@ -79,7 +79,7 @@ function SaveOutfit()
             palette = GetPedPaletteVariation(ped, i)
         }
     end
-    -- Gemmer props (f.eks. hatte, briller, osv.)
+    -- Gem props (fx hatte, briller)
     for i = 0, 2 do
         savedOutfit.props[i] = {
             propIndex = GetPedPropIndex(ped, i),
@@ -110,20 +110,26 @@ end
 local teamUniforms = {
     [1] = { -- Rød hold
         components = {
-            { componentId = 3, drawable = 11, texture = 0, palette = 0 },
-            -- Tilføj flere komponenter efter behov, fx top, bukser osv.
+            { componentId = 11, drawable = 50, texture = 0, palette = 0 }, -- Shirt
+            { componentId = 4,  drawable = 31, texture = 0, palette = 0 }, -- Bukser
+            { componentId = 6,  drawable = 25, texture = 0, palette = 0 }, -- Sko
+            { componentId = 9,  drawable = 23, texture = 4, palette = 0 }  -- Vest (rød: texture 4)
         }
     },
     [2] = { -- Blå hold
         components = {
-            { componentId = 3, drawable = 12, texture = 0, palette = 0 },
-            -- Tilføj flere komponenter efter behov
+            { componentId = 11, drawable = 50, texture = 0, palette = 0 }, -- Shirt
+            { componentId = 4,  drawable = 31, texture = 0, palette = 0 }, -- Bukser
+            { componentId = 6,  drawable = 25, texture = 0, palette = 0 }, -- Sko
+            { componentId = 9,  drawable = 23, texture = 5, palette = 0 }  -- Vest (blå: texture 5)
         }
     },
     [3] = { -- Grøn hold
         components = {
-            { componentId = 3, drawable = 13, texture = 0, palette = 0 },
-            -- Tilføj flere komponenter efter behov
+            { componentId = 11, drawable = 50, texture = 0, palette = 0 }, -- Shirt
+            { componentId = 4,  drawable = 31, texture = 0, palette = 0 }, -- Bukser
+            { componentId = 6,  drawable = 25, texture = 0, palette = 0 }, -- Sko
+            { componentId = 9,  drawable = 23, texture = 0, palette = 0 }  -- Vest (grøn: texture 0)
         }
     }
 }
