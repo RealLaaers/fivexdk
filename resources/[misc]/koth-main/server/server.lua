@@ -177,7 +177,7 @@ AddEventHandler("Koth-SelectTeam", function(team)
 
     if team == 1 then -- Rødt hold
         if countTeam1 >= countTeam2 + 2 and countTeam1 >= countTeam3 + 2 then
-            TriggerClientEvent("KOTH-TeamFull", src, team, "Teamet er fyldt, vælg et andet")
+            TriggerClientEvent("KOTH-TeamFull", src, team, "Teamet er fyldt, vælg et andet.")
             return
         else
             SetPlayerRoutingBucket(src, 19567)
@@ -191,7 +191,7 @@ AddEventHandler("Koth-SelectTeam", function(team)
 
     elseif team == 2 then -- Blåt hold
         if countTeam2 >= countTeam1 + 2 and countTeam2 >= countTeam3 + 2 then
-            TriggerClientEvent("KOTH-TeamFull", src, team, "Teamet er fyldt, vælg et andet")
+            TriggerClientEvent("KOTH-TeamFull", src, team, "Teamet er fyldt, vælg et andet.")
             return
         else
             SetPlayerRoutingBucket(src, 19567)
@@ -205,7 +205,7 @@ AddEventHandler("Koth-SelectTeam", function(team)
 
     elseif team == 3 then -- Grønt hold
         if countTeam3 >= countTeam1 + 2 and countTeam3 >= countTeam2 + 2 then
-            TriggerClientEvent("KOTH-TeamFull", src, team, "Teamet er fyldt, vælg et andet")
+            TriggerClientEvent("KOTH-TeamFull", src, team, "Teamet er fyldt, vælg et andet.")
             return
         else
             SetPlayerRoutingBucket(src, 19567)
