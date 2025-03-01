@@ -540,19 +540,6 @@ AddEventHandler("KOTH-HUD:Update", function()
 	TriggerClientEvent("KOTH-HUD:OPEN",_src,sort(PlayerDataInfo))
 end)
 
-
-RegisterNetEvent("KOTH-ADMIBKICK")
-AddEventHandler("KOTH-ADMIBKICK", function(target,raison)
-	local _src = source
-	TriggerEvent("SendLogs", "``Le staff [".._src.."] "..GetPlayerName(_src).." à kick ``", "staffmod")
-
-	if raison == nil then
-		DropPlayer(target,"Kick by staff")
-	else
-		DropPlayer(target,raison)
-	end
-end)
-
 RegisterNetEvent("core:ResetDeathStatus")
 AddEventHandler("core:ResetDeathStatus", function(target,alors)
     TriggerClientEvent("core:ResetDeathStatus", target, alors)
