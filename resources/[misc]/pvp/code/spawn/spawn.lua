@@ -35,6 +35,11 @@ npcs = {
         coords = vec4(338.9183, -1427.5496, 75.1782, 320.5831), --aimlabs
         weapon = 'WEAPON_COMBATMG'
     },
+    [8] = {
+        model = 'u_m_m_streetart_01',
+        coords = vec4(338.9183, -1427.5496, 75.1782, 320.5831), --pistol zone
+        weapon = 'WEAPON_COMBATMG'
+    },
 }
 
 CreateThread(function()
@@ -85,10 +90,33 @@ CreateThread(function()
             SetBlockingOfNonTemporaryEvents(ped7, true)
             FreezeEntityPosition(ped7, true)
             SetEntityInvincible(ped7, true)
+            Wait(250)
+            local ped8 = CreatePed("PED_TYPE_CIVMALE", GetHashKey('cs_fbisuit_01'), 348.1687, -1435.2625, 75.1771, 319.9769, false, false)
+            SetBlockingOfNonTemporaryEvents(ped8, true)
+            FreezeEntityPosition(ped8, true)
+            SetEntityInvincible(ped8, true)
             break
         end
     end
 end)
+
+exports.ox_target:addBoxZone({
+    coords = vector3(348.1687, -1435.2625, 75.1771),
+    size = vec3(0.8, 0.8, 4),
+    rotation = 356.21,
+    debug = false,
+    options = {
+        {
+            name = "mainnpc",
+            icon = "fas fa-bars",
+            label = "Tilgå Pistol Zone",
+            distance = 5.0,
+            onSelect = function(data)
+                ExecuteCommand('pistolzone')
+            end
+        },
+    }
+})
 
 -- VENSTRE LYGTEPÆL
 exports.ox_target:addBoxZone({
@@ -99,7 +127,7 @@ exports.ox_target:addBoxZone({
     options = {
         {
             name = "mainnpc",
-            icon = "fas fa-city",
+            icon = "fas fa-bars",
             label = "Tilgå Freemode",
             distance = 5.0,
             onSelect = function(data)
@@ -119,7 +147,7 @@ exports.ox_target:addBoxZone({
     options = {
         {
             name = "mainnpc",
-            icon = "fas fa-city",
+            icon = "fas fa-bars",
             label = "Tilgå King Of The Hill",
             distance = 5.0,
             onSelect = function(data)
@@ -138,7 +166,7 @@ exports.ox_target:addBoxZone({
     options = {
         {
             name = "mainnpc",
-            icon = "fas fa-city",
+            icon = "fas fa-bars",
             label = "Tilgå Duels",
             distance = 5.0,
             onSelect = function(data)
@@ -157,7 +185,7 @@ exports.ox_target:addBoxZone({
     options = {
         {
             name = "mainnpc",
-            icon = "fas fa-city",
+            icon = "fas fa-bars",
             label = "Tilgå Deagle Zone",
             distance = 5.0,
             onSelect = function(data)
@@ -169,14 +197,14 @@ exports.ox_target:addBoxZone({
 
 --apzone
 exports.ox_target:addBoxZone({
-    coords = vector3(364.9033, -1391.0347, 76.1743),
+    coords = vector3(364.9033, -1391.0347, 75.1743),
     size = vec3(0.8, 0.8, 4),
     rotation = 356.21,
     debug = false,
     options = {
         {
             name = "mainnpc",
-            icon = "fas fa-city",
+            icon = "fas fa-bars",
             label = "Tilgå AP Zone",
             distance = 5.0,
             onSelect = function(data)
@@ -188,14 +216,14 @@ exports.ox_target:addBoxZone({
 
 -- HELT VENSTRE FRA MAIN
 exports.ox_target:addBoxZone({
-    coords = vector3(341.2874, -1429.6003, 76.1802),
+    coords = vector3(341.2874, -1429.6003, 75.1802),
     size = vec3(0.8, 0.8, 4),
     rotation = 356.21,
     debug = false,
     options = {
         {
             name = "secondnpc",
-            icon = "fas fa-city",
+            icon = "fas fa-bars",
             label = "Tilgå Gungame",
             distance = 5.0,
             onSelect = function(data)
@@ -214,7 +242,7 @@ exports.ox_target:addBoxZone({
     options = {
         {
             name = "secondndnpc",
-            icon = "fas fa-city",
+            icon = "fas fa-bars",
             label = "Tilgå Aimlabs",
             distance = 5.0,
             onSelect = function(data)
