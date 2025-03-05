@@ -40,8 +40,8 @@ Config.MarkerStartRoyaleLocation = { -- The draw marker where you pickup boxes a
 }
 ----------
 ----------
-Config.RoyalePed = `s_m_m_trucker_01` -- Battle Royale sign up ped (THIS DOESNT MATTER IF Config.UseVrHeadSet IS TRUE)
-Config.RoyalePedLoc = vector4(360.3029, -1424.7736, 75.1740, 51.3622) -- Battle Royale sign up ped location (THIS DOESNT MATTER IF Config.UseVrHeadSet IS TRUE)
+Config.RoyalePed = `u_m_m_streetart_01` -- Battle Royale sign up ped (THIS DOESNT MATTER IF Config.UseVrHeadSet IS TRUE)
+Config.RoyalePedLoc = vector4(329.9638, -1420.0988, 75.1751, 316.9562) -- Battle Royale sign up ped location (THIS DOESNT MATTER IF Config.UseVrHeadSet IS TRUE)
 Config.BattlePlane = 'AVENGER' -- Plane or helicopter that flys the players in -- IF YOU GANGE THIS AND RUN INTO AN ISSUE MAKE A TICKET
 Config.GulagCheckTime = 30 -- (in seconds) Time the loop runs for checking to put players into a 1v1 gulag match
 ----------

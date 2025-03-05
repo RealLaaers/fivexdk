@@ -197,7 +197,7 @@ exports.ox_target:addBoxZone({
 
 --apzone
 exports.ox_target:addBoxZone({
-    coords = vector3(364.9033, -1391.0347, 75.1743),
+    coords = vector3(334.4312, -1423.8473, 75.1773),
     size = vec3(0.8, 0.8, 4),
     rotation = 356.21,
     debug = false,

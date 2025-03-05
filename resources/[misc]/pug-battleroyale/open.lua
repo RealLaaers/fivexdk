@@ -108,8 +108,8 @@ CreateThread(function()
                     {
                         name = 'BattleRoyalePed',
                         event = 'Pug:client:ViewBattleRoyale',
-                        icon = 'fas fa-clipboard',
-                        label = "View Royale Lobby",
+                        icon = 'fas fa-bars',
+                        label = "Tilgå Battle Royale",
                     }
                 })
             else
@@ -117,8 +117,8 @@ CreateThread(function()
                     options = {
                         {
                             event = 'Pug:client:ViewBattleRoyale',
-                            icon = "fas fa-clipboard",
-                            label = "View Royale Lobby",
+                            icon = "fas fa-bars",
+                            label = "Tilgå Battle Royale",
                         },
                     },
                     distance = 2.5
