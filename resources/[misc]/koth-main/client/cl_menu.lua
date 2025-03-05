@@ -104,7 +104,7 @@ end
 local teamUniforms = {
     [1] = { -- Rød hold
         components = {
-            { componentId = 11, drawable = 208, texture = 1, palette = 0 }, -- Shirt
+            { componentId = 11, drawable = 524, texture = 0, palette = 0 }, -- Shirt
             { componentId = 4,  drawable = 33, texture = 0, palette = 0 }, -- Bukser
             { componentId = 6,  drawable = 25, texture = 0, palette = 0 } -- Sko
             -- { componentId = 9,  drawable = 23, texture = 4, palette = 0 }  -- Vest (rød: texture 4)
@@ -112,7 +112,7 @@ local teamUniforms = {
     },
     [2] = { -- Blå hold
         components = {
-            { componentId = 11, drawable = 208, texture = 0, palette = 0 }, -- Shirt
+            { componentId = 11, drawable = 524, texture = 1, palette = 0 }, -- Shirt
             { componentId = 4,  drawable = 33, texture = 0, palette = 0 }, -- Bukser
             { componentId = 6,  drawable = 25, texture = 0, palette = 0 } -- Sko
             -- { componentId = 9,  drawable = 23, texture = 5, palette = 0 }  -- Vest (blå: texture 5)
@@ -120,7 +120,7 @@ local teamUniforms = {
     },
     [3] = { -- Grøn hold
         components = {
-            { componentId = 11, drawable = 208, texture = 2, palette = 0 }, -- Shirt
+            { componentId = 11, drawable = 524, texture = 2, palette = 0 }, -- Shirt
             { componentId = 4,  drawable = 33, texture = 0, palette = 0 }, -- Bukser
             { componentId = 6,  drawable = 25, texture = 0, palette = 0 } -- Sko
             -- { componentId = 9,  drawable = 23, texture = 0, palette = 0 }  -- Vest (grøn: texture 0)
