@@ -1,7 +1,7 @@
 npcs = {
     [1] = {
         model = 'u_m_m_streetart_01',
-        coords = vec4(359.2444, -1386.2753, 75.1742, 148.3395), --deagle
+        coords = vec4(345.8690, -1433.4447, 76.1801, 320.9269), --deagle
         weapon = 'WEAPON_COMBATMG'
     },
     [2] = {
@@ -50,7 +50,7 @@ CreateThread(function()
             end
            
             Wait(250)
-            local ped = CreatePed("PED_TYPE_CIVMALE", GetHashKey('cs_fbisuit_01'), 359.2444, -1386.2753, 75.1742, 148.3395, false, false)
+            local ped = CreatePed("PED_TYPE_CIVMALE", GetHashKey('cs_fbisuit_01'), 345.8690, -1433.4447, 76.1801, 320.9269, false, false)
             SetBlockingOfNonTemporaryEvents(ped, true)
             FreezeEntityPosition(ped, true)
             SetEntityInvincible(ped, true)
@@ -150,7 +150,7 @@ exports.ox_target:addBoxZone({
 
 -- VENSTRE FRA MAIN
 exports.ox_target:addBoxZone({
-    coords = vector3(359.2444, -1386.2753, 75.1742),
+    coords = vector3(345.8690, -1433.4447, 76.1801),
     size = vec3(0.8, 0.8, 4),
     rotation = 356.21,
     debug = false,
