@@ -112,7 +112,7 @@ exports.ox_target:addBoxZone({
 
 -- MAIN NPC
 exports.ox_target:addBoxZone({
-    coords = vector3(332.1890, -1421.9659, 75.1762, 319.6414),
+    coords = vector3(332.1890, -1421.9659, 75.1762),
     size = vec3(0.8, 0.8, 4),
     rotation = 356.21,
     debug = false,
