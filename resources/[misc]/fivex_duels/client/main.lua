@@ -28,6 +28,8 @@ lib.callback.register('fivex_duels:client:getGroundCoords', function(coords)
 end)
 
 local function revivePlayer(ped)
+    local plyState = LocalPlayer.state
+    plyState:set('invBusy', false, false)
     TriggerEvent('healffs2')
     Wait(100)
     SetPedArmour(ped, 100)
@@ -321,7 +323,8 @@ end)
 
 RegisterNetEvent('duels:nextMatchRound', function(match, finishedMatch, winner, reason)
     currentMatch = match
-    
+    local plyState = LocalPlayer.state
+    plyState:set('invBusy', false, false)
     if not finishedMatch and winner and reason == 'next_round' then
         if winner ~= 0 then
             bridge.notify(L('game.nextround.win', winner), 'success')
@@ -355,6 +358,8 @@ RegisterNetEvent('duels:nextMatchRound', function(match, finishedMatch, winner, 
     if finishedMatch then
         bridge.finishedMatch(getPlayerTeam())
         currentMatch = false
+        local plyState = LocalPlayer.state
+        plyState:set('invBusy', false, false)
     end
     
     revivePlayer(PlayerPedId())
@@ -374,6 +379,8 @@ end)
 
 local canDoCommand = true
 RegisterCommand(config.exitDuelCommand, function(source, args, raw)
+    local plyState = LocalPlayer.state
+    plyState:set('invBusy', false, false)
     if not exports['fivex_duels']:isPlaying() then return print('You\'re not playing a duel so, can execute this command') end
     if not canDoCommand then return print('You\'re on cooldown to use /' + config.exitDuelCommand) end
     TriggerEvent('five-x:disable:noclip:revive', true, 'duel')
