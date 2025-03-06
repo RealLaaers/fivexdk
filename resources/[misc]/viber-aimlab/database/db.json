@@ -1,26 +1,34 @@
 {
-    "135e05287c30297fa37275c2ed6ab34f5ad8254d": {
-        "plyname": "grisen",
-        "total_training": 4,
-        "shooted_target": 110,
-        "score": 55.0,
-        "total_target": 120,
-        "photo": ""
-    },
-    "dc18488f0ae07b5617fd73ab17bcc490271d06ed": {
-        "plyname": "SA26 - BENZIN!",
-        "total_training": 2,
-        "shooted_target": 46,
-        "score": 23.0,
-        "total_target": 60,
-        "photo": ""
+    "099cc60733e92fcbddfbc85e726693775abb539d": {
+        "total_training": 0,
+        "plyname": "MV - Hedvig Sjödin",
+        "total_target": 0,
+        "photo": "",
+        "shooted_target": 0,
+        "score": 0
     },
     "4a9064711f0067949ad885dfea27616de9178c88": {
-        "plyname": "GSF MARK LUND",
         "total_training": 0,
+        "plyname": "GSF MARK LUND",
         "shooted_target": 0,
-        "score": 0,
+        "photo": "",
         "total_target": 0,
-        "photo": ""
+        "score": 0
+    },
+    "135e05287c30297fa37275c2ed6ab34f5ad8254d": {
+        "total_training": 4,
+        "plyname": "grisen",
+        "shooted_target": 110,
+        "photo": "",
+        "total_target": 120,
+        "score": 55.0
+    },
+    "dc18488f0ae07b5617fd73ab17bcc490271d06ed": {
+        "total_training": 2,
+        "plyname": "SA26 - BENZIN!",
+        "shooted_target": 46,
+        "photo": "",
+        "total_target": 60,
+        "score": 23.0
     }
 }
