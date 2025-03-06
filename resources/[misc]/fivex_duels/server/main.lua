@@ -1,12 +1,6 @@
 local Games = GlobalState.DuelsGames or {}
 local StartedGames = {}
 local playerItems = {}
-local standardItems = {
-    {name = 'ammo', count = 2500, slot = 6},
-    {name = 'clip', count = 1, slot = 2},
-    {name = 'silencer', count = 1, slot = 3},
-    {name = 'scope', count = 1, slot = 4},
-}
 local function getIdentifier(source, type)
     local identifiers = GetPlayerIdentifiers(source)
 
@@ -463,6 +457,12 @@ lib.callback.register('duels:startMatch', function(playerId, lobbyId, mapData)
     Wait(500)
 
     SetRoutingBucketPopulationEnabled(match.id, false)
+    local standardItems = {
+        {name = 'ammo', count = 2500, slot = 6},
+        {name = 'clip', count = 1, slot = 2},
+        {name = 'silencer', count = 1, slot = 3},
+        {name = 'scope', count = 1, slot = 4},
+    }
     table.insert(standardItems, {name = 'vest', count = 1500, slot = 5})
     table.insert(standardItems, {name = match.weapon, count = 1, slot = 1})
     for i = 1, #match.team1, 1 do
@@ -501,11 +501,13 @@ lib.callback.register('duels:startMatch', function(playerId, lobbyId, mapData)
             mapData.coords.opponent[i].z, false, false, false, false)
 
         SetEntityHeading(ped, mapData.coords.opponent[i].w)
+        print(json.encode(standardItems))
         for index = 1, #standardItems do
             local item = standardItems[index]
             exports.ox_inventory:AddItem(match.team2[i].id, item.name, item.count, nil, item.slot)
         end
     end
+    table.remove(standardItems, #standardItems)
     Wait(500)
 
     triggerGameEvent(match, false, 'duels:matchInit')
