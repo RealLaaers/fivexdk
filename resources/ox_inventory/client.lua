@@ -607,6 +607,7 @@ local function useSlot(slot, noAnim)
 					lib.callback.await('ox_inventory:updateWeapon', false, 'load', newAmmo, false, currentWeapon.metadata.specialAmmo)
 				end)
 			elseif data.component then
+				print(json.encode(data))
 				local components = data.client.component
 
                 if not components then return end

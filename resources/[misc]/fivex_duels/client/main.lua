@@ -103,9 +103,7 @@ local function countdown(weapon)
 
     local getCurrentWeapon = exports["ox_inventory"]:getCurrentWeapon()
     if getCurrentWeapon == nil then getCurrentWeapon = {name = nil} end
-    if getCurrentWeapon.name ~= weapon then
-        TriggerEvent('ox_inventory:disarm', GetPlayerServerId(PlayerId()), true)
-    end
+
 
     if getCurrentWeapon.name == nil then
         local currentWeapon = exports.ox_inventory:GetSlotWithItem(weapon, nil, false)
