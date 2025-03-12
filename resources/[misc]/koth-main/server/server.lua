@@ -361,93 +361,97 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(5000)
 		
-		-- Hvis kampen er slut, spring opdateringen over
-		if matchEnded then
-			-- Eventuelt: Nulstil matchEnded her, hvis du ønsker at starte en ny kamp
-			goto continue_loop
-		end
-
-		-- Nulstil aktivitet for alle hold
-		for i, team in ipairs(Teams) do
-			Teams[i].active = 0
-		end
-
-		-- Opdater antal spillere i zonen
-		for i, player in pairs(PlayersInZone) do
-			if not GetPlayerName(player.id) then
-				table.remove(PlayersInZone, i)
-			else
-				if player.team ~= 0 then
-					Teams[player.team].active = Teams[player.team].active + 1
-				end
+		if not matchEnded then
+			-- Nulstil aktivitet for alle hold
+			for i, team in ipairs(Teams) do
+				Teams[i].active = 0
 			end
-		end
 
-		-- Find holdet med flest spillere og tjek om zonen er kontesteret
-		highestIndex = 0
-		highestValue = false
-		contested = false
-		for k, v in ipairs(Teams) do
-			if not highestValue or v.active > highestValue then
-				highestIndex = k
-				highestValue = v.active
-			end
-			if v.active == highestValue and highestIndex ~= k and (highestValue > 0 and v.active > 0) then
-				contested = true
-			end
-		end
-
-		-- Tjek om kampen er slut (når et hold når 90 point)
-		if Teams[highestIndex].points >= 10.0 then
-			-- Udløs game-end events for spillere i zonen
+			-- Opdater antal spillere i zonen
 			for i, player in pairs(PlayersInZone) do
-				if player.team == highestIndex then
-					TriggerEvent("KothEndMatch", true, Teams[highestIndex].name)
-					TriggerClientEvent("KOTH:ENDGAMEXPAND", -1, 1)
-					Citizen.Wait(0)
+				if not GetPlayerName(player.id) then
+					table.remove(PlayersInZone, i)
 				else
-					TriggerClientEvent("KOTH:ENDGAMEXPAND", -1, 2)
-					TriggerEvent("KothEndMatch", false, Teams[highestIndex].name)
+					if player.team ~= 0 then
+						Teams[player.team].active = Teams[player.team].active + 1
+					end
 				end
 			end
-			-- Teleporter spillere ud af zonen
-			for _, player in pairs(TeamIDPlayer) do
-				Wait(150)
-				TriggerClientEvent("KOTH:TeleportPlayer", player.id, 343.5642, -1421.0951, 76.1654, 136.0984)
+
+			-- Find holdet med flest spillere og tjek om zonen er kontesteret
+			local highestIndex = 0
+			local highestValue = false
+			local contested = false
+			for k, v in ipairs(Teams) do
+				if not highestValue or v.active > highestValue then
+					highestIndex = k
+					highestValue = v.active
+				end
+				if v.active == highestValue and highestIndex ~= k and (highestValue > 0 and v.active > 0) then
+					contested = true
+				end
 			end
-			Wait(500)
-			PlayersInZone = {}
-			TeamIDPlayer = {}
-			PlayerDataInfo = {}
-			-- Sæt flaget, så opdateringerne stoppes
-			matchEnded = true
-		else
-			-- Opdater zone-ejerskab og point hvis kampen ikke er slut
-			if highestValue == 0 and not contested then
-				TriggerClientEvent("SetZoneOwner", -1, false, false)
-			elseif contested and highestValue > 0 then
-				TriggerClientEvent("SetZoneOwner", -1, -2, false)
+
+			-- Tjek om kampen er slut (her testes ved 10 point for nemheds skyld)
+			if Teams[highestIndex].points >= 10.0 then
+				-- Udløs game-end events for spillere i zonen
+				for i, player in pairs(PlayersInZone) do
+					if player.team == highestIndex then
+						TriggerEvent("KothEndMatch", true, Teams[highestIndex].name)
+						TriggerClientEvent("KOTH:ENDGAMEXPAND", -1, 1)
+						Citizen.Wait(0)
+					else
+						TriggerClientEvent("KOTH:ENDGAMEXPAND", -1, 2)
+						TriggerEvent("KothEndMatch", false, Teams[highestIndex].name)
+					end
+				end
+				-- Teleporter spillere ud af zonen
+				for _, player in pairs(TeamIDPlayer) do
+					Wait(150)
+					TriggerClientEvent("KOTH:TeleportPlayer", player.id, 343.5642, -1421.0951, 76.1654, 136.0984)
+				end
+				Wait(500)
+				PlayersInZone = {}
+				TeamIDPlayer = {}
+				PlayerDataInfo = {}
+				-- Sæt flaget, så yderligere opdateringer stoppes
+				matchEnded = true
 			else
-				TriggerClientEvent("SetZoneOwner", -1, highestIndex)
-				Teams[highestIndex].points = Teams[highestIndex].points + 0.25
+				-- Opdater zone-ejerskab og point hvis kampen ikke er slut
+				if highestValue == 0 and not contested then
+					TriggerClientEvent("SetZoneOwner", -1, false, false)
+				elseif contested and highestValue > 0 then
+					TriggerClientEvent("SetZoneOwner", -1, -2, false)
+				else
+					TriggerClientEvent("SetZoneOwner", -1, highestIndex)
+					Teams[highestIndex].points = Teams[highestIndex].points + 0.25
+				end
 			end
+
+			-- Saml data om spillere pr. hold
+			local teamplayers = {}
+			for i, team in pairs(Teams) do
+				teamplayers[i] = team.active
+			end
+
+			-- Send opdaterede data til klienterne
+			TriggerClientEvent("UpdateInfo", -1, {
+				players = {Teams[1].active, Teams[2].active, Teams[3].active},
+				points = {Teams[1].points, Teams[2].points, Teams[3].points},
+				count = {Teams[1].count, Teams[2].count, Teams[3].count}
+			})
 		end
-
-		-- Saml data om spillere pr. hold
-		teamplayers = {}
-		for i, team in pairs(Teams) do
-			teamplayers[i] = team.active
-		end
-
-		-- Send opdaterede data til klienterne
-		TriggerClientEvent("UpdateInfo", -1, {
-			players = {Teams[1].active, Teams[2].active, Teams[3].active},
-			points = {Teams[1].points, Teams[2].points, Teams[3].points},
-			count = {Teams[1].count, Teams[2].count, Teams[3].count}
-		})
-
-		::continue_loop::
 	end
+end)
+
+-- Event til at nulstille matchEnded (og evt. point) for at starte en ny kamp
+RegisterNetEvent("ResetMatch")
+AddEventHandler("ResetMatch", function()
+	matchEnded = false
+	for i, team in ipairs(Teams) do
+		Teams[i].points = 0
+	end
+	-- Hvis nødvendigt, nulstil også andre tabeller, fx PlayersInZone osv.
 end)
 
 Citizen.CreateThread(function()
