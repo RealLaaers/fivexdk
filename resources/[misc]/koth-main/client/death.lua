@@ -48,7 +48,7 @@ function secondsToClock(seconds)
 end
 local sec = 60000*5
 
-local point = lib.points.new(vec3(1530.6582, 1709.7032, 109.9309), 125)
+local point = lib.points.new(vec3(1530.6582, 1709.7032, 109.9309), 200)
 local zone1 = false
 function point:onEnter()
     zone1 = true
@@ -58,7 +58,7 @@ function point:onExit()
     zone1 = false
 end
 
-local point2 = lib.points.new(vec3(-1629.3918, 209.7738, 60.6413), 125)
+local point2 = lib.points.new(vec3(-1629.3918, 209.7738, 60.6413), 200)
 local zone2 = false
 function point2:onEnter()
     zone2 = true
@@ -68,7 +68,7 @@ function point2:onExit()
     zone2 = false
 end
 
-local point3 = lib.points.new(vec3(1078.0343, 2299.7446, 45.5086), 125)
+local point3 = lib.points.new(vec3(1078.0343, 2299.7446, 45.5086), 200)
 local zone3 = false
 function point3:onEnter()
     zone3 = true
@@ -113,7 +113,7 @@ Citizen.CreateThread(function()
                 -- StartAudioScene("SWITCH_TO_MP_SCENE")
                 -- StartScreenEffect("DeathFailOut", -1, true)
 
-                if sec > 0 and isDead then
+                if sec > 0 and isDead and isDead and zone1 or zone2 or zone3 then
                     Wait(1000)
                     sec = sec - 1
                 end
@@ -145,7 +145,7 @@ Citizen.CreateThread(function()
                         DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
                     end
             
-                   if sec <= 0 then
+                   if sec <= 0 and isDead and zone1 or zone2 or zone3 then
                        TriggerEvent('core:ResetDeathStatus', false)
                        TriggerEvent("KOTH:ReturnBase")
                        sec = 60000*5
@@ -312,7 +312,7 @@ RegisterNetEvent("core:ResetDeathStatus")
 AddEventHandler("core:ResetDeathStatus", function(alors)
     --TriggerServerEvent("SendLogs","Player revive "..GetPlayerName(PlayerId()).." !", "revive")
     ClearPedBloodDamage(PlayerPedId())
-    if alors then
+    if alors and zone1 or zone2 or zone3 then
         isDead = false
 
         NetworkSetVoiceActive(true)
@@ -331,6 +331,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
         sec = 60000*5
 
     else
+        if zone1 or zone2 or zone3 then
         isDead = false
 
         NetworkSetVoiceActive(true)
@@ -352,6 +353,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
         TriggerEvent("KOTH-MEDIC",3)
         
         sec = 60000*5
+        end
     end
 end)
 
