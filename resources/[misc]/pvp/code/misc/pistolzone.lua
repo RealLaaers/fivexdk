@@ -90,7 +90,7 @@ function getRandomPointInZone(zone)
 end
 
 function spawnPlayerInPistolZone()
-    local zone = Config.polyZones[activePistolZone]
+    local zone = Config.polyZones['pistol1']
     if zone then
         local validSpawn = false
         local spawnPoint = nil
