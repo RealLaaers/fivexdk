@@ -32,7 +32,6 @@ end)
 ---------------------------------
 RegisterCommand('checkbucket', function()
     local result = lib.callback.await("KOTH:CheckBucket", 100)
-    print("Er jeg i bucket 19567?", result)
 end)
 
 ---------------------------------
