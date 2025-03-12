@@ -8,8 +8,7 @@ RegisterCommand('clothing', function(source, args, rawCommand)
 end)
 
 function openMenu(menu, firstCharacter, onSubmit, onCancel)
-  print(canUseMenu(), isInMenu)
-  if canUseMenu() then return end
+  -- if canUseMenu() then return end
   if isInMenu then return end
   isInMenu = true
   TriggerEvent('pure-clothing:openedMenu', firstCharacter)
