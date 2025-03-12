@@ -20,7 +20,7 @@ RegisterCommand('pistolzone', function()
         title = 'FiveX - Pistol Zone',
         options = {
             {
-                title = 'Nuværende Map: ' .. getMapName(activePistolZone),
+                title = 'Nuværende Map: Scrapyard',
                 description = 'Deagle, Pistol, Combat, Heavy, Ceramic, Vintage.',
             },
             {
@@ -30,6 +30,9 @@ RegisterCommand('pistolzone', function()
                     TriggerServerEvent("pistolzone:join")
                     spawnPlayerInPistolZone()
                 end,
+            },
+            {
+                title = 'FIVEX | PISTOL ZONE'
             },
         },
     })
@@ -124,11 +127,11 @@ function spawnPlayerInPistolZone()
     end
 end
 
-RegisterNetEvent("pistolzone:updateZone")
-AddEventHandler("pistolzone:updateZone", function(newZone)
-    activePistolZone = newZone
-    spawnPlayerInPistolZone()
-end)
+-- RegisterNetEvent("pistolzone:updateZone")
+-- AddEventHandler("pistolzone:updateZone", function(newZone)
+--     activePistolZone = newZone
+--     spawnPlayerInPistolZone()
+-- end)
 
 RegisterNetEvent('respawnpistolzone')
 AddEventHandler('respawnpistolzone', function()
