@@ -315,6 +315,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
     if alors and zone1 or zone2 or zone3 then
         isDead = false
 
+        TriggerEvent('healffs2')
         NetworkSetVoiceActive(true)
         StopScreenEffect('DeathFailOut')
         StopAudioScenes()
@@ -334,6 +335,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
         if zone1 or zone2 or zone3 then
         isDead = false
 
+        TriggerEvent('healffs2')
         NetworkSetVoiceActive(true)
         StopScreenEffect('DeathFailOut')
         StopAudioScenes()
