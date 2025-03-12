@@ -4,11 +4,11 @@ function toggleNuiFrame(shouldShow)
 end
 
 RegisterCommand('clothing', function(source, args, rawCommand)
-  exports['pure-clothing']:openMenu('createCharacter')
+  openMenu("createCharacter")
 end)
 
 function openMenu(menu, firstCharacter, onSubmit, onCancel)
-  if canUseMenu() then return end
+  -- if canUseMenu() then return end
   if isInMenu then return end
   isInMenu = true
   TriggerEvent('pure-clothing:openedMenu', firstCharacter)
