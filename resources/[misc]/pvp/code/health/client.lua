@@ -58,6 +58,8 @@ RegisterNetEvent('healffs', function()
     if not Config.canRevive then return notify('Revive er deaktiveret her.', 'error') end
     if LocalPlayer.state.inDuel ~= nil then return notify('Revive er deaktiveret her.', 'error') end
     if not cayo and not zone1 and not zone2 and not zone3 then
+      local plyState = LocalPlayer.state
+      plyState:set('invBusy', false, false)
     local ped = PlayerPedId()
     local pos = GetEntityCoords(ped)
     local heading = GetEntityHeading(ped)
@@ -80,6 +82,8 @@ end
 end)
 
 RegisterNetEvent('healffs2', function()
+  local plyState = LocalPlayer.state
+  plyState:set('invBusy', false, false)
   local ped = PlayerPedId()
   local pos = GetEntityCoords(ped)
   local heading = GetEntityHeading(ped)
