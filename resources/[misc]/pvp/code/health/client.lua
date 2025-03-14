@@ -143,4 +143,14 @@ AddEventHandler('esx:onPlayerDeath', function(data)
     SetPedArmour(ped, 100)
     Wait(700)
   end
+elseif Config.currentZone == 'zone1' or Config.currentZone == 'zone2' or Config.currentZone == 'zone3' then
+  local ped = PlayerPedId()
+  Wait(400)
+  TriggerEvent('core:ResetDeathStatus', false)
+  TriggerEvent("KOTH:ReturnBase")
+  Wait(50)
+  TriggerEvent('healffs2')
+  SetPedArmour(ped, 100)
+  Wait(700)
+end
 end)

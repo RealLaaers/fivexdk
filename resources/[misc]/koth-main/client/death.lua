@@ -89,7 +89,7 @@ Citizen.CreateThread(function()
             local ped = PlayerPedId()
             if IsEntityDead(ped) then
                 --interval = 1000
-                isDead = true
+                --isDead = true
                 if not diedAt then
                 	diedAt = GetGameTimer()
                 end
@@ -265,18 +265,18 @@ AddEventHandler('koth-death:Distress', function()
 end)
 
 -- TODO: WORK ON DEATH THREAD
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        if (zone1 or zone2 or zone3) then
-            if buttonHeld(38, 150) then
-                TriggerEvent('core:ResetDeathStatus', false)
-                TriggerEvent("KOTH:ReturnBase")
-                isDead = false
-            end
-        end        
-    end
-end)
+-- Citizen.CreateThread(function()
+--     while true do
+--         Citizen.Wait(0)
+--         if (zone1 or zone2 or zone3) then
+--             if buttonHeld(38, 150) then
+--                 TriggerEvent('core:ResetDeathStatus', false)
+--                 TriggerEvent("KOTH:ReturnBase")
+--                 isDead = false
+--             end
+--         end        
+--     end
+-- end)
 
 -- Scale form functions (ignore for sanity)
 function buttonHeld(key, timed)
@@ -308,7 +308,7 @@ RegisterNetEvent("core:ResetDeathStatus")
 AddEventHandler("core:ResetDeathStatus", function(alors)
     --TriggerServerEvent("SendLogs","Player revive "..GetPlayerName(PlayerId()).." !", "revive")
     ClearPedBloodDamage(PlayerPedId())
-    if alors and zone1 or zone2 or zone3 then
+    if alors and (zone1 or zone2 or zone3) then
         isDead = false
 
         TriggerEvent('healffs2')
@@ -328,7 +328,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
         sec = 60000*5
 
     else
-        if zone1 or zone2 or zone3 then
+        if (zone1 or zone2 or zone3) then
         isDead = false
 
         TriggerEvent('healffs2')
