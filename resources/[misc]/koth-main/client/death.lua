@@ -303,58 +303,63 @@ function GetPlayerByEntityID(id)
 	return nil
 end
 
+local isResetting = false
 
 RegisterNetEvent("core:ResetDeathStatus")
 AddEventHandler("core:ResetDeathStatus", function(alors)
-    --TriggerServerEvent("SendLogs","Player revive "..GetPlayerName(PlayerId()).." !", "revive")
+    if isResetting then
+        return
+    end
+    isResetting = true
+
     ClearPedBloodDamage(PlayerPedId())
+    
     if alors and (zone1 or zone2 or zone3) then
         isDead = false
-
         TriggerEvent('healffs2')
         NetworkSetVoiceActive(true)
         StopScreenEffect('DeathFailOut')
         StopAudioScenes()
         StopGameplayHint(true)
-        local coords = GetEntityCoords(GetPlayerPed(-1))
-        SetEntityHealth(GetPlayerPed(-1), 200)
-        SetEntityCoordsNoOffset(GetPlayerPed(-1), coords, 0.0, 0.0, 0.0)
-        NetworkResurrectLocalPlayer(GetEntityCoords(GetPlayerPed(-1)), 100.0, 0, 0)
+        local coords = GetEntityCoords(PlayerPedId())
+        SetEntityHealth(PlayerPedId(), 200)
+        SetEntityCoordsNoOffset(PlayerPedId(), coords, 0.0, 0.0, 0.0)
+        NetworkResurrectLocalPlayer(GetEntityCoords(PlayerPedId()), 100.0, 0, 0)
         ClearPlayerWantedLevel(GetPlayerIndex())
-        SetPedCurrentWeaponVisible(GetPlayerPed(-1), false, true, 1, 1)
+        SetPedCurrentWeaponVisible(PlayerPedId(), false, true, 1, 1)
         StopScreenEffect('DeathFailOut')
         StopAudioScenes()
         StopGameplayHint(true)
-        sec = 60000*5
-
+        sec = 60000 * 5
     else
         if (zone1 or zone2 or zone3) then
-        isDead = false
-
-        TriggerEvent('healffs2')
-        NetworkSetVoiceActive(true)
-        StopScreenEffect('DeathFailOut')
-        StopAudioScenes()
-        StopGameplayHint(true)
-        local coords = GetEntityCoords(GetPlayerPed(-1))
-        SetEntityHealth(GetPlayerPed(-1), 200)
-        SetEntityCoordsNoOffset(GetPlayerPed(-1), coords, 0.0, 0.0, 0.0)
-        NetworkResurrectLocalPlayer(GetEntityCoords(GetPlayerPed(-1)), 100.0, 0, 0)
-        ClearPlayerWantedLevel(GetPlayerIndex())
-        SetPedCurrentWeaponVisible(GetPlayerPed(-1), false, true, 1, 1)
-        StopScreenEffect('DeathFailOut')
-        StopAudioScenes()
-        StopGameplayHint(true)
-        KillByPed = 0
-        IsPlayerDead1 = false
-        IsPlayerDead2 = false
-        TriggerEvent("KOTH-MEDIC",3)
-        
-        sec = 60000*5
+            isDead = false
+            TriggerEvent('healffs2')
+            NetworkSetVoiceActive(true)
+            StopScreenEffect('DeathFailOut')
+            StopAudioScenes()
+            StopGameplayHint(true)
+            local coords = GetEntityCoords(PlayerPedId())
+            SetEntityHealth(PlayerPedId(), 200)
+            SetEntityCoordsNoOffset(PlayerPedId(), coords, 0.0, 0.0, 0.0)
+            NetworkResurrectLocalPlayer(GetEntityCoords(PlayerPedId()), 100.0, 0, 0)
+            ClearPlayerWantedLevel(GetPlayerIndex())
+            SetPedCurrentWeaponVisible(PlayerPedId(), false, true, 1, 1)
+            StopScreenEffect('DeathFailOut')
+            StopAudioScenes()
+            StopGameplayHint(true)
+            KillByPed = 0
+            IsPlayerDead1 = false
+            IsPlayerDead2 = false
+            TriggerEvent("KOTH-MEDIC", 3)
+            sec = 60000 * 5
         end
     end
-end)
 
+    -- Vent et øjeblik, så eventet ikke bliver udløst igen med det samme
+    Citizen.Wait(1000)
+    isResetting = false
+end)
 
 function DisplayMessage(msg)
     local scaleform = RequestScaleformMovie("instructional_buttons")
