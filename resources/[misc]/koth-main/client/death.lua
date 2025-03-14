@@ -113,44 +113,44 @@ Citizen.CreateThread(function()
                 -- StartAudioScene("SWITCH_TO_MP_SCENE")
                 -- StartScreenEffect("DeathFailOut", -1, true)
 
-                if sec > 0 and isDead and isDead and zone1 or zone2 or zone3 then
-                    Wait(1000)
-                    sec = sec - 1
-                end
+                -- if sec > 0 and isDead and isDead and zone1 or zone2 or zone3 then
+                --     Wait(1000)
+                --     sec = sec - 1
+                -- end
 
 
-                Citizen.CreateThread(function()
-                    while sec > 0 and isDead and zone1 or zone2 or zone3 do
-                        Citizen.Wait(0)
+                -- Citizen.CreateThread(function()
+                --     while sec > 0 and isDead and zone1 or zone2 or zone3 do
+                --         Citizen.Wait(0)
             
-                        SetTextFont(4)
-                        SetTextScale(0.0, 0.5)
-                        SetTextColour(255, 255, 255, 255)
-                        SetTextDropshadow(0, 0, 0, 0, 255)
-                        SetTextDropShadow()
-                        SetTextOutline()
-                        SetTextCentre(true)
+                --         SetTextFont(4)
+                --         SetTextScale(0.0, 0.5)
+                --         SetTextColour(255, 255, 255, 255)
+                --         SetTextDropshadow(0, 0, 0, 0, 255)
+                --         SetTextDropShadow()
+                --         SetTextOutline()
+                --         SetTextCentre(true)
                         
-                        --local text = "Respawner automatisk om ~b~"..secondsToClock(sec).." ~w~sekunder."
+                --         --local text = "Respawner automatisk om ~b~"..secondsToClock(sec).." ~w~sekunder."
             
-                       -- if sec <= 60 then
-                            --text = text .. '\n' .. "Hold ~b~E~w~ for at respawn i din base."
+                --        -- if sec <= 60 then
+                --             --text = text .. '\n' .. "Hold ~b~E~w~ for at respawn i din base."
             
-                        --end
+                --         --end
             
-                        --BeginTextCommandDisplayText("STRING")
-                        --AddTextComponentSubstringPlayerName(text)
-                        EndTextCommandDisplayText(0.5, 0.8)
+                --         --BeginTextCommandDisplayText("STRING")
+                --         --AddTextComponentSubstringPlayerName(text)
+                --         EndTextCommandDisplayText(0.5, 0.8)
             
-                        DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
-                    end
+                --         DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
+                --     end
             
-                   if sec <= 0 and isDead and zone1 or zone2 or zone3 then
-                       TriggerEvent('core:ResetDeathStatus', false)
-                       TriggerEvent("KOTH:ReturnBase")
-                       sec = 60000*5
-                   end
-                end)
+                --    if sec <= 0 and isDead and zone1 or zone2 or zone3 then
+                --        TriggerEvent('core:ResetDeathStatus', false)
+                --        TriggerEvent("KOTH:ReturnBase")
+                --        sec = 60000*5
+                --    end
+                -- end)
 
                 local attacker_hipfire = not DecorGetBool(killer, '_IS_AIMING')
 
@@ -268,7 +268,7 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        if IsEntityDead(PlayerPedId()) and (zone1 or zone2 or zone3) then
+        if (zone1 or zone2 or zone3) then
             if buttonHeld(38, 150) then
                 TriggerEvent('core:ResetDeathStatus', false)
                 TriggerEvent("KOTH:ReturnBase")
