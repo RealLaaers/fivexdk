@@ -406,7 +406,7 @@ Citizen.CreateThread(function()
 					end
 				end
 
-                -- vundet
+                -- Teleporter alle spillere i bucket 19567 til spawn og nulstil bucket
                 for _, playerId in ipairs(GetPlayers()) do
                     if GetPlayerRoutingBucket(tonumber(playerId)) == 19567 then
                         Wait(150)
@@ -414,17 +414,15 @@ Citizen.CreateThread(function()
                         SetPlayerRoutingBucket(tonumber(playerId), 0)
                     end
                 end
-				-- -- Teleporter spillere ud af zonen
-				-- for _, player in pairs(TeamIDPlayer) do
-				-- 	Wait(150)
-				-- 	TriggerClientEvent("KOTH:TeleportPlayer", player.id, 343.5642, -1421.0951, 76.1654, 136.0984)
-				-- end
+
 				Wait(500)
 				PlayersInZone = {}
 				TeamIDPlayer = {}
 				PlayerDataInfo = {}
 				-- Sæt flaget, så yderligere opdateringer stoppes
 				matchEnded = true
+
+                -- Efter 5 sekunder udløses eventet til at starte en ny runde (og dermed et mapskifte)
                 Citizen.SetTimeout(5000, function()
                     TriggerEvent("KOTH:RestartRound")
                 end)
@@ -456,20 +454,33 @@ Citizen.CreateThread(function()
 	end
 end)
 
+-- Event til at genstarte runden og udløse et mapskifte
 RegisterNetEvent("KOTH:RestartRound")
 AddEventHandler("KOTH:RestartRound", function()
-    matchEnded = false
-    for i, team in ipairs(Teams) do
-        team.points = 0
-        team.active = 0
-        team.count = 0
-        team.members = {}
-    end
-    PlayersInZone = {}
-    TeamIDPlayer = {}
-    PlayerDataInfo = {}
-    -- Udløs client-event for at resette runden (kan evt. sende en ny zone)
-    TriggerClientEvent("KOTH:RestartRoundClient", -1, nil)
+	-- Nulstil matchvariabler og holddata
+	matchEnded = false
+	for i, team in ipairs(Teams) do
+		team.points = 0
+		team.active = 0
+		team.count = 0
+		team.members = {}
+	end
+	PlayersInZone = {}
+	TeamIDPlayer = {}
+	PlayerDataInfo = {}
+
+	-- Udtræk alle zones fra din Config (forudsætter at din Config indeholder numeriske nøgler)
+	local zones = {}
+	for k, zone in pairs(Config) do
+		if type(k) == "number" then
+			table.insert(zones, zone)
+		end
+	end
+	-- Vælg en tilfældig zone
+	local newZone = zones[math.random(#zones)]
+	
+	-- Udløs en client-event, som opdaterer mapdata og teleporterer spillere til den nye zones spawn
+	TriggerClientEvent("KOTH:RestartRoundClient", -1, newZone)
 end)
 
 -- Event til at nulstille matchEnded (og evt. point) for at starte en ny kamp

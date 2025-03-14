@@ -19,6 +19,19 @@ AddEventHandler("MapPosition", function(map)
     PosBaseVer = map.posBaseVert
 end)
 
+RegisterNetEvent("KOTH:RestartRoundClient")
+AddEventHandler("KOTH:RestartRoundClient", function(newZone)
+    Possss = newZone
+    PosZone = newZone.poscombat
+    PosBaseBle = newZone.posBaseBleu
+    PosBaseRou = newZone.posBaseRouge
+    PosBaseVer = newZone.posBaseVert
+    GetZone()
+    
+    TriggerEvent("KOTH:ResetPlayerSetup")
+end)
+
+
 Citizen.CreateThread(function()
     TriggerServerEvent("AddClientServerCode")
 
