@@ -423,7 +423,7 @@ Citizen.CreateThread(function()
 				matchEnded = true
 
                 -- Efter 5 sekunder udløses eventet til at starte en ny runde (og dermed et mapskifte)
-                Citizen.SetTimeout(5000, function()
+                Citizen.SetTimeout(2000, function()
                     TriggerEvent("KOTH:RestartRound")
                 end)
 			else

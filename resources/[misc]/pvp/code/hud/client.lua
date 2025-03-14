@@ -37,7 +37,7 @@ function pointt:onExit()
     })
     DisplayRadar(false)
 end
-local point = lib.points.new(vec3(1530.6582, 1709.7032, 109.9309), 200)
+local point = lib.points.new(vec3(1530.6582, 1709.7032, 109.9309), 300)
 local zone1 = false
 function point:onEnter()
     zone1 = true
@@ -71,7 +71,7 @@ function point:onExit()
     })
     DisplayRadar(false)
 end
-local point2 = lib.points.new(vec3(-1629.3918, 209.7738, 60.6413), 200)
+local point2 = lib.points.new(vec3(-1629.3918, 209.7738, 60.6413), 300)
 local zone2 = false
 function point2:onEnter()
     zone2 = true
@@ -105,7 +105,7 @@ function point2:onExit()
     })
     DisplayRadar(false)
 end
-local point3 = lib.points.new(vec3(1078.0343, 2299.7446, 45.5086), 200)
+local point3 = lib.points.new(vec3(1078.0343, 2299.7446, 45.5086), 300)
 local zone3 = false
 function point3:onEnter()
     zone3 = true

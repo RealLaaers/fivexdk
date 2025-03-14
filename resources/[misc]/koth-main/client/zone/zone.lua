@@ -21,16 +21,30 @@ end)
 
 RegisterNetEvent("KOTH:RestartRoundClient")
 AddEventHandler("KOTH:RestartRoundClient", function(newZone)
+    -- Fjern gamle zoneblips
+    if zoneArea then
+        RemoveBlip(zoneArea)
+        zoneArea = nil
+    end
+    if zoneBlip then
+        RemoveBlip(zoneBlip)
+        zoneBlip = nil
+    end
+    for i = #mapBlips, 1, -1 do
+        RemoveBlip(mapBlips[i])
+        table.remove(mapBlips, i)
+    end
+
+    -- Opdater zone-data med de nye værdier
     Possss = newZone
     PosZone = newZone.poscombat
     PosBaseBle = newZone.posBaseBleu
     PosBaseRou = newZone.posBaseRouge
     PosBaseVer = newZone.posBaseVert
-    GetZone()
-    
-    TriggerEvent("KOTH:ResetPlayerSetup")
-end)
 
+    -- Genopbyg zone-blips med de nye data
+    GetZone()
+end)
 
 Citizen.CreateThread(function()
     TriggerServerEvent("AddClientServerCode")
