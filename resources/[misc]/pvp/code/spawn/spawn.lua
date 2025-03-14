@@ -189,7 +189,27 @@ exports.ox_target:addBoxZone({
             label = "Tilgå Deagle Zone",
             distance = 5.0,
             onSelect = function(data)
-                SetEntityCoords(PlayerPedId(), -3673.387, -3660.031, 345.665222)
+                lib.callback('deaglezone:getPlayerCount', false, function(count)
+                    local playerCount = count or 0
+                lib.registerContext({
+                    id = 'deaglezone',
+                    title = 'FiveX - Deagle Zone',
+                    options = {
+                        {
+                            title = 'Tilgå Deagle Zone',
+                            description = 'Antal Spillere: '..playerCount,
+                            onSelect = function(args)
+                                TriggerServerEvent("PlayerLobby", 19061)
+                                SetEntityCoords(PlayerPedId(), -3673.387, -3660.031, 345.665222)
+                            end,
+                        },
+                        {
+                            title = 'FIVEX | DEAGLE ZONE'
+                        },
+                    },
+                })
+                lib.showContext('deaglezone')
+            end)
             end
         },
     }
@@ -208,7 +228,27 @@ exports.ox_target:addBoxZone({
             label = "Tilgå AP Zone",
             distance = 5.0,
             onSelect = function(data)
-                SetEntityCoords(PlayerPedId(), -3506.7473, 5753.8433, 658.2704)
+                lib.callback('apzone:getPlayerCount', false, function(count)
+                    local playerCount = count or 0
+                lib.registerContext({
+                    id = 'apzone',
+                    title = 'FiveX - AP Zone',
+                    options = {
+                        {
+                            title = 'Tilgå AP Zone',
+                            description = 'Antal Spillere: '..playerCount,
+                            onSelect = function(args)
+                                TriggerServerEvent("PlayerLobby", 19059)
+                                SetEntityCoords(PlayerPedId(), -3506.7473, 5753.8433, 658.2704)
+                            end,
+                        },
+                        {
+                            title = 'FIVEX | AP ZONE'
+                        },
+                    },
+                })
+                lib.showContext('apzone')
+            end)
             end
         },
     }
