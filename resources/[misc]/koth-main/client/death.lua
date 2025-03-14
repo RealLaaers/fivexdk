@@ -268,17 +268,13 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        if IsEntityDead(PlayerPedId()) and zone1 or zone2 or zone3 then
+        if IsEntityDead(PlayerPedId()) and (zone1 or zone2 or zone3) then
             if buttonHeld(38, 150) then
                 TriggerEvent('core:ResetDeathStatus', false)
-
                 TriggerEvent("KOTH:ReturnBase")
                 isDead = false
-            --elseif IsControlPressed(0, 47) and not distressSent then
-            --    distressSent = true
-            --    TriggerServerEvent('koth:medicneeded', GetEntityCoords(PlayerPedId()))
             end
-        end
+        end        
     end
 end)
 
