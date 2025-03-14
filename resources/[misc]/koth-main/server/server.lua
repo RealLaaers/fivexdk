@@ -393,7 +393,7 @@ Citizen.CreateThread(function()
 			end
 
 			-- Tjek om kampen er slut (her testes ved 10 point for nemheds skyld)
-			if Teams[highestIndex].points >= 10.0 then
+			if Teams[highestIndex].points >= 100.0 then
 				-- Udløs game-end events for spillere i zonen
 				for i, player in pairs(PlayersInZone) do
 					if player.team == highestIndex then

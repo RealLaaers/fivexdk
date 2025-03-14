@@ -131,15 +131,15 @@ Citizen.CreateThread(function()
                         SetTextOutline()
                         SetTextCentre(true)
                         
-                        local text = "Respawner automatisk om ~b~"..secondsToClock(sec).." ~w~sekunder."
+                        --local text = "Respawner automatisk om ~b~"..secondsToClock(sec).." ~w~sekunder."
             
                        -- if sec <= 60 then
-                            text = text .. '\n' .. "Hold ~b~E~w~ for at respawn i din base."
+                            --text = text .. '\n' .. "Hold ~b~E~w~ for at respawn i din base."
             
                         --end
             
-                        BeginTextCommandDisplayText("STRING")
-                        AddTextComponentSubstringPlayerName(text)
+                        --BeginTextCommandDisplayText("STRING")
+                        --AddTextComponentSubstringPlayerName(text)
                         EndTextCommandDisplayText(0.5, 0.8)
             
                         DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
