@@ -58,8 +58,6 @@ RegisterNetEvent('healffs', function()
     if not Config.canRevive then return notify('Revive er deaktiveret her.', 'error') end
     if LocalPlayer.state.inDuel ~= nil then return notify('Revive er deaktiveret her.', 'error') end
     if not cayo and not zone1 and not zone2 and not zone3 then
-      local plyState = LocalPlayer.state
-      plyState:set('invBusy', false, false)
     local ped = PlayerPedId()
     local pos = GetEntityCoords(ped)
     local heading = GetEntityHeading(ped)
@@ -82,8 +80,6 @@ end
 end)
 
 RegisterNetEvent('healffs2', function()
-  local plyState = LocalPlayer.state
-  plyState:set('invBusy', false, false)
   local ped = PlayerPedId()
   local pos = GetEntityCoords(ped)
   local heading = GetEntityHeading(ped)
@@ -134,7 +130,7 @@ AddEventHandler('esx:onPlayerDeath', function(data)
       SetPedArmour(ped, 100)
       Wait(700)
       --exports.ox_inventory:useSlot(currentWeapon.slot)
-  elseif Config.currentZone == 'pistol1' or Config.currentZone == 'pistol2' or Config.currentZone == 'pistol3' then
+  elseif Config.currentZone == 'pistol1' then
     local ped = PlayerPedId()
     Wait(400)
     TriggerEvent('respawnpistolzone')
@@ -142,7 +138,6 @@ AddEventHandler('esx:onPlayerDeath', function(data)
     TriggerEvent('healffs2')
     SetPedArmour(ped, 100)
     Wait(700)
-  end
 elseif Config.currentZone == 'zone1' or Config.currentZone == 'zone2' or Config.currentZone == 'zone3' then
   local ped = PlayerPedId()
   Wait(400)
