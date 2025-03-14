@@ -405,11 +405,20 @@ Citizen.CreateThread(function()
 						TriggerEvent("KothEndMatch", false, Teams[highestIndex].name)
 					end
 				end
-				-- Teleporter spillere ud af zonen
-				for _, player in pairs(TeamIDPlayer) do
-					Wait(150)
-					TriggerClientEvent("KOTH:TeleportPlayer", player.id, 343.5642, -1421.0951, 76.1654, 136.0984)
-				end
+
+                -- vundet
+                for _, playerId in ipairs(GetPlayers()) do
+                    if GetPlayerRoutingBucket(tonumber(playerId)) == 19567 then
+                        Wait(150)
+                        TriggerClientEvent("KOTH:TeleportPlayer", playerId, 343.5642, -1421.0951, 76.1654, 136.0984)
+                        SetPlayerRoutingBucket(tonumber(playerId), 0)
+                    end
+                end
+				-- -- Teleporter spillere ud af zonen
+				-- for _, player in pairs(TeamIDPlayer) do
+				-- 	Wait(150)
+				-- 	TriggerClientEvent("KOTH:TeleportPlayer", player.id, 343.5642, -1421.0951, 76.1654, 136.0984)
+				-- end
 				Wait(500)
 				PlayersInZone = {}
 				TeamIDPlayer = {}
