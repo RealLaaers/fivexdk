@@ -425,6 +425,9 @@ Citizen.CreateThread(function()
 				PlayerDataInfo = {}
 				-- Sæt flaget, så yderligere opdateringer stoppes
 				matchEnded = true
+                Citizen.SetTimeout(5000, function()
+                    TriggerEvent("KOTH:RestartRound")
+                end)
 			else
 				-- Opdater zone-ejerskab og point hvis kampen ikke er slut
 				if highestValue == 0 and not contested then
@@ -451,6 +454,22 @@ Citizen.CreateThread(function()
 			})
 		end
 	end
+end)
+
+RegisterNetEvent("KOTH:RestartRound")
+AddEventHandler("KOTH:RestartRound", function()
+    matchEnded = false
+    for i, team in ipairs(Teams) do
+        team.points = 0
+        team.active = 0
+        team.count = 0
+        team.members = {}
+    end
+    PlayersInZone = {}
+    TeamIDPlayer = {}
+    PlayerDataInfo = {}
+    -- Udløs client-event for at resette runden (kan evt. sende en ny zone)
+    TriggerClientEvent("KOTH:RestartRoundClient", -1, nil)
 end)
 
 -- Event til at nulstille matchEnded (og evt. point) for at starte en ny kamp

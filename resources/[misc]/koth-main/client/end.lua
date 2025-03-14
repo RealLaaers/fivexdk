@@ -45,6 +45,21 @@ function startVictoireCamera()
     end)
 end
 
+-- På client-siden (client.lua):
+RegisterNetEvent("KOTH:RestartRoundClient")
+AddEventHandler("KOTH:RestartRoundClient", function(newZone)
+    -- Hvis du benytter zones fra din config, kan du sende den nye zone med
+    if newZone then
+        SetEntityCoords(PlayerPedId(), newZone.poscombat.x, newZone.poscombat.y, newZone.poscombat.z)
+    else
+        -- Hvis ikke, kan du bruge et fast spawnpunkt:
+        SetEntityCoords(PlayerPedId(), 343.5642, -1421.0951, 76.1654)
+    end
+
+    -- Her kan du også nulstille uniforms, HUD, eller loade objekter
+    TriggerEvent("KOTH:ResetPlayerSetup")
+end)
+
 displayDoneMission = false
 str = "End Game"
 END = false
