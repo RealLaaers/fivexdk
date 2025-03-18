@@ -155,14 +155,14 @@ end)
 local NotSpam = false
 
 RegisterCommand('koth', function()
-    local bucket = lib.callback.await("KOTH:CheckBucket", 100)
-    if bucket then
-        lib.notify({
-            title = 'Du kan ikke åbne menuen nu.',
-            type = 'error'
-        })
-        return
-    end
+    -- local bucket = lib.callback.await("KOTH:CheckBucket", 100)
+    -- if bucket then
+    --     lib.notify({
+    --         title = 'Du kan ikke åbne menuen nu.',
+    --         type = 'error'
+    --     })
+    --     return
+    -- end
 
     lib.callback('koth:getPlayerCount', false, function(count)
         local playerCount = count or 0
