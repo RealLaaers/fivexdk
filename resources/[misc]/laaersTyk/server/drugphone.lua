@@ -8,8 +8,8 @@ local drugPrices = {
     bananakush_joint = { price = math.random(335, 428), minQty = 4, maxQty = 18 },
     bluedream_joint = { price = math.random(358, 442), minQty = 4, maxQty = 18 },
     purplehaze_joint = { price = math.random(470, 582), minQty = 4, maxQty = 18 },
-    coke_pooch = { price = math.random(650, 789), minQty = 4, maxQty = 18 },
-    coke_packaged = { price = math.random(5267, 6333), minQty = 2, maxQty = 6 },
+    water = { price = math.random(650, 789), minQty = 4, maxQty = 18 }, --coke_pooch
+    burger = { price = math.random(5267, 6333), minQty = 2, maxQty = 6 }, --coke_packaged
     opium_pooch = { price = math.random(700, 845), minQty = 4, maxQty = 18 },
     opium_packaged = { price = math.random(5156, 6568), minQty = 2, maxQty = 6 },
     meth_pooch = { price = math.random(699, 845), minQty = 4, maxQty = 18 },
@@ -232,10 +232,10 @@ ESX.RegisterServerCallback('fh_drugphone:interactWithNPC', function(source, cb, 
     SimCardCustomers = tonumber(simCardInfo.Kontakter or 0)
 
     local drugTypeMap = {
-        Kokain = { 'coke_packaged', 'coke_pooch' },
-        Heroin = { 'opium_packaged', 'opium_pooch' },
-        Meth = { 'meth_packaged', 'meth_pooch', 'kq_meth_mid','kq_meth_low','kq_meth_high',  },
-        Hash = { 'weed_packaged', 'weed_pooch', 'bananakush_joint', 'bluedream_joint', 'purplehaze_joint' },
+        Kokain = { 'water', 'burger' },
+        -- Heroin = { 'opium_packaged', 'opium_pooch' },
+        -- Meth = { 'meth_packaged', 'meth_pooch', 'kq_meth_mid','kq_meth_low','kq_meth_high',  },
+        -- Hash = { 'weed_packaged', 'weed_pooch', 'bananakush_joint', 'bluedream_joint', 'purplehaze_joint' },
     }
 
     if drugType and drugTypeMap[drugType] then
