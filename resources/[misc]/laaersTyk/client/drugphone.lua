@@ -272,8 +272,103 @@ function SetupNPC(model)
                 --         combat = true,
                 --     },
                 -- }) then 
+
+                if fatsvag then
+                    return
+                end
+                
                     bitch = true
-                    interactWithNPC(data.entity, currentDrug, model, options, vector3(table.unpack(GetEntityCoords(data.entity))))
+
+                    ESX.TriggerServerCallback('fh_drugphone:interactWithNPC', function(cb)
+                        if cb[1] then
+                            fatsvag = true
+                            exports.ox_target:removeModel(model, options)
+                            RemoveBlip(NPCSpawn)
+        
+                            local playerPed = PlayerPedId()
+                            local animDict = "mp_ped_interaction"
+                            RequestAnimDict(animDict)
+                            while not HasAnimDictLoaded(animDict) do
+                                Citizen.Wait(50)
+                            end
+        
+                            ClearPedTasksImmediately(npc)
+        
+                            local scene = NetworkCreateSynchronisedScene(GetEntityCoords(npc), GetEntityRotation(npc), 2, false, false, 1065353216, 0, 0.8)
+                            NetworkAddPedToSynchronisedScene(npc, scene, animDict, 'hugs_guy_a', 1.5, -4.0, 1, 16, 1148846080, 0)
+                            NetworkAddPedToSynchronisedScene(playerPed, scene, animDict, 'hugs_guy_b', 1.5, -4.0, 1, 16, 1148846080, 0)
+                            NetworkStartSynchronisedScene(scene)
+        
+                            if lib.progressBar({
+                                duration = 4000,
+                                label = 'Sælger til kunden',
+                                useWhileDead = false,
+                                canCancel = false,
+                                disable = {
+                                    car = true,
+                                    move = true,
+                                    combat = true,
+                                },
+                                -- anim = {
+                                --     dict = 'mp_ped_interaction',
+                                --     clip = 'hugs_guy_b'
+                                -- },
+                            }) then                     
+                            lib.notify({
+                                description = 'Handling gik igennem!',
+                                type = 'success',
+                                duration = 10000,
+                            })
+        
+                            FreezeEntityPosition(npc, false)
+                            TaskWanderStandard(npc, 10.0, -1)
+        
+                            RemoveAnimDict(animDict)
+                            bitch = false
+                            selectedLocation = nil
+                            isHandlingCustomer = false
+                            fatsvag = nil
+                            hasCustomer = not hasCustomer
+                            end
+        
+                            -- Wait(1000)
+        
+                            -- local scene = NetworkCreateSynchronisedScene(GetEntityCoords(npc), GetEntityRotation(npc), 2, false, false, 1065353216, 0, 0.8)
+                            -- NetworkAddPedToSynchronisedScene(npc, scene, animDict, 'hugs_guy_a', 1.5, -4.0, 1, 16, 1148846080, 0)
+                            -- NetworkAddPedToSynchronisedScene(playerPed, scene, animDict, 'hugs_guy_b', 1.5, -4.0, 1, 16, 1148846080, 0)
+                            -- NetworkStartSynchronisedScene(scene)
+        
+                            -- lib.notify({
+                            --     description = 'Handling gik igennem!',
+                            --     type = 'success',
+                            --     duration = 10000,
+                            -- })
+        
+                            -- PlayPedAmbientSpeechWithVoiceNative(npc, "GENERIC_THANKS", "MP_M_SHOPKEEP_01_PAKISTANI_MINI_01", "SPEECH_PARAMS_FORCE", 1)
+        
+                            -- Wait(5000)
+        
+                            -- FreezeEntityPosition(npc, false)
+                            -- TaskWanderStandard(npc, 10.0, -1)
+        
+                            -- RemoveAnimDict(animDict)
+                            -- selectedLocation = nil
+                            -- isHandlingCustomer = false
+                            -- fatsvag = nil
+                            -- hasCustomer = not hasCustomer
+                        else
+                            lib.notify({
+                                description = 'Du har ikke det aftale antal stoffer med til mig!',
+                                type = 'error',
+                                duration = 10000,
+                            })
+                            toggleStatus = not toggleStatus
+                            isHandlingCustomer = false
+                            hasCustomer = not hasCustomer
+                        end
+                    end, currentDrug, coords)
+
+                    -- interactWithNPC(data.entity, currentDrug, model, options, vector3(table.unpack(GetEntityCoords(data.entity))))
                 --end
             end
         end,
