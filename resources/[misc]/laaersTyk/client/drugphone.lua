@@ -262,7 +262,7 @@ function SetupNPC(model)
 
             if distance < 5 and not bitch then
                 if lib.progressBar({
-                    duration = 2000,
+                    duration = 1000,
                     label = 'Snakker med kunden',
                     useWhileDead = false,
                     canCancel = false,
