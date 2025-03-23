@@ -261,7 +261,7 @@ ESX.RegisterServerCallback('fh_drugphone:interactWithNPC', function(source, cb, 
                     end
         
                     cb({ true, drugTypeName })
-                    Wait(2000)
+                    Wait(4000)
 
                     local price = drugInfo.price
                     exports.ox_inventory:RemoveItem(source, drugTypeName, Multi)

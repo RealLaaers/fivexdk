@@ -303,7 +303,7 @@ function interactWithNPC(npc, currentDrug, model, options, coords)
                     NetworkStartSynchronisedScene(scene)
 
                     if lib.progressBar({
-                        duration = 2250,
+                        duration = 4000,
                         label = 'Sælger til kunden',
                         useWhileDead = false,
                         canCancel = false,
