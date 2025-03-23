@@ -440,9 +440,6 @@ WaitForCall = function()
                     --     duration = 10000,
                     -- })
 
-                    local vector2Coords = vector2(selectedLocation.x, selectedLocation.y)
-                    TriggerServerEvent('lb-drugphone', vector2Coords)
-
                     BusyspinnerOff()
 
                     ExecuteCommand("e phonecall")
@@ -450,6 +447,9 @@ WaitForCall = function()
 
                     selectedLocation = Config.Locations[math.random(#Config.Locations)]
                     spawnNPCAtLocation(selectedLocation)
+
+                    local vector2Coords = vector2(selectedLocation.x, selectedLocation.y)
+                    TriggerServerEvent('lb-drugphone', vector2Coords)
 
                     NPCSpawn = AddBlipForCoord(selectedLocation.x, selectedLocation.y, selectedLocation.z)
                     SetBlipSprite(NPCSpawn, 514)
