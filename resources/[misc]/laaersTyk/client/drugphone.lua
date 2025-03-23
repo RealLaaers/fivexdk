@@ -297,8 +297,13 @@ function interactWithNPC(npc, currentDrug, model, options, coords)
 
                     ClearPedTasksImmediately(npc)
 
+                    local scene = NetworkCreateSynchronisedScene(GetEntityCoords(npc), GetEntityRotation(npc), 2, false, false, 1065353216, 0, 0.8)
+                    NetworkAddPedToSynchronisedScene(npc, scene, animDict, 'hugs_guy_a', 1.5, -4.0, 1, 16, 1148846080, 0)
+                    NetworkAddPedToSynchronisedScene(playerPed, scene, animDict, 'hugs_guy_b', 1.5, -4.0, 1, 16, 1148846080, 0)
+                    NetworkStartSynchronisedScene(scene)
+
                     if lib.progressBar({
-                        duration = 5500,
+                        duration = 2250,
                         label = 'Sælger til kunden',
                         useWhileDead = false,
                         canCancel = false,
@@ -307,16 +312,19 @@ function interactWithNPC(npc, currentDrug, model, options, coords)
                             move = true,
                             combat = true,
                         },
-                        anim = {
-                            dict = 'mp_ped_interaction',
-                            clip = 'hugs_guy_b'
-                        },
+                        -- anim = {
+                        --     dict = 'mp_ped_interaction',
+                        --     clip = 'hugs_guy_b'
+                        -- },
                     }) then                     
                     lib.notify({
                         description = 'Handling gik igennem!',
                         type = 'success',
                         duration = 10000,
                     })
+
+                    FreezeEntityPosition(npc, false)
+                    TaskWanderStandard(npc, 10.0, -1)
 
                     RemoveAnimDict(animDict)
                     selectedLocation = nil
