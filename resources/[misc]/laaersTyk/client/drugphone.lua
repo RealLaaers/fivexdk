@@ -249,6 +249,8 @@ function spawnNPCAtLocation(location)
     end)
 end
 
+local bitch = false
+
 function SetupNPC(model)
     local options = {
         icon = "fa-solid fa-hand-holding-heart",
@@ -258,12 +260,25 @@ function SetupNPC(model)
             local playerPosition = vector3(table.unpack(GetEntityCoords(PlayerPedId())))
             local distance = #(playerPosition - npcPosition)
 
-            if distance < 5 then
-                interactWithNPC(data.entity, currentDrug, model, options, vector3(table.unpack(GetEntityCoords(data.entity))))
+            if distance < 5 and not bitch then
+                if lib.progressBar({
+                    duration = 2000,
+                    label = 'Snakker med kunden',
+                    useWhileDead = false,
+                    canCancel = false,
+                    disable = {
+                        car = true,
+                        move = true,
+                        combat = true,
+                    },
+                }) then 
+                    bitch = true
+                    interactWithNPC(data.entity, currentDrug, model, options, vector3(table.unpack(GetEntityCoords(data.entity))))
+                end
             end
         end,
         canInteract = function()
-            return not fatsvag
+            return not fatsvag and not bitch
         end,
     }
 
@@ -327,6 +342,7 @@ function interactWithNPC(npc, currentDrug, model, options, coords)
                     TaskWanderStandard(npc, 10.0, -1)
 
                     RemoveAnimDict(animDict)
+                    bitch = false
                     selectedLocation = nil
                     isHandlingCustomer = false
                     fatsvag = nil
