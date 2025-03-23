@@ -46,6 +46,12 @@ lib.callback.register('fh_drugphone:getSimCardInfo', function(source)
     return simCardInfo
 end)
 
+RegisterNetEvent('lb-drugphone', function(coords)
+    local xPlayer = ESX.GetPlayerFromId(source)
+    exports["lb-phone"]:SendMessage("Ukendt", exports["lb-phone"]:GetEquippedPhoneNumber(xPlayer.source), "Jeg har brug for dit produkt, kom til min gps hurtigt!")
+    exports["lb-phone"]:SendCoords("Ukendt", exports["lb-phone"]:GetEquippedPhoneNumber(xPlayer.source), coords)
+end)
+
 RegisterNetEvent('fh_drugphone:setSimCardDrug', function(selectedDrug)
     local inventory = exports.ox_inventory:GetInventoryItems(source)
     local xPlayer = ESX.GetPlayerFromId(source)

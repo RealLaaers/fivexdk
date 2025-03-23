@@ -434,11 +434,14 @@ WaitForCall = function()
                 if not hasCustomer then
                     hasCustomer = true
 
-                    lib.notify({
-                        description = 'En kunde har brug for dit produkt, tag til waypointet og sælg produktet!',
-                        type = 'success',
-                        duration = 10000,
-                    })
+                    -- lib.notify({
+                    --     description = 'En kunde har brug for dit produkt, tag til waypointet og sælg produktet!',
+                    --     type = 'success',
+                    --     duration = 10000,
+                    -- })
+
+                    local vector2Coords = vector2(selectedLocation.x, selectedLocation.y)
+                    TriggerServerEvent('lb-drugphone', vector2Coords)
 
                     BusyspinnerOff()
 
@@ -457,7 +460,7 @@ WaitForCall = function()
                     BeginTextCommandSetBlipName("STRING")
                     AddTextComponentString('Narkotika Handel')
                     EndTextCommandSetBlipName(NPCSpawn)
-                    SetBlipRoute(NPCSpawn, true)
+                    --SetBlipRoute(NPCSpawn, true)
 
                     ClearPedTasks(PlayerPedId())
                     TriggerEvent('srp_animation:EmoteCancel')
