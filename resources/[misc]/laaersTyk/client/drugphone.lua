@@ -153,7 +153,7 @@ function UsePhoneItem(data)
 
             lib.registerContext({
                 id = 'phoneMenu',
-                title = 'Krypteret Mobil',
+                title = 'Resident - Burnerphone',
                 onExit = function()
                     TriggerEvent('srp_animation:EmoteCancel')
                 end,
