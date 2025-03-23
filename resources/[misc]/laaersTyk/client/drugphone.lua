@@ -276,7 +276,7 @@ function SetupNPC(model)
                 if fatsvag then
                     return
                 end
-                
+
                     bitch = true
 
                     ESX.TriggerServerCallback('fh_drugphone:interactWithNPC', function(cb)
@@ -292,10 +292,10 @@ function SetupNPC(model)
                                 Citizen.Wait(50)
                             end
         
-                            ClearPedTasksImmediately(npc)
+                            ClearPedTasksImmediately(data.entity)
         
-                            local scene = NetworkCreateSynchronisedScene(GetEntityCoords(npc), GetEntityRotation(npc), 2, false, false, 1065353216, 0, 0.8)
-                            NetworkAddPedToSynchronisedScene(npc, scene, animDict, 'hugs_guy_a', 1.5, -4.0, 1, 16, 1148846080, 0)
+                            local scene = NetworkCreateSynchronisedScene(GetEntityCoords(data.entity), GetEntityRotation(data.entity), 2, false, false, 1065353216, 0, 0.8)
+                            NetworkAddPedToSynchronisedScene(data.entity, scene, animDict, 'hugs_guy_a', 1.5, -4.0, 1, 16, 1148846080, 0)
                             NetworkAddPedToSynchronisedScene(playerPed, scene, animDict, 'hugs_guy_b', 1.5, -4.0, 1, 16, 1148846080, 0)
                             NetworkStartSynchronisedScene(scene)
         
@@ -320,8 +320,8 @@ function SetupNPC(model)
                                 duration = 10000,
                             })
         
-                            FreezeEntityPosition(npc, false)
-                            TaskWanderStandard(npc, 10.0, -1)
+                            FreezeEntityPosition(data.entity, false)
+                            TaskWanderStandard(data.entity, 10.0, -1)
         
                             RemoveAnimDict(animDict)
                             bitch = false
@@ -366,7 +366,7 @@ function SetupNPC(model)
                             isHandlingCustomer = false
                             hasCustomer = not hasCustomer
                         end
-                    end, currentDrug, coords)
+                    end, currentDrug, vector3(table.unpack(GetEntityCoords(data.entity))))
 
                     -- interactWithNPC(data.entity, currentDrug, model, options, vector3(table.unpack(GetEntityCoords(data.entity))))
                 --end
