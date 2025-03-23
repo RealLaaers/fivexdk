@@ -105,16 +105,16 @@ function UsePhoneItem(data)
                     disabled = true,
                 }
 
-                visDescription = "Du har ikke nok Kontakter for at modtage opkald!"
+                visDescription = "Du har ikke nok kontakter for at modtage opkald!"
 
                 if simCardInfo.Kontakter >= Config.MinContacts then
                     cantSell = false
-                    visDescription = 'Inaktiv! Tryk for at modtage opkald'
+                    visDescription = 'Tryk for at aktivere opkald'
                 end
 
                 if not toggleStatus then
                     Options[#Options + 1] = {
-                        title = 'Opkalds Status',
+                        title = 'Status: Deaktiveret',
                         icon = 'fa-solid fa-tower-cell',
                         disabled = cantSell,
                         iconColor = 'red',
@@ -129,12 +129,12 @@ function UsePhoneItem(data)
                     }
                 else
                     Options[#Options + 1] = {
-                        title = 'Opkalds Status',
+                        title = 'Status: Aktiveret',
                         icon = 'fa-solid fa-tower-cell',
                         disabled = canSell,
                         iconColor = 'green',
                         iconAnimation = 'spinPulse',
-                        description = 'Aktiv! Tryk for at ikke modtage opkald',
+                        description = 'Tryk for at deaktivere opkald',
                         onSelect = function()
                             toggleStatus = not toggleStatus
                             CallState = false
@@ -145,7 +145,7 @@ function UsePhoneItem(data)
             else
                 TriggerEvent('srp_animation:EmoteCancel')
                 lib.notify({
-                    description = 'Du har intet Simkort Indsat i Telefonen',
+                    description = 'Intet simkort er registreret i telefonen.',
                     type = 'error',
                     duration = 10000,
                 })
@@ -166,7 +166,7 @@ function UsePhoneItem(data)
         else
             TriggerEvent('srp_animation:EmoteCancel')
             lib.notify({
-                description = 'Du har intet Simkort Indsat i Telefonen',
+                description = 'Intet simkort er registreret i telefonen.',
                 type = 'error',
                 duration = 10000,
             })
@@ -297,31 +297,59 @@ function interactWithNPC(npc, currentDrug, model, options, coords)
 
                     ClearPedTasksImmediately(npc)
 
-                    Wait(1000)
-
-                    local scene = NetworkCreateSynchronisedScene(GetEntityCoords(npc), GetEntityRotation(npc), 2, false, false, 1065353216, 0, 0.8)
-                    NetworkAddPedToSynchronisedScene(npc, scene, animDict, 'hugs_guy_a', 1.5, -4.0, 1, 16, 1148846080, 0)
-                    NetworkAddPedToSynchronisedScene(playerPed, scene, animDict, 'hugs_guy_b', 1.5, -4.0, 1, 16, 1148846080, 0)
-                    NetworkStartSynchronisedScene(scene)
-
+                    if lib.progressBar({
+                        duration = 5500,
+                        label = 'Sælger til kunden',
+                        useWhileDead = false,
+                        canCancel = false,
+                        disable = {
+                            car = true,
+                            move = true,
+                            combat = true,
+                        },
+                        anim = {
+                            dict = 'mp_ped_interaction',
+                            clip = 'hugs_guy_b'
+                        },
+                    }) then                     
                     lib.notify({
                         description = 'Handling gik igennem!',
                         type = 'success',
                         duration = 10000,
                     })
 
-                    PlayPedAmbientSpeechWithVoiceNative(npc, "GENERIC_THANKS", "MP_M_SHOPKEEP_01_PAKISTANI_MINI_01", "SPEECH_PARAMS_FORCE", 1)
-
-                    Wait(5000)
-
-                    FreezeEntityPosition(npc, false)
-                    TaskWanderStandard(npc, 10.0, -1)
-
                     RemoveAnimDict(animDict)
                     selectedLocation = nil
                     isHandlingCustomer = false
                     fatsvag = nil
                     hasCustomer = not hasCustomer
+                    end
+
+                    -- Wait(1000)
+
+                    -- local scene = NetworkCreateSynchronisedScene(GetEntityCoords(npc), GetEntityRotation(npc), 2, false, false, 1065353216, 0, 0.8)
+                    -- NetworkAddPedToSynchronisedScene(npc, scene, animDict, 'hugs_guy_a', 1.5, -4.0, 1, 16, 1148846080, 0)
+                    -- NetworkAddPedToSynchronisedScene(playerPed, scene, animDict, 'hugs_guy_b', 1.5, -4.0, 1, 16, 1148846080, 0)
+                    -- NetworkStartSynchronisedScene(scene)
+
+                    -- lib.notify({
+                    --     description = 'Handling gik igennem!',
+                    --     type = 'success',
+                    --     duration = 10000,
+                    -- })
+
+                    -- PlayPedAmbientSpeechWithVoiceNative(npc, "GENERIC_THANKS", "MP_M_SHOPKEEP_01_PAKISTANI_MINI_01", "SPEECH_PARAMS_FORCE", 1)
+
+                    -- Wait(5000)
+
+                    -- FreezeEntityPosition(npc, false)
+                    -- TaskWanderStandard(npc, 10.0, -1)
+
+                    -- RemoveAnimDict(animDict)
+                    -- selectedLocation = nil
+                    -- isHandlingCustomer = false
+                    -- fatsvag = nil
+                    -- hasCustomer = not hasCustomer
                 else
                     lib.notify({
                         description = 'Du har ikke det aftale antal stoffer med til mig!',
