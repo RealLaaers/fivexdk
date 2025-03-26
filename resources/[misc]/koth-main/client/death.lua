@@ -265,18 +265,18 @@ AddEventHandler('koth-death:Distress', function()
 end)
 
 -- TODO: WORK ON DEATH THREAD
--- Citizen.CreateThread(function()
---     while true do
---         Citizen.Wait(0)
---         if (zone1 or zone2 or zone3) then
---             if buttonHeld(38, 150) then
---                 TriggerEvent('core:ResetDeathStatus', false)
---                 TriggerEvent("KOTH:ReturnBase")
---                 isDead = false
---             end
---         end        
---     end
--- end)
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+            if buttonHeld(38, 150) then
+                if (zone1 or zone2 or zone3) then
+                TriggerEvent('core:ResetDeathStatus', false)
+                TriggerEvent("KOTH:ReturnBase")
+                isDead = false
+            end
+        end        
+    end
+end)
 
 -- Scale form functions (ignore for sanity)
 function buttonHeld(key, timed)
@@ -314,7 +314,7 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
 
     ClearPedBloodDamage(PlayerPedId())
     
-    if alors and (zone1 or zone2 or zone3) then
+    if alors then
         isDead = false
         TriggerEvent('healffs2')
         NetworkSetVoiceActive(true)
@@ -332,7 +332,6 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
         StopGameplayHint(true)
         sec = 60000 * 5
     else
-        if (zone1 or zone2 or zone3) then
             isDead = false
             TriggerEvent('healffs2')
             NetworkSetVoiceActive(true)
@@ -353,7 +352,6 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
             IsPlayerDead2 = false
             TriggerEvent("KOTH-MEDIC", 3)
             sec = 60000 * 5
-        end
     end
 
     -- Vent et øjeblik, så eventet ikke bliver udløst igen med det samme
