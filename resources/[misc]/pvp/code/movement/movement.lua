@@ -34,7 +34,7 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 end)
 
   RegisterCommand('movement', function()
-    if LocalPlayer.state.inDuel ~= nil then return notify('Movement er deaktiveret her.', 'error') end
+    if LocalPlayer.state.inDuel ~= nil then return end
       lib.registerContext({
           id = 'movement_menu',
           title = 'FiveX - Movement',
