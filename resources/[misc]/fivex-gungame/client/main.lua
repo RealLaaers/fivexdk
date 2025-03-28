@@ -109,7 +109,7 @@ RegisterNetEvent('fivex-gungame:client:Revive', function()
         return
     end
     DoScreenFadeOut(500)
-    Wait(1000)
+    Wait(200)
     TriggerEvent('fivex-gungame:reviveEvent')
     SetEntityCoords(ply_ped, randomSpawn.x, randomSpawn.y, randomSpawn.z)
     SetEntityHealth(ply_ped, 200)
@@ -118,7 +118,7 @@ RegisterNetEvent('fivex-gungame:client:Revive', function()
     GiveWeaponToPed(ply_ped, GetHashKey(last_weapon), 999, false, true)
     SetPedInfiniteAmmo(ply_ped, true, GetHashKey(last_weapon))
     SetCurrentPedWeapon(ply_ped, GetHashKey(last_weapon), true)
-    Wait(800)
+    Wait(200)
     DoScreenFadeIn(500)
 end)
 

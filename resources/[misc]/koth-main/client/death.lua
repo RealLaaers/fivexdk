@@ -265,18 +265,18 @@ AddEventHandler('koth-death:Distress', function()
 end)
 
 -- TODO: WORK ON DEATH THREAD
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-            if buttonHeld(38, 150) then
-                if (zone1 or zone2 or zone3) then
-                TriggerEvent('core:ResetDeathStatus', false)
-                TriggerEvent("KOTH:ReturnBase")
-                isDead = false
-            end
-        end        
-    end
-end)
+-- Citizen.CreateThread(function()
+--     while true do
+--         Citizen.Wait(0)
+--             if buttonHeld(38, 150) then
+--                 if (zone1 or zone2 or zone3) then
+--                 TriggerEvent('core:ResetDeathStatus', false)
+--                 TriggerEvent("KOTH:ReturnBase")
+--                 isDead = false
+--             end
+--         end        
+--     end
+-- end)
 
 -- Scale form functions (ignore for sanity)
 function buttonHeld(key, timed)
