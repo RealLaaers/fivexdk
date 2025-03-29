@@ -78,182 +78,182 @@ function point3:onExit()
     zone3 = false
 end
 
-Citizen.CreateThread(function()
-    local hasBeenDead = false
-    local diedAt
-    local interval = 1
-    while true do
-        Wait(interval)
-        local player = PlayerId()
-        if NetworkIsPlayerActive(player) then
-            local ped = PlayerPedId()
-            if IsEntityDead(ped) then
-                --interval = 1000
-                --isDead = true
-                if not diedAt then
-                	diedAt = GetGameTimer()
-                end
+-- Citizen.CreateThread(function()
+--     local hasBeenDead = false
+--     local diedAt
+--     local interval = 1
+--     while true do
+--         Wait(interval)
+--         local player = PlayerId()
+--         if NetworkIsPlayerActive(player) then
+--             local ped = PlayerPedId()
+--             if IsEntityDead(ped) then
+--                 --interval = 1000
+--                 --isDead = true
+--                 if not diedAt then
+--                 	diedAt = GetGameTimer()
+--                 end
 
-                local driverid = -1
-                local killer, killerweapon = NetworkGetEntityKillerOfPlayer(player)
-				local killerentitytype = GetEntityType(killer)
-				local killertype = -1
-                local killerinvehicle = false
-                local killersharedveh = false
-                local destroyedveh = false
-				local killervehiclename = ''
-                local killervehicleseat = 0
-                local killerid = GetPlayerByEntityID(killer)
+--                 local driverid = -1
+--                 local killer, killerweapon = NetworkGetEntityKillerOfPlayer(player)
+-- 				local killerentitytype = GetEntityType(killer)
+-- 				local killertype = -1
+--                 local killerinvehicle = false
+--                 local killersharedveh = false
+--                 local destroyedveh = false
+-- 				local killervehiclename = ''
+--                 local killervehicleseat = 0
+--                 local killerid = GetPlayerByEntityID(killer)
 
-                -- Death Screen
-                local pPed = GetPlayerPed(-1)
-                local pCoords = GetEntityCoords(pPed)
-                local heading GetEntityHeading(pPed)
-                --NetworkResurrectLocalPlayer(pCoords, heading, 0, 0)
-                -- StartAudioScene("SWITCH_TO_MP_SCENE")
-                -- StartScreenEffect("DeathFailOut", -1, true)
+--                 -- Death Screen
+--                 local pPed = GetPlayerPed(-1)
+--                 local pCoords = GetEntityCoords(pPed)
+--                 local heading GetEntityHeading(pPed)
+--                 --NetworkResurrectLocalPlayer(pCoords, heading, 0, 0)
+--                 -- StartAudioScene("SWITCH_TO_MP_SCENE")
+--                 -- StartScreenEffect("DeathFailOut", -1, true)
 
-                -- if sec > 0 and isDead and isDead and zone1 or zone2 or zone3 then
-                --     Wait(1000)
-                --     sec = sec - 1
-                -- end
+--                 -- if sec > 0 and isDead and isDead and zone1 or zone2 or zone3 then
+--                 --     Wait(1000)
+--                 --     sec = sec - 1
+--                 -- end
 
 
-                -- Citizen.CreateThread(function()
-                --     while sec > 0 and isDead and zone1 or zone2 or zone3 do
-                --         Citizen.Wait(0)
+--                 -- Citizen.CreateThread(function()
+--                 --     while sec > 0 and isDead and zone1 or zone2 or zone3 do
+--                 --         Citizen.Wait(0)
             
-                --         SetTextFont(4)
-                --         SetTextScale(0.0, 0.5)
-                --         SetTextColour(255, 255, 255, 255)
-                --         SetTextDropshadow(0, 0, 0, 0, 255)
-                --         SetTextDropShadow()
-                --         SetTextOutline()
-                --         SetTextCentre(true)
+--                 --         SetTextFont(4)
+--                 --         SetTextScale(0.0, 0.5)
+--                 --         SetTextColour(255, 255, 255, 255)
+--                 --         SetTextDropshadow(0, 0, 0, 0, 255)
+--                 --         SetTextDropShadow()
+--                 --         SetTextOutline()
+--                 --         SetTextCentre(true)
                         
-                --         --local text = "Respawner automatisk om ~b~"..secondsToClock(sec).." ~w~sekunder."
+--                 --         --local text = "Respawner automatisk om ~b~"..secondsToClock(sec).." ~w~sekunder."
             
-                --        -- if sec <= 60 then
-                --             --text = text .. '\n' .. "Hold ~b~E~w~ for at respawn i din base."
+--                 --        -- if sec <= 60 then
+--                 --             --text = text .. '\n' .. "Hold ~b~E~w~ for at respawn i din base."
             
-                --         --end
+--                 --         --end
             
-                --         --BeginTextCommandDisplayText("STRING")
-                --         --AddTextComponentSubstringPlayerName(text)
-                --         EndTextCommandDisplayText(0.5, 0.8)
+--                 --         --BeginTextCommandDisplayText("STRING")
+--                 --         --AddTextComponentSubstringPlayerName(text)
+--                 --         EndTextCommandDisplayText(0.5, 0.8)
             
-                --         DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
-                --     end
+--                 --         DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
+--                 --     end
             
-                --    if sec <= 0 and isDead and zone1 or zone2 or zone3 then
-                --        TriggerEvent('core:ResetDeathStatus', false)
-                --        TriggerEvent("KOTH:ReturnBase")
-                --        sec = 60000*5
-                --    end
-                -- end)
+--                 --    if sec <= 0 and isDead and zone1 or zone2 or zone3 then
+--                 --        TriggerEvent('core:ResetDeathStatus', false)
+--                 --        TriggerEvent("KOTH:ReturnBase")
+--                 --        sec = 60000*5
+--                 --    end
+--                 -- end)
 
-                local attacker_hipfire = not DecorGetBool(killer, '_IS_AIMING')
+--                 local attacker_hipfire = not DecorGetBool(killer, '_IS_AIMING')
 
-				if killerentitytype == 1 then
-					killertype = GetPedType(killer)
-					if IsPedInAnyVehicle(killer, false) == 1 then
-						killerinvehicle = true
-						killervehiclename = GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(killer)))
-                        killervehicleseat = GetPedVehicleSeat(killer)
-                        if killervehicleseat ~= -1 then
-                            -- Driver Assisted Kill
-                            local veh = GetVehiclePedIsIn(killer)
-                            local driver = GetPedInVehicleSeat(veh, -1)
-                            driverid = GetPlayerServerId(GetPlayerByEntityID(driver))
-                        end
-					else 
-                        killerinvehicle = false
-					end
-				end
+-- 				if killerentitytype == 1 then
+-- 					killertype = GetPedType(killer)
+-- 					if IsPedInAnyVehicle(killer, false) == 1 then
+-- 						killerinvehicle = true
+-- 						killervehiclename = GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(killer)))
+--                         killervehicleseat = GetPedVehicleSeat(killer)
+--                         if killervehicleseat ~= -1 then
+--                             -- Driver Assisted Kill
+--                             local veh = GetVehiclePedIsIn(killer)
+--                             local driver = GetPedInVehicleSeat(veh, -1)
+--                             driverid = GetPlayerServerId(GetPlayerByEntityID(driver))
+--                         end
+-- 					else 
+--                         killerinvehicle = false
+-- 					end
+-- 				end
                 
-                if not killerid then 
-                    killerid = -1 
-                end
-                pDeath = true
-                -- Vehicle Destroyed
-                if IsPedInAnyVehicle(ped) then
-                    local vehicle = GetVehiclePedIsIn(ped, true)
-                    if GetEntityHealth(vehicle) <= 100 then
-                        destroyedveh = true
-                    end
-                end
+--                 if not killerid then 
+--                     killerid = -1 
+--                 end
+--                 pDeath = true
+--                 -- Vehicle Destroyed
+--                 if IsPedInAnyVehicle(ped) then
+--                     local vehicle = GetVehiclePedIsIn(ped, true)
+--                     if GetEntityHealth(vehicle) <= 100 then
+--                         destroyedveh = true
+--                     end
+--                 end
 
-                -- Remove all ped attachment
+--                 -- Remove all ped attachment
 
-                -- Check if killer and killed are in same vehicle
-                if IsPedInAnyVehicle(killer, false) == 1 then
-                    local vehicle = GetVehiclePedIsUsing(killer)
-                    for i=0, GetVehicleMaxNumberOfPassengers(vehicle) do
-                        local pass = GetPedInVehicleSeat(vehicle, i)
-                        if PlayerPedId() == pass then
-                            killersharedveh = true
-                        end
-                    end
-                end
+--                 -- Check if killer and killed are in same vehicle
+--                 if IsPedInAnyVehicle(killer, false) == 1 then
+--                     local vehicle = GetVehiclePedIsUsing(killer)
+--                     for i=0, GetVehicleMaxNumberOfPassengers(vehicle) do
+--                         local pass = GetPedInVehicleSeat(vehicle, i)
+--                         if PlayerPedId() == pass then
+--                             killersharedveh = true
+--                         end
+--                     end
+--                 end
 
-				if killer ~= ped and killerid ~= nil and NetworkIsPlayerActive(killerid) then 
-                    killerid = GetPlayerServerId(killerid)
-				else 
-                    killerid = -1
-				end
+-- 				if killer ~= ped and killerid ~= nil and NetworkIsPlayerActive(killerid) then 
+--                     killerid = GetPlayerServerId(killerid)
+-- 				else 
+--                     killerid = -1
+-- 				end
 
-                local killdist = #(GetEntityCoords(killer) - GetEntityCoords(ped))
-                if not killdist then 
-                    killdist = 0 
-                end
+--                 local killdist = #(GetEntityCoords(killer) - GetEntityCoords(ped))
+--                 if not killdist then 
+--                     killdist = 0 
+--                 end
 
-                -- Check if headshot
-                local headshot = false
-                local _, outbone = GetPedLastDamageBone(ped)
-                if outbone == 31086 then 
-                    headshot = true 
-                end
+--                 -- Check if headshot
+--                 local headshot = false
+--                 local _, outbone = GetPedLastDamageBone(ped)
+--                 if outbone == 31086 then 
+--                     headshot = true 
+--                 end
 
-                if killer == ped or killer == -1 then
-                    TriggerEvent('baseevents:onPlayerDied', killertype, { table.unpack(GetEntityCoords(ped)) })
-                    TriggerServerEvent('baseevents:onPlayerDied', killertype, { table.unpack(GetEntityCoords(ped)) })
-                    hasBeenDead = true
-                else
+--                 if killer == ped or killer == -1 then
+--                     TriggerEvent('baseevents:onPlayerDied', killertype, { table.unpack(GetEntityCoords(ped)) })
+--                     TriggerServerEvent('baseevents:onPlayerDied', killertype, { table.unpack(GetEntityCoords(ped)) })
+--                     hasBeenDead = true
+--                 else
 
-                    TriggerServerEvent('baseevents:onPlayerKilled', killerid, {
-                        hipfire = attacker_hipfire, 
-                        killersharedveh = killersharedveh, 
-                        headshot = headshot, 
-                        killdistance=killdist, 
-                        killertype=killertype, 
-                        weaponhash = killerweapon,
-                        zoned = zoneKill, 
-                        killerinveh=killerinvehicle, 
-                        driverid=driverid, 
-                        destroyveh=destroyedveh, 
-                        killervehseat=killervehicleseat, 
-                        killervehname=killervehiclename, 
-                        killerpos={table.unpack(GetEntityCoords(ped))}
-                    }, KOTH.TeamID)
-                    Wait(1500)
-                    hasBeenDead = true
-                end
-                TriggerEvent('koth-core:PlayerDied')
-            elseif not IsPedFatallyInjured(ped) then
-                --isDead = false
-                diedAt = nil
-            end
-            -- check if the player has to respawn in order to trigger an event
-            if not hasBeenDead and diedAt ~= nil and diedAt > 0 then
-                TriggerEvent('baseevents:onPlayerWasted', { table.unpack(GetEntityCoords(ped)) })
-                TriggerServerEvent('baseevents:onPlayerWasted', { table.unpack(GetEntityCoords(ped)) })
-                hasBeenDead = true
-            elseif hasBeenDead and diedAt ~= nil and diedAt <= 0 then
-                hasBeenDead = false
-            end
-        end
-    end
-end)
+--                     TriggerServerEvent('baseevents:onPlayerKilled', killerid, {
+--                         hipfire = attacker_hipfire, 
+--                         killersharedveh = killersharedveh, 
+--                         headshot = headshot, 
+--                         killdistance=killdist, 
+--                         killertype=killertype, 
+--                         weaponhash = killerweapon,
+--                         zoned = zoneKill, 
+--                         killerinveh=killerinvehicle, 
+--                         driverid=driverid, 
+--                         destroyveh=destroyedveh, 
+--                         killervehseat=killervehicleseat, 
+--                         killervehname=killervehiclename, 
+--                         killerpos={table.unpack(GetEntityCoords(ped))}
+--                     }, KOTH.TeamID)
+--                     Wait(1500)
+--                     hasBeenDead = true
+--                 end
+--                 TriggerEvent('koth-core:PlayerDied')
+--             elseif not IsPedFatallyInjured(ped) then
+--                 --isDead = false
+--                 diedAt = nil
+--             end
+--             -- check if the player has to respawn in order to trigger an event
+--             if not hasBeenDead and diedAt ~= nil and diedAt > 0 then
+--                 TriggerEvent('baseevents:onPlayerWasted', { table.unpack(GetEntityCoords(ped)) })
+--                 TriggerServerEvent('baseevents:onPlayerWasted', { table.unpack(GetEntityCoords(ped)) })
+--                 hasBeenDead = true
+--             elseif hasBeenDead and diedAt ~= nil and diedAt <= 0 then
+--                 hasBeenDead = false
+--             end
+--         end
+--     end
+-- end)
 
 function Round(value, numDecimalPlaces)
     return tonumber(string.format("%." .. (numDecimalPlaces or 0) .. "f", value))

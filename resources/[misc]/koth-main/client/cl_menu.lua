@@ -1,30 +1,30 @@
 local co = false
 local NotSpam = false
-AddEventHandler('playerSpawned', function()
-    if not co then
-        -- TriggerEvent("KOTH_HUD:removeHUD",1)
-        -- startCamera()
-        -- showMainMenu()
-        ClearPedBloodDamage(PlayerPedId())
-        co = true
-        TriggerEvent("core:ResetDeathStatus",true)
-        TriggerServerEvent("GetUserBDD")
-    else
-        TriggerEvent("KOTH:ReturnBase")
-        TriggerEvent("core:ResetDeathStatus", true)
+-- AddEventHandler('playerSpawned', function()
+--     if not co then
+--         -- TriggerEvent("KOTH_HUD:removeHUD",1)
+--         -- startCamera()
+--         -- showMainMenu()
+--         ClearPedBloodDamage(PlayerPedId())
+--         co = true
+--         TriggerEvent("core:ResetDeathStatus",true)
+--         TriggerServerEvent("GetUserBDD")
+--     else
+--         TriggerEvent("KOTH:ReturnBase")
+--         TriggerEvent("core:ResetDeathStatus", true)
 
-        ClearPedBloodDamage(PlayerPedId())
-    end
-end)
+--         ClearPedBloodDamage(PlayerPedId())
+--     end
+-- end)
 
-AddEventHandler('onResourceStart', function(resourceName)
-    if resourceName == "koth-main" then
-        Wait(1500)
-        -- showMainMenu()
-        -- startCamera()
-        TriggerEvent("playerSpawned")
-    end
-end)
+-- AddEventHandler('onResourceStart', function(resourceName)
+--     if resourceName == "koth-main" then
+--         Wait(1500)
+--         -- showMainMenu()
+--         -- startCamera()
+--         TriggerEvent("playerSpawned")
+--     end
+-- end)
 
 RegisterNetEvent("KOTH:TeleportPlayer")
 AddEventHandler("KOTH:TeleportPlayer", function(x, y, z, heading, win)
