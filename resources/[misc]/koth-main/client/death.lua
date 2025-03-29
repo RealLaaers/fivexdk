@@ -303,14 +303,14 @@ function GetPlayerByEntityID(id)
 	return nil
 end
 
-local isResetting = false
+--local isResetting = false
 
 RegisterNetEvent("core:ResetDeathStatus")
 AddEventHandler("core:ResetDeathStatus", function(alors)
-    if isResetting then
-        return
-    end
-    isResetting = true
+    -- if isResetting then
+    --     return
+    -- end
+    -- isResetting = true
 
     ClearPedBloodDamage(PlayerPedId())
     
@@ -354,9 +354,9 @@ AddEventHandler("core:ResetDeathStatus", function(alors)
             sec = 60000 * 5
     end
 
-    -- Vent et øjeblik, så eventet ikke bliver udløst igen med det samme
-    Citizen.Wait(1000)
-    isResetting = false
+    -- -- Vent et øjeblik, så eventet ikke bliver udløst igen med det samme
+    -- Citizen.Wait(1000)
+    -- isResetting = false
 end)
 
 function DisplayMessage(msg)
