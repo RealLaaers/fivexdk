@@ -6555,7 +6555,7 @@
           <AlternativeOrScopedCameraHash />
           <RunAndGunAlternativeOrScopedCameraHash />
           <CinematicShootingAlternativeOrScopedCameraHash />
-          <CameraFov value="90.000000" />
+          <CameraFov value="55.000000" />
           <FirstPersonScopeFov value="35.00000"/>
           <FirstPersonScopeAttachmentFov value="20.00000"/>
           <FirstPersonRNGOffset x="0.000000" y="0.000000" z="0.010000" />
