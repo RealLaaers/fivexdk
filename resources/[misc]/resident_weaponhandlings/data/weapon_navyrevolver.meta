@@ -69,7 +69,7 @@
           <WheelSlot>WHEEL_PISTOL</WheelSlot>
           <Group>GROUP_PISTOL</Group>
           <AmmoInfo ref="AMMO_PISTOL" />
-          <AimingInfo ref="PISTOL_2H_BASE_STRAFE" />
+          <!-- <AimingInfo ref="PISTOL_2H_BASE_STRAFE" /> -->
           <ClipSize value="6" />
           <AccuracySpread value="0.000000" />
           <AccurateModeAccuracyModifier value="0.200000" />
@@ -165,31 +165,29 @@
             <FlashFxAlt />
             <FlashFxFP>muz_xm_revolver</FlashFxFP>
             <FlashFxFPAlt />
-            <MuzzleSmokeFx>muz_smoking_barrel</MuzzleSmokeFx>
-            <MuzzleSmokeFxFP>muz_smoking_barrel_fp</MuzzleSmokeFxFP>
-            <MuzzleSmokeFxMinLevel value="0.300000" />
-            <MuzzleSmokeFxIncPerShot value="0.200000" />
-            <MuzzleSmokeFxDecPerSec value="0.275000" />
-            <MuzzleOverrideOffset x="0.000000" y="0.000000" z="0.000000" />
-            <MuzzleUseProjTintColour value="false" />
-            <ShellFx>eject_xm_revolver</ShellFx>
-            <ShellFxFP />
+            <MuzzleSmokeFx />
+            <MuzzleSmokeFxFP />
+            <MuzzleSmokeFxMinLevel value="0.000000" />
+            <MuzzleSmokeFxIncPerShot value="0.000000" />
+            <MuzzleSmokeFxDecPerSec value="0.000000" />
+            <ShellFx>eject_pistol</ShellFx>
+			      <ShellFxFP>eject_pistol_fp</ShellFxFP>
             <TracerFx>bullet_tracer</TracerFx>
-            <PedDamageHash>BulletLarge</PedDamageHash>
+            <PedDamageHash>BulletSmall</PedDamageHash>
             <TracerFxChanceSP value="0.200000" />
             <TracerFxChanceMP value="0.750000" />
             <FlashFxChanceSP value="1.000000" />
             <FlashFxChanceMP value="1.000000" />
             <FlashFxAltChance value="0.000000" />
-            <FlashFxScale value="1.000000" />
-            <FlashFxLightEnabled value="true" />
+            <FlashFxScale value="0.800000" />
+            <FlashFxLightEnabled value="false" />
             <FlashFxLightCastsShadows value="false" />
-            <FlashFxLightOffsetDist value="0.000000" />
-            <FlashFxLightRGBAMin x="255.000000" y="93.000000" z="25.000000" />
-            <FlashFxLightRGBAMax x="255.000000" y="136.000000" z="50.000000" />
-            <FlashFxLightIntensityMinMax x="2.000000" y="3.000000" />
-            <FlashFxLightRangeMinMax x="2.500000" y="5.000000" />
-            <FlashFxLightFalloffMinMax x="1024.000000" y="1536.000000" />
+            <FlashFxLightOffsetDist value="0.200000" />
+            <FlashFxLightRGBAMin x="0.000000" y="0.000000" z="0.000000" />
+            <FlashFxLightRGBAMax x="0.000000" y="0.000000" z="0.000000" />
+            <FlashFxLightIntensityMinMax x="0.000000" y="0.000000" />
+            <FlashFxLightRangeMinMax x="0.000000" y="0.000000" />
+            <FlashFxLightFalloffMinMax x="0.000000" y="0.000000" />
             <GroundDisturbFxEnabled value="false" />
             <GroundDisturbFxDist value="5.000000" />
             <GroundDisturbFxNameDefault />
