@@ -26,30 +26,12 @@ end)
 
 lib.callback.register('grisen_drugrun:getNPCLocations', function(source)
     local locations = {}
-    local usedLocations = {}
-    
     for drugType, npcData in pairs(Config.NPCs) do
-        local availableLocations = {}
-        for i, loc in ipairs(npcData.locations) do
-            if not usedLocations[i] then
-                table.insert(availableLocations, loc)
-            end
-        end
-        local chosenLocation = availableLocations[math.random(1, #availableLocations)]
-        local index = table.find(npcData.locations, function(v) return v == chosenLocation end)
-        usedLocations[index] = true
+        local chosenLocation = npcData.locations[math.random(1, #npcData.locations)]
         locations[drugType] = chosenLocation
     end
-    
     return locations
 end)
-
-function table.find(t, fn)
-    for i, v in ipairs(t) do
-        if fn(v) then return i end
-    end
-    return nil
-end
 
 AddEventHandler('onResourceStart', function(resource)
     if resource == GetCurrentResourceName() then

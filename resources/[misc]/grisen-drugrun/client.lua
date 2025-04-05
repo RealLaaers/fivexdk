@@ -72,28 +72,21 @@ function StartDrugRun(drugType)
             end
         end
     end, drugType)
-end
-
-Citizen.CreateThread(function()
-    for _, npcData in pairs(Config.NPCs) do
-        RequestModel(GetHashKey('a_m_m_soucent_01'))
-        while not HasModelLoaded(GetHashKey('a_m_m_soucent_01')) do
-            Citizen.Wait(100)
-        end
-        local npc = CreatePed(4, GetHashKey('a_m_m_soucent_01'), npcData.currentCoords.x, npcData.currentCoords.y, npcData.currentCoords.z, 0.0, false, true)
-        FreezeEntityPosition(npc, true)
-        SetEntityInvincible(npc, true)
-        SetBlockingOfNonTemporaryEvents(npc, true)
-        npcData.ped = npc
-    end
 end)
 
-AddEventHandler('onResourceStart', function(resource)
-    if resource == GetCurrentResourceName() then
-        lib.callback('grisen_drugrun:getNPCLocations', false, function(locations)
-            for drugType, coords in pairs(locations) do
-                Config.NPCs[drugType].currentCoords = coords
+Citizen.CreateThread(function()
+    lib.callback.await('grisen_drugrun:getNPCLocations', nil, function(locations)
+        for drugType, coords in pairs(locations) do
+            Config.NPCs[drugType].currentCoords = coords
+            RequestModel(GetHashKey('a_m_m_soucent_01'))
+            while not HasModelLoaded(GetHashKey('a_m_m_soucent_01')) do
+                Citizen.Wait(100)
             end
-        end)
-    end
+            local npc = CreatePed(4, GetHashKey('a_m_m_soucent_01'), coords.x, coords.y, coords.z, 0.0, false, true)
+            FreezeEntityPosition(npc, true)
+            SetEntityInvincible(npc, true)
+            SetBlockingOfNonTemporaryEvents(npc, true)
+            Config.NPCs[drugType].ped = npc
+        end
+    end)
 end)
