@@ -30,9 +30,9 @@ Config.MassiveLootSpawns = true -- This sets the loot spawns to a massive spawn 
 Config.UseOxLibProgressBar = true -- Use ox_lib progressbar on capturing the flag.
 ----------
 ----------
-Config.DrawmarkerStartQueueLocation = false -- Make this true if you want a big circle on the ground for players to start a royale match
+Config.DrawmarkerStartQueueLocation = true -- Make this true if you want a big circle on the ground for players to start a royale match
 Config.QueueTime = 2 -- Time the queue countdown time will be when a player joins the match for other players to join before the game starts
-Config.RoyaleStartLoc = vector3(-246.78, -985.48, 31.22) -- Circle Drawmarker location to join the royale queue
+Config.RoyaleStartLoc = vector3(333.4539, -1410.3242, 76.1741) -- Circle Drawmarker location to join the royale queue
 Config.MarkerStartRoyaleLocation = { -- The draw marker where you pickup boxes at
     Type = 1, 
     Scale = {x = 3.0, y = 3.0, z = 0.4}, 
@@ -57,7 +57,7 @@ Config.RandomGulagWeapon = { -- Random weapon that players get in there gulag fi
 }
 ----------
 ----------
-Config.TimeToTakeFlag = 1 -- (in seconds) time it takes to grab the flag in the gulag
+Config.TimeToTakeFlag = 10 -- (in seconds) time it takes to grab the flag in the gulag
 ----------
 Config.UsingCrossHairByDefault = false -- This was requested for server that have crosshair on always. If you are one of those servers then make this true or else just leave it
 ----------
