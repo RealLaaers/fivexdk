@@ -4,7 +4,7 @@ Config.NPCs = {
     meth = {
         type = 'meth',
         locations = {
-            vector3(759.3825, -1682.7100)
+            vector3(191.5218, -2175.8386, 11.4103)
             -- vector3(200.0, 200.0, 30.0),
             -- vector3(300.0, 300.0, 30.0)
         },
