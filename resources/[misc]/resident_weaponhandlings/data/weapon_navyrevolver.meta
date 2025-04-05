@@ -69,7 +69,7 @@
           <WheelSlot>WHEEL_PISTOL</WheelSlot>
           <Group>GROUP_PISTOL</Group>
           <AmmoInfo ref="AMMO_PISTOL" />
-          <!-- <AimingInfo ref="PISTOL_2H_BASE_STRAFE" /> -->
+          <AimingInfo ref="PISTOL_2H_BASE_STRAFE" />
           <ClipSize value="6" />
           <AccuracySpread value="0.000000" />
           <AccurateModeAccuracyModifier value="0.200000" />
@@ -84,9 +84,9 @@
           <HeadShotDamageModifierAI value="25.500000" />
           <RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
           <MinHeadShotDistancePlayer value="5.000000" />
-          <MaxHeadShotDistancePlayer value="200.000000" />
+          <MaxHeadShotDistancePlayer value="176.000000" />
           <HeadShotDamageModifierPlayer value="30.500000" />
-          <Damage value="50.250000" />
+          <Damage value="48.250000" />
           <DamageTime value="0.000000" />
           <DamageTimeInVehicle value="0.000000" />
           <DamageTimeInVehicleHeadShot value="0.000000" />
