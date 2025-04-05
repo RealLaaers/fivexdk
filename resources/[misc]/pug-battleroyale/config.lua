@@ -31,7 +31,7 @@ Config.UseOxLibProgressBar = true -- Use ox_lib progressbar on capturing the fla
 ----------
 ----------
 Config.DrawmarkerStartQueueLocation = true -- Make this true if you want a big circle on the ground for players to start a royale match
-Config.QueueTime = 2 -- Time the queue countdown time will be when a player joins the match for other players to join before the game starts
+Config.QueueTime = 1 -- Time the queue countdown time will be when a player joins the match for other players to join before the game starts
 Config.RoyaleStartLoc = vector3(333.4539, -1410.3242, 76.1741) -- Circle Drawmarker location to join the royale queue
 Config.MarkerStartRoyaleLocation = { -- The draw marker where you pickup boxes at
     Type = 1, 
