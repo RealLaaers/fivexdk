@@ -220,8 +220,6 @@
           <DamageFallOffModifier value="1.000000" />
           <VehicleWeaponHash />
           <DefaultCameraHash>DEFAULT_THIRD_PERSON_PED_AIM_CAMERA</DefaultCameraHash>
-          <AimCameraHash />
-          <FireCameraHash />
           <CoverCameraHash>DEFAULT_THIRD_PERSON_PED_AIM_IN_COVER_CAMERA</CoverCameraHash>
           <CoverReadyToFireCameraHash />
           <RunAndGunCameraHash>DEFAULT_THIRD_PERSON_PED_RUN_AND_GUN_CAMERA</RunAndGunCameraHash>
