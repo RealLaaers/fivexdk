@@ -228,7 +228,7 @@
           <RunAndGunAlternativeOrScopedCameraHash />
           <CinematicShootingAlternativeOrScopedCameraHash />
           <PovTurretCameraHash />
-          <CameraFov value="55.000000" />
+          <CameraFov value="45.000000" />
           <FirstPersonAimFovMin value="42.000000" />
           <FirstPersonAimFovMax value="47.000000" />
           <FirstPersonScopeFov value="30.000000" />
