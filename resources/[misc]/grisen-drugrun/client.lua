@@ -72,7 +72,8 @@ function StartDrugRun(drugType)
             end
         end
     end, drugType)
-end)
+end
+end
 
 Citizen.CreateThread(function()
     lib.callback.await('grisen_drugrun:getNPCLocations', nil, function(locations)
